@@ -1,0 +1,4 @@
+FROM kyma/docker-nginx
+COPY build/ /var/www
+COPY source/gotadi /var/www
+CMD 'nginx'

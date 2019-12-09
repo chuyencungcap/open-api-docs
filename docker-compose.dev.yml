@@ -1,0 +1,9 @@
+app:
+  build: .
+  dockerfile: Dockerfile.dev
+  container_name: open-api-docs-dev
+  ports:
+    - 4567:4567
+  volumes:
+    - ./source:/usr/src/app/source
+    - ./build:/usr/src/app/build

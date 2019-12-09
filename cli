@@ -1,0 +1,67 @@
+#!/bin/bash
+
+CONTAINER_NAME="open-api-docs-dev"
+CONTAINER_PORT="4567"
+
+function docker_run {
+    if docker ps | grep -qs $CONTAINER_NAME; then
+        echo "Container already exists!"
+    elif docker ps -a | grep -qs $CONTAINER_NAME; then
+        echo "Starting container '$CONTAINER_NAME'..."
+        docker start $CONTAINER_NAME
+    else
+        echo "Creating container '$CONTAINER_NAME'..."
+        docker run --name $CONTAINER_NAME -d -p $CONTAINER_PORT:4567 -v `pwd`/src/source:/app/source $IMAGE_NAME
+    fi
+}
+
+if [ -z $1 ]; then
+    echo -e "Supported arguments:
+        * start
+        * build
+        * docker [start|stop|restart|reload|update|ssh|logs]
+    "
+elif [ "$1" == "start" ]; then
+    docker-compose -f docker-compose.dev.yml up -d
+elif [ "$1" == "build" ]; then
+    docker exec -it $CONTAINER_NAME bundle exec middleman build --clean
+    docker-compose -f docker-compose.web.yml build 
+elif [ "$1" == "deploy" ]; then
+    docker exec -it $CONTAINER_NAME bundle exec middleman build --clean
+elif [ "$1" == "docker" ]; then
+    if [ -z $2 ]; then
+        echo -e "Available options:
+            * start
+            * stop
+            * restart
+            * reload
+            * update
+            * ssh
+            * logs
+        "
+    elif [ "$2" == "start" ]; then
+        docker_run
+    elif [ "$2" == "stop" ]; then
+        echo "Stopping container '$CONTAINER_NAME'..."
+        docker stop $CONTAINER_NAME
+    elif [ "$2" == "restart" ]; then
+        if docker ps | grep -qs $CONTAINER_NAME; then
+            echo "Stopping container '$CONTAINER_NAME'..."
+            docker stop $CONTAINER_NAME
+        fi
+        docker_run
+    elif [ "$2" == "reload" ]; then
+        if docker ps -a | grep -qs $CONTAINER_NAME; then
+            echo "Removing current container..."
+            docker rm -f $CONTAINER_NAME
+        fi
+        docker_run
+    elif [ "$2" == "update" ]; then
+        echo "Updating image '$IMAGE_NAME'..."
+        docker pull $IMAGE_NAME
+    elif [ "$2" == "ssh" ]; then
+        docker exec -it $CONTAINER_NAME bash
+    elif [ "$2" == "logs" ]; then
+        docker logs -f $CONTAINER_NAME
+    fi
+fi
