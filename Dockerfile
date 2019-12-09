@@ -11,7 +11,6 @@ RUN apt-get -o Acquire::Check-Valid-Until=false update
 RUN apt-get install -y nodejs \
 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
 ADD . /src/open-api-docs/
 
 RUN bundle exec middleman build --clean
