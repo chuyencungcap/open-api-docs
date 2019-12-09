@@ -2,7 +2,7 @@ version: 1
 
 config:
     slack_notify: true
-    slack_channel: 'default'
+    slack_channel: 'mkp-pipeline-deploy'
     dev_branch_name: dev
 
 jobs:
@@ -18,29 +18,28 @@ jobs:
     deploy_dev:
         steps:
             - deploy_dev:
-                cluster: marketplace
-                workload: open-api-docs
-                has_worker: 'no'
+                  cluster: marketplace
+                  workload: open-api-docs
+                  has_worker: 'no'
 
 workflows:
     jenkins_pipeline:
         jobs:
             - build_docker
             - publish_docker:
-                requires:
-                    - build_docker
-                filters:
-                    branches:
-                        only:
-                            - master
-                            - dev
-                            - staging
+                  requires:
+                      - build_docker
+                  filters:
+                      branches:
+                          only:
+                              - master
+                              - dev
+                              - staging
 
             - deploy_dev:
-                requires:
-                    - publish_docker
-                filters:
-                    branches:
-                        only:
-                            - dev
-
+                  requires:
+                      - publish_docker
+                  filters:
+                      branches:
+                          only:
+                              - dev
