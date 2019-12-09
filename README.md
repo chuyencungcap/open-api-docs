@@ -17,4 +17,3 @@ Edit `source/index.html.md` the refresh webpage to see the changes.
 Build & deploy using a nginx docker images
 
 ./cli deploy
-
