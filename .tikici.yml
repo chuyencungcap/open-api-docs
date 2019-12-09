@@ -8,7 +8,8 @@ config:
 jobs:
     build_docker:
         steps:
-            - build_image
+            - build_image:
+                dockerfile: Dockerfile.dev
 
     publish_docker:
         steps:
