@@ -1,55 +1,54 @@
 
 # Order Endpoint 
 
-## 1\) Let's get started
+## Let's get started
 
 Whenever customer place an order, TIKI and seller have to collaborate to delivery the product to customer as soon as possible
 
 TIKI have 2 main fulfillment type chosen when seller create product. Each type have a different flow to confirm order and deliver product to customer.
 
-* TIKI delivery \( **tiki\_delivery** \) 
-* Seller delivery \( **seller\_delivery** \)
+* TIKI delivery (tiki_delivery) 
+* Seller delivery (seller_delivery)
 
-Via API , we provide some solution to confirm order & delivery status step by step :
+Via API, we provide some solution to confirm order & delivery status step by step:
 
-* Query list registered warehouse , specific order 
-* Confirm product available status \( select warehouse it belong to \)
-* Confirm delivery status \( for seller delivery \) 
-* Print order label \( if needed \) 
+* Query list registered warehouse, specific order 
+* Confirm product available status(select warehouse it belong to)
+* Confirm delivery status (for seller delivery) 
+* Print shipping order (if needed) 
 
 Please take look those API docs below for more detail 
 
-## 2 \) Sequence diagram
+## Sequence diagram
 
-### 2.1\) Seller delivery
+### Seller delivery
 ![](https://i.imgur.com/nrieEw6.png)
 
 
-**\(1\)** Seller get warehouses using api \***get warehouses,** each warehouse have location, _warehouse\_code_ and _seller\_delivery\_id_
+**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
 
-**\(2\)** Seller pull order, using api \***get list order**  with status = "_**queueing**_"
+**(2)** Seller pull order, using api **get list order**  with status = "**queueing**"
 
-**\(3\)** After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller\_inventory\_id_ have item in stock. Using api \***confirm order items**
+**(3)** After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
 
-**\(4\)** After seller delivery, seller will confirm delivery status using api \***Confirm delivery status,** status=canceled or status=successful\_delivery. If you canceled order then using field reason \(reason cancel order\).
+**(4)** After seller delivery, seller will confirm delivery status using api **Confirm delivery status** status=**successful_delivery**.
 
-### 2.2\) TIKI Delivery
+### TIKI Delivery
 ![](https://i.imgur.com/wGDoCKW.png)
 
 
-**\(1\)** Seller get warehouses using api \***get warehouses,** each warehouse have location, _warehouse\_code_ and _seller\_delivery\_id_
+**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
 
-**\(2\)** Seller pull order, using api \***get list order**  with status = "_**queueing**_"
+**(2)** Seller pull order, using api **get list order**  with status = "_**queueing**_"
 
-**\(3\)**  After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller\_inventory\_id_ have item in stock. Using api \***confirm order items**
+**(3)**  After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
 
-**\(4\)** Once products in TIKI warehouse, we will pack and delivery to customer.
+**(4)** Once products in TIKI warehouse, we will pack and delivery to customer.
 
-**\(5\)** Finally TIKI will confirm delivery order using api \***Confirm delivery,** status=canceled or status=successful\_delivery. 
+**(5)** Finally TIKI will confirm delivery order using api **Confirm delivery**, status=**successful_delivery**. 
 
-## 3) Entity 
-
-### 3.1\) Order
+## Entity 
+### Order
 
 <table>
   <thead>
@@ -127,10 +126,7 @@ Please take look those API docs below for more detail
       <td style="text-align:left">is_rma</td>
       <td style="text-align:left">Integer</td>
       <td style="text-align:left">0</td>
-      <td style="text-align:left">
-        <p>default 0,</p>
-        <p>1: is return order</p>
-      </td>
+      <td style="text-align:left"> default 0, 1 is return order</td>
     </tr>
     <tr>
       <td style="text-align:left">warehouse_id</td>
@@ -183,14 +179,14 @@ Please take look those API docs below for more detail
   </tbody>
 </table>
 
-### 3.2\) Discount 
+### (*)Discount 
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
-| discount\_amount | Long | 10000 | total amount discount |
-| discount\_coupon | Long | 10000 | amount discount of coupon |
+| discount_amount | Long | 10000 | total amount discount |
+| discount_coupon | Long | 10000 | amount discount of coupon |
 
-### 3.3\) Tax
+### (*)Tax
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -198,7 +194,7 @@ Please take look those API docs below for more detail
 | name | String | Company |  |
 | address | String | Ha Noi |  |
 
-### 3.4\) Shipping
+### (*)Shipping
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -209,52 +205,53 @@ Please take look those API docs below for more detail
 | region | String | "Hồ Chí Minh" | Province, City of delivery address |
 | country | String | "VN" | The country of delivery address |
 | phone | String | "0784083498" | phone number |
-| estimation\_description | String | Expected delivery on Friday | the delivery info TIKI estimate  |
-| shipping\_fee | Long | 0 | shipping fee |
+| estimation_description | String | Expected delivery on Friday | the delivery info TIKI estimate  |
+| shipping_fee | Long | 0 | shipping fee |
 
-### 3.5\) Item \( Order item \)
+### (*)Item (Order item)
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | id | Integer | 90965636 | Identifier of order line item within Tiki seller center |
-| product\_id | Integer | 12033331 | Product ID within Tiki seller center |
-| product\_name | String | "Gối Massage Cổ Hình Chữ U Xiaomi LR-S100" | Product name |
+| product_id | Integer | 12033331 | Product ID within Tiki seller center |
+| product_name | String | "Gối Massage Cổ Hình Chữ U Xiaomi LR-S100" | Product name |
 | sku | String | 341231234 | Identifier of the product within third-party system, that is added as a field of the product in Tiki system. |
-| original\_sku | String | "H24071" | Code of the seller SKU within Tiki Seller Center. |
+| original_sku | String | "H24071" | Code of the seller SKU within Tiki Seller Center. |
 | qty | Integer | 2 | Item quantity in the order |
 | price | Integer | 299000 | Sales price of the product in the order |
-| confirmation\_status | String | "confirmed" | Confirmation status of the order item  |
-| confirmed\_at | String | "2019-07-03 09:18:08" | The time when the order item was confirmed |
-| must\_confirmed\_before\_at | String | "2019-07-03 09:18:08" | Order must confirm before at that time |
-| **inventory\_type**\(\*\) | String | instock | is product inventory type |
+| confirmation_status | String | "confirmed" | Confirmation status of the order item  |
+| confirmed_at | String | "2019-07-03 09:18:08" | The time when the order item was confirmed |
+| must_confirmed_before_at | String | "2019-07-03 09:18:08" | Order must confirm before at that time |
+| **inventory_type**(*) | String | instock | is product inventory type |
 
-### 3.6\) Payment
+### (*)Payment
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
-| payment\_method | String | "cod" | the payment method of customer |
-| updated\_at | String | "2019-07-31 14:31:26" | the latest time payment info is updated |
+| payment_method | String | "cod" | the payment method of customer |
+| updated_at | String | "2019-07-31 14:31:26" | the latest time payment info is updated |
 | description | String | "Thanh toán tiền mặt khi nhận hàng" | the detail of payment |
 
-### 3.7\) Order status
+### (*)Order status
 
 | **Value** | **Value-VN** | **Description** | **Description - VN** |
 | :--- | :--- | :--- | :--- |
-| queueing | cho\_in | tiki received | Chờ in |
+| queueing | cho_in | tiki received | Chờ in |
 | canceled | canceled | canceled order | Đã hủy |
-| successful\_delivery | giao\_hang\_thanh\_cong | successful delivery | Giao hàng thành công |
+| successful_delivery | giao_hang_thanh_cong | successful delivery | Giao hàng thành công |
 | complete |  |  |  |
 
 
-## 4\) Get list orders
+## Get list orders
 
-    GET https://api.tiki.vn/integration/{version}/orders
+```http
+GET https://api.tiki.vn/integration/{version}/orders
+```
 
-| description | Returns a list of sales orders managed by signing in seller, base on a specific search query. |
-| :--- | :--- |
+    Returns a list of sales orders managed by signing in seller, base on a specific search query
 
 
-**4.1\) Request**
+### **Request**
 
 <table>
   <thead>
@@ -325,18 +322,12 @@ Please take look those API docs below for more detail
   </tbody>
 </table>
 
-*Note : We support query data 30 days latest at most.
+_**Note**_: We support query data 30 days latest at most.
 
-**4.2\) Response :** 
-
-> Response Status Code: 200
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| results | List&lt;Order&gt; | Returns a list of sales orders managed by signing in seller, base on a specific search query. |
-| paging | Object | Paging information |
-
-> Example : https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing  
+### **Response:** 
+```http
+GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing 
+```
 > Response body
 
 ```json
@@ -408,35 +399,33 @@ Please take look those API docs below for more detail
 }
 ```
 
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| results | List&lt;Order&gt; | Returns a list of sales orders managed by signing in seller, base on a specific search query. |
+| paging | Object | Paging information |
+
+### **Exception Case**
+
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 
-**4.3\)Exception Case**
 
-## 5\) Order detail
+## Order detail
 
-    GET https://api.tiki.vn/integration/{version}/orders/{order_code}
+```http
+GET https://api.tiki.vn/integration/{version}/orders/{order_code}
+```
 
-| description | Returns detail information including product items of a sales order, base on order code. |
-| :--- | :--- |
+    Returns detail information including product items of a sales order, base on order code.
 
-
-**5.1\) Request**
+### **Request**
 
 | Headers | Content-type | application/json |
 | :--- | :--- | :--- |
 | tiki-api | String | seller token key \( contact Tiki supporter \)  |
 
-**5.2\) Response :** 
-
-> Response Status Code: 200
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| root | Order | Returns detail information including product items of a sales order, base on order code. |
-
-> Example: https://api.tiki.vn/integration/v1/orders/101539588
+### **Response :** 
 > Response body
 
 ```json
@@ -497,41 +486,36 @@ Please take look those API docs below for more detail
 }
 ```
 
-**5.3\) Exception Case**
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| root | Order | Returns detail information including product items of a sales order, base on order code. |
+
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 404 | Not found | order code not found |
 
-## 6\) Get warehouses
+## Get warehouses
 
-```shell 
-GET /{version}/warehouses
+```http 
+GET https://api.tiki.vn/integration/{version}/warehouses
 ```
 
-| description | Returns detail information of warehouse of Tiki that seller registries for backorder model. |
-| :--- | :--- |
+    Returns detail information of warehouse of Tiki that seller registries for backorder model.
 
-
-**6.1\) Request**
+### **Request**
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |  |
 | Query Parameters | Name | Type | Mandatory | Example | Description |
-|  | warehouse\_id | Integer | N | 2 | the id of warehouse |
-|  | warehouse\_code | String | N | hn | the code of warehouse |
+|  | warehouse_id | Integer | N | 2 | the id of warehouse |
+|  | warehouse_code | String | N | hn | the code of warehouse |
 
-**6.2\) Response**
+### **Response**
 
-> Response Status Code: 200
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| root | Array object | List of warehouse object |
-
-> Example: https://api.tiki.vn/integration/{version}/warehouses  
 > Response body
 
 ```json
@@ -695,52 +679,46 @@ GET /{version}/warehouses
 ]
 ```
 
-**6.3\)Exception Case**
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| root | Array object | List of warehouse object |
+
+
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 
-## 7\) Confirm order items
+## Confirm order items
 
-    POST https://api.tiki.vn/integration/{version}/orders/confirmItems
+```http
+POST https://api.tiki.vn/integration/{version}/orders/confirmItems
+```
 
+    Seller confirm available status and location of each item in the list
 
-| description | Seller confirm available status and location of each item in the list |
-| :--- | :--- |
-
-
-**7.1\) Request**
+### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |
+|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Body Parameters | Name | Type | Mandatory | Description |
-|  | order\_code | String | Y | order code |
-|  | item\_ids | Array Integer | Y | list of item\_id of a specific backorder that seller want to confirm,  |
-|  | warehouse\_code | String | Y | warehouse code |
-|  | seller\_inventory\_id | String | Y | seller inventory id |
-|  | delivery\_commitment\_time\(\*\) | String | N | Seller delivery commitment time, String datetime with format Y-m-d H:i:s. |
-|  | tracking\_number\(\*\) | String | N | maybe equal order code, tracking\_number is code for tracking order via 3rd party system or anything like this  |
+|  | order_code | String | Y | order code |
+|  | item_ids | Array Integer | Y | list of item\_id of a specific backorder that seller want to confirm,  |
+|  | warehouse_code | String | Y | warehouse code |
+|  | seller_inventory_id | String | Y | seller inventory id |
+|  | delivery_commitment_time(*) | String | N | Seller delivery commitment time, String datetime with format Y-m-d H:i:s. |
+|  | tracking_number(*) | String | N | maybe equal order code, tracking\_number is code for tracking order via 3rd party system or anything like this  |
 
-**\*Note:** We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
+**Note:** We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
 
-So if you want to reject all of item in this order, just send an empty **item\_ids** list
+So if you want to reject all of item in this order, just send an empty **item_ids** list
 
-* **delivery\_commitment\_time** is required for **seller delivery** order
-* **tracking\_number** is required for **cross\_border** order
+* **delivery_commitment_time** is required for **seller delivery** order
+* **tracking_number** is required for **cross_border** order
 
-**7.2\) Response :** 
-
-> Response Status Code: 200
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| code | String | Seller confirm order |
-| data | Array object |  |
-
-> Example:
-
+### **Response :** 
 > Seller delivery
 
 ```json
@@ -773,34 +751,37 @@ So if you want to reject all of item in this order, just send an empty **item\_i
 }
 ```
 
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| code | String | Seller confirm order |
+| data | Array object |  |
 
-
-**7.3\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | Params in body request invalid. See detail response |
 
-## 8\) Confirm delivery
+## Confirm delivery
 
-    POST https://api.tiki.vn/integration/{version}/orders/confirmDelivery
+```http
+POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
+```
 
 > body payload 
+
 ```json
 {
     "order_code": "20939384",
-    "status": "canceled",
-    "reason": "customers-are-no-longer-in-demand"
+    "status": "successful_delivery"
 }
 ```
 
-
-| description | Confirm delivery for order of seller delivery. Update status successful_delivery delivery order, same as Seller center. |
-| :--- | :--- |
+    Confirm delivery for order of seller delivery. Update status successful_delivery delivery order, same as Seller center.
 
 
-**8.1\) Request**
+### **Request**
 
 <table>
   <thead>
@@ -858,14 +839,8 @@ So if you want to reject all of item in this order, just send an empty **item\_i
     </tr>
   </tbody>
 </table>
-**8.2) Response
 
-> Response Status Code: 200
-
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| order_code | String | "20939384" | Order code |
-
+### **Response**
 > Response body
 
 ```json
@@ -873,53 +848,45 @@ So if you want to reject all of item in this order, just send an empty **item\_i
     "order_code": "20939384"
 }
 ```
+| Field | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| order_code | String | "20939384" | Order code |
 
-**8.3\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
 
-## 9\) Update delivery status
+## Update delivery status
 
-    POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
+```http
+POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
+```
 
 > Request body
 
 ```json
 {
     "order_code": "327965376-5vHl1b",
-    "payload": "",
     "update_time":"2019-11-23 23:59:59",
-    "status": "ready for delivery"
+    "status": "ready_for_delivery"
 }
 ```
-| description | Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it. |
-| :--- | :--- |
+    Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.
 
-
-**9.1\)  Request**
+### **Request**
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |  |
 | Body Parameters | Name | Type | Mandatory | Description | Example |
-|  | order\_code | String | Y | Order code of seller delivery. | "20939384" |
+|  | order_code | String | Y | Order code of seller delivery. | "20939384" |
 |  | status | String | Y | Status of delivery. | "ready for delivery" |
-|  | update\_time | String | Y | String datetime with format Y-m-d H:i:s. | "2019-06-22 18:12:17" |
-|  | payload | String object | N | String object of your event payload. |  |
+|  | update_time | String | Y | String datetime with format Y-m-d H:i:s. | "2019-06-22 18:12:17" |
 
-**9.2\) Response**
-
-> Response Status Code: 200
-
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| message | String | "success" |  |
-
-
-  
+### **Response**  
 > Response body
 
 ```json
@@ -928,22 +895,26 @@ So if you want to reject all of item in this order, just send an empty **item\_i
 }
 ```
 
-**9.3\) Exception Case**
+| Field | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| message | String | "success" |  |
+
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
 
-## 10\) Print order labels
+## Print order labels
 
-    GET https://api.tiki.vn/integration/{version}/orders/{order\_code}/print
+```http
+GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
+```
 
-| description | Return shipping or invoice label url of sale orders, base on order codes. |
-| :--- | :--- |
+    Return shipping label url of sale orders, base on order codes.
 
-
-**10.1\) Request**
+### **Request**
 
 <table>
   <thead>
@@ -988,58 +959,11 @@ So if you want to reject all of item in this order, just send an empty **item\_i
       </td>
       <td style="text-align:left">order_code of order you want to print</td>
     </tr>
-    <tr>
-      <td style="text-align:left">Query Parameters</td>
-      <td style="text-align:left">Name</td>
-      <td style="text-align:left">Type</td>
-      <td style="text-align:left">Mandatory</td>
-      <td style="text-align:left">Example</td>
-      <td style="text-align:left">Description</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">label</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Y</td>
-      <td style="text-align:left">&quot;invoice&quot;</td>
-      <td style="text-align:left">
-        <p>Label need download. Default is shipping label, option values:
-          <br />
-        </p>
-        <ul>
-          <li><b>shipping</b>: Get link shipping label</li>
-          <li><b>invoice: </b>Get link invoice label.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">format</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">N</td>
-      <td style="text-align:left">&quot;pdf&quot;</td>
-      <td style="text-align:left">
-        <p>Default is html, option values:</p>
-        <ul>
-          <li><b>html</b>
-          </li>
-          <li><b>pdf</b>(Just support label = invoice)</li>
-        </ul>
-      </td>
-    </tr>
   </tbody>
 </table>
 
-**10.2\) Response**
+### **Response**
 
-> Http Status Code: 200
-
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| shipping\_label\_url | String | "[http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html](http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html)" | Shipping label url |
-| invoice\_label\_url | String | "[https://guat.tikicdn.com/ts/print/12/34/5d/669d74d1da850e337aeefdaf9aa9cef9.html](https://guat.tikicdn.com/ts/print/12/34/5d/669d74d1da850e337aeefdaf9aa9cef9.html)" | Invoice label url |
-
-`Sample get shipping label: "GET /orders/833662058/print"`
 
 ```json
 {
@@ -1047,23 +971,14 @@ So if you want to reject all of item in this order, just send an empty **item\_i
 }
 ```
 
-```text
-Sample get invoice label: "GET https://api.tiki.vn/integration/v1/orders/833662058/print?label=invoice"
+| Field | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| shipping_label_url | String | "[http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html](http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html)" | Shipping label url |
 
-```
 
-```json
-{
-    "invoice_label_url": "https://guat.tikicdn.com/ts/print/12/34/5d/669d74d1da850e337aeefdaf9aa9cef9.html"
-}
-```
-
-**10.3\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
-
-
-[]: https://api.tiki.vn/integration/v1/orders/101539588
