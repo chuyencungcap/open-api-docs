@@ -244,12 +244,83 @@ Please take look those API docs below for more detail
 
 ## Get list orders
 
-```http
 GET https://api.tiki.vn/integration/{version}/orders
+
+Returns a list of sales orders managed by signing in seller, base on a specific search query
+
+```http
+GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing 
 ```
+> Response body
 
-    Returns a list of sales orders managed by signing in seller, base on a specific search query
-
+```json
+{
+  "data": [
+    {
+      "order_code": "929231617",
+      "coupon_code": "123",
+      "status": "queueing",
+      "total_price_before_discount": 200000,
+      "total_price_after_discount": 200000,
+      "updated_at": "2019-10-30 17:27:24",
+      "purchased_at": "2019-10-30 17:27:17",
+      "fulfillment_type": "dropship",
+      "note": "",
+      "is_rma": null,
+      "warehouse_id": 17,
+      "tax": {
+        "code": null,
+        "name": null,
+        "address": null
+      },
+      "discount": {
+        "discount_amount": 10,
+        "discount_coupon": 10
+      },
+      "shipping": {
+        "name": "hậu nguyễn",
+        "street": "519 kim mã",
+        "ward": "Phường Kim Mã",
+        "city": "Quận Ba Đình",
+        "region": "Hà Nội",
+        "country": "VN",
+        "phone": "0912611089",
+        "estimate_description": "Dự kiến giao hàng vào Thứ hai, 04/11/2019"
+      },
+      "items": [
+        {
+          "id": 25203463,
+          "product_id": 2050232,
+          "product_name": "Cơm gà - dropship -hn4",
+          "sku": "9956112228645",
+          "original_sku": "",
+          "qty": 1,
+          "price": 200000,
+          "confirmation_status": "waiting",
+          "confirmed_at": "",
+          "must_confirmed_before_at": "2019-10-31 12:00:00",
+          "inventory_type": "instock"
+        }
+      ],
+      "payment": {
+        "payment_method": "cod",
+        "updated_at": "2019-10-30 17:27:25",
+        "description": "Thanh toán tiền mặt khi nhận hàng"
+      },
+      "handling_fee": 0,
+      "collectable_total_price": 0
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "per_page": 20,
+    "current_page": 1,
+    "last_page": 1,
+    "from": 1,
+    "to": 1
+  }
+}
+```
 
 ### **Request**
 
@@ -325,79 +396,6 @@ GET https://api.tiki.vn/integration/{version}/orders
 _**Note**_: We support query data 30 days latest at most.
 
 ### **Response:** 
-```http
-GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing 
-```
-> Response body
-
-```json
-{
-  "data": [
-    {
-      "order_code": "929231617",
-      "coupon_code": "123",
-      "status": "queueing",
-      "total_price_before_discount": 200000,
-      "total_price_after_discount": 200000,
-      "updated_at": "2019-10-30 17:27:24",
-      "purchased_at": "2019-10-30 17:27:17",
-      "fulfillment_type": "dropship",
-      "note": "",
-      "is_rma": null,
-      "warehouse_id": 17,
-      "tax": {
-        "code": null,
-        "name": null,
-        "address": null
-      },
-      "discount": {
-        "discount_amount": 10,
-        "discount_coupon": 10
-      },
-      "shipping": {
-        "name": "hậu nguyễn",
-        "street": "519 kim mã",
-        "ward": "Phường Kim Mã",
-        "city": "Quận Ba Đình",
-        "region": "Hà Nội",
-        "country": "VN",
-        "phone": "0912611089",
-        "estimate_description": "Dự kiến giao hàng vào Thứ hai, 04/11/2019"
-      },
-      "items": [
-        {
-          "id": 25203463,
-          "product_id": 2050232,
-          "product_name": "Cơm gà - dropship -hn4",
-          "sku": "9956112228645",
-          "original_sku": "",
-          "qty": 1,
-          "price": 200000,
-          "confirmation_status": "waiting",
-          "confirmed_at": "",
-          "must_confirmed_before_at": "2019-10-31 12:00:00",
-          "inventory_type": "instock"
-        }
-      ],
-      "payment": {
-        "payment_method": "cod",
-        "updated_at": "2019-10-30 17:27:25",
-        "description": "Thanh toán tiền mặt khi nhận hàng"
-      },
-      "handling_fee": 0,
-      "collectable_total_price": 0
-    }
-  ],
-  "paging": {
-    "total": 1,
-    "per_page": 20,
-    "current_page": 1,
-    "last_page": 1,
-    "from": 1,
-    "to": 1
-  }
-}
-```
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
@@ -413,19 +411,14 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
 
 ## Order detail
 
-```http
 GET https://api.tiki.vn/integration/{version}/orders/{order_code}
+
+Returns detail information including product items of a sales order, base on order code.
+
+```http
+GET https://api.tiki.vn/integration/v1/orders/929231617
 ```
 
-    Returns detail information including product items of a sales order, base on order code.
-
-### **Request**
-
-| Headers | Content-type | application/json |
-| :--- | :--- | :--- |
-| tiki-api | String | seller token key \( contact Tiki supporter \)  |
-
-### **Response :** 
 > Response body
 
 ```json
@@ -486,6 +479,14 @@ GET https://api.tiki.vn/integration/{version}/orders/{order_code}
 }
 ```
 
+### **Request**
+
+| Headers | Content-type | application/json |
+| :--- | :--- | :--- |
+| tiki-api | String | seller token key (contact Tiki supporter)  |
+
+### **Response :** 
+
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | root | Order | Returns detail information including product items of a sales order, base on order code. |
@@ -498,23 +499,13 @@ GET https://api.tiki.vn/integration/{version}/orders/{order_code}
 | 404 | Not found | order code not found |
 
 ## Get warehouses
-
-```http 
 GET https://api.tiki.vn/integration/{version}/warehouses
+
+Returns detail information of warehouse of Tiki that seller registries for backorder model.
+
+```http
+GET https://api.tiki.vn/integration/v1/warehouses
 ```
-
-    Returns detail information of warehouse of Tiki that seller registries for backorder model.
-
-### **Request**
-
-| Headers | Content-type | application/json |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |  |
-| Query Parameters | Name | Type | Mandatory | Example | Description |
-|  | warehouse_id | Integer | N | 2 | the id of warehouse |
-|  | warehouse_code | String | N | hn | the code of warehouse |
-
-### **Response**
 
 > Response body
 
@@ -679,6 +670,17 @@ GET https://api.tiki.vn/integration/{version}/warehouses
 ]
 ```
 
+### **Request**
+
+| Headers | Content-type | application/json |  |  |  |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |  |
+| Query Parameters | Name | Type | Mandatory | Example | Description |
+|  | warehouse_id | Integer | N | 2 | the id of warehouse |
+|  | warehouse_code | String | N | hn | the code of warehouse |
+
+### **Response**
+
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | root | Array object | List of warehouse object |
@@ -695,8 +697,38 @@ GET https://api.tiki.vn/integration/{version}/warehouses
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/confirmItems
 ```
+> request body **Seller delivery**
 
-    Seller confirm available status and location of each item in the list
+```json
+{
+  "order_code": "419060832",
+  "warehouse_code": "sg",
+  "seller_inventory_id": 882,
+  "item_ids": [94792486, 94792487],
+  "delivery_commitment_time": "2019-11-03 23:59:59"  
+}
+```
+
+> request body **TIKI delivery**
+
+```json
+{
+  "order_code": "419060832",
+  "warehouse_code": "sg",
+  "seller_inventory_id": 882,
+  "item_ids": [94792486, 94792487]
+}
+```
+
+> Response body
+
+```json
+{
+    "code": 200,
+    "data": []
+}
+```
+Seller confirm available status and location of each item in the list
 
 ### **Request**
 
@@ -719,37 +751,6 @@ So if you want to reject all of item in this order, just send an empty **item_id
 * **tracking_number** is required for **cross_border** order
 
 ### **Response :** 
-> Seller delivery
-
-```json
-{
-  "order_code": "419060832",
-  "warehouse_code": "sg",
-  "seller_inventory_id": 882,
-  "item_ids": [94792486, 94792487],
-  "delivery_commitment_time": "2019-11-03 23:59:59"  
-}
-```
-
-> TIKI delivery
-
-```json
-{
-  "order_code": "419060832",
-  "warehouse_code": "sg",
-  "seller_inventory_id": 882,
-  "item_ids": [94792486, 94792487]
-}
-```
-
-> Response body
-
-```json
-{
-    "code": 200,
-    "data": []
-}
-```
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
@@ -769,7 +770,9 @@ So if you want to reject all of item in this order, just send an empty **item_id
 POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
 ```
 
-> body payload 
+Confirm delivery for order of seller delivery. Update status successful_delivery delivery order, same as Seller center.
+
+> request body 
 
 ```json
 {
@@ -778,7 +781,14 @@ POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
 }
 ```
 
-    Confirm delivery for order of seller delivery. Update status successful_delivery delivery order, same as Seller center.
+> Response body
+
+```json
+{
+    "order_code": "20939384"
+}
+```
+
 
 
 ### **Request**
@@ -841,13 +851,6 @@ POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
 </table>
 
 ### **Response**
-> Response body
-
-```json
-{
-    "order_code": "20939384"
-}
-```
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | order_code | String | "20939384" | Order code |
@@ -860,10 +863,11 @@ POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
 | 400 | Bad request | request not valid |
 
 ## Update delivery status
-
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 ```
+
+Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.
 
 > Request body
 
@@ -874,7 +878,15 @@ POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
     "status": "ready_for_delivery"
 }
 ```
-    Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.
+
+> Response body
+
+```json
+{
+    "message": "success"
+}
+```
+
 
 ### **Request**
 
@@ -887,13 +899,6 @@ POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 |  | update_time | String | Y | String datetime with format Y-m-d H:i:s. | "2019-06-22 18:12:17" |
 
 ### **Response**  
-> Response body
-
-```json
-{
-    "message": "success"
-}
-```
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -912,7 +917,15 @@ POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
 ```
 
-    Return shipping label url of sale orders, base on order codes.
+Return shipping label url of sale orders, base on order codes.
+
+> Response body
+
+```json
+{
+    "shipping_label_url": "http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html"
+}
+```
 
 ### **Request**
 
@@ -963,13 +976,6 @@ GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
 </table>
 
 ### **Response**
-
-
-```json
-{
-    "shipping_label_url": "http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html"
-}
-```
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
