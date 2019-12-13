@@ -243,8 +243,13 @@ Please take look those API docs below for more detail
 
 
 ## Get list orders
-
-GET https://api.tiki.vn/integration/{version}/orders
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders</h6>
+	</div>
+</div>
 
 Returns a list of sales orders managed by signing in seller, base on a specific search query
 
@@ -410,8 +415,13 @@ _**Note**_: We support query data 30 days latest at most.
 
 
 ## Order detail
-
-GET https://api.tiki.vn/integration/{version}/orders/{order_code}
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/{order_code}</h6>
+	</div>
+</div>
 
 Returns detail information including product items of a sales order, base on order code.
 
@@ -499,8 +509,13 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
 | 404 | Not found | order code not found |
 
 ## Get warehouses
-GET https://api.tiki.vn/integration/{version}/warehouses
-
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/warehouses</h6>
+	</div>
+</div>
 Returns detail information of warehouse of Tiki that seller registries for backorder model.
 
 ```http
@@ -693,6 +708,13 @@ GET https://api.tiki.vn/integration/v1/warehouses
 | 500 | Internal server error | having error in server, can't serving |
 
 ## Confirm order items
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/confirmItems</h6>
+	</div>
+</div>
 
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/confirmItems
@@ -765,6 +787,13 @@ So if you want to reject all of item in this order, just send an empty **item_id
 | 400 | Bad request | Params in body request invalid. See detail response |
 
 ## Confirm delivery
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/v1/orders/confirmDelivery</h6>
+	</div>
+</div>
 
 ```http
 POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
@@ -863,6 +892,15 @@ Confirm delivery for order of seller delivery. Update status successful_delivery
 | 400 | Bad request | request not valid |
 
 ## Update delivery status
+
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus</h6>
+	</div>
+</div>
+
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 ```
@@ -912,6 +950,13 @@ Update delivery status, base on order codes. When order delivery, we need know o
 | 400 | Bad request | request not valid |
 
 ## Print order labels
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/{order_code}/print</h6>
+	</div>
+</div>
 
 ```http
 GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print

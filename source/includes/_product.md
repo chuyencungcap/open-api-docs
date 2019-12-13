@@ -227,7 +227,14 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 
 ## Get categories
 
-GET https://api.tiki.vn/integration/{version}/categories
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/categories</h6>
+	</div>
+</div>
+
 
 Return the summary list of categories in integration system
 
@@ -311,7 +318,13 @@ GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
 
 ## Get category detail (include attribute)
 
-GET https://api.tiki.vn/integration/{version}/categories/{id}
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/categories/{id}</h6>
+	</div>
+</div>
 
 Retrieve detail of a single categories with its attributes
 
@@ -387,7 +400,13 @@ GET https://api.tiki.vn/integration/v1/categories/218
 
 ## Create Product
 
-POST https://api.tiki.vn/integration/{version}/products
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/products</h6>
+	</div>
+</div>
 
 Create new product
 
@@ -600,7 +619,13 @@ Configurable Product have invalid payload  (missing option2 value & price in sku
 
 ## Tracking history
 
-GET https://api.tiki.vn/integration/{version}/tracking 
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/tracking</h6>
+	</div>
+</div>
 
 Tracking latest request of user (via token)
 
@@ -686,8 +711,13 @@ Tracking latest request of user (via token)
 ---------------------------------------------------------------------------------------------------------------
 
 ## Tracking a request
-
-GET https://api.tiki.vn/integration/{version}/tracking/{trace_id} 
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/tracking/{trace_id}</h6>
+	</div>
+</div>
 
 Retrieve detail of a single request
 
@@ -748,8 +778,13 @@ Retrieve detail of a single request
 ---------------------------------------------------------------------------------------------------------------
 
 ## Update variant price/quantity/active
-
-POST https://api.tiki.vn/integration/{version}/products/{sku}/updateSku
+### HTTP Request ###
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/products/{sku}/updateSku</h6>
+	</div>
+</div>
 
 Update non validate fields like price/quantity/active of a created product
 

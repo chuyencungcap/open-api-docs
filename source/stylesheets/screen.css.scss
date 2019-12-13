@@ -173,7 +173,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .toc-footer {
@@ -625,7 +625,7 @@ html, body {
 }
 
 .content {
-  .center-column + pre {    
+  .center-column + pre {
     position: static;
     float: none;
     clear: none;
@@ -633,3 +633,5 @@ html, body {
     left: 0;
   }
 }
+
+@import 'api-endpoint';
