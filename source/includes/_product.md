@@ -1,5 +1,5 @@
 # Product Endpoint
-## 1. Let's get started
+## Let's get started
 Sellers can create **products** to sell on TIKI. A product can be sold by many sellers. Sellers offer their price and quantity for a product on TIKI.
 
 There are two kinds of product at TIKI: simple product and variable products. 
@@ -38,16 +38,16 @@ With variable products:
 * Variants differ by maximized two attributes. Example: a T Shirt has many variants that differ by color and size
 * The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
 
-## 2. Sequence diagram
+## Sequence diagram
 
 ![](https://i.imgur.com/9qFwq2i.png)
 1. Client get/search tiki categories
-1. Select tiki category, your product will map to tiki category
-1. Using categoryId, get list attributes by categoryId
-1. Mapping from your attribute to tiki attribute by code
-1. After mapping success, you call API create product
+2. Select tiki category, your product will map to tiki category
+3. Using categoryId, get list attributes by categoryId
+4. Mapping from your attribute to tiki attribute by code
+5. After mapping success, you call API create product
 
-## 3. Entity
+## Entity
 
 
 > **Entity** example:
@@ -71,7 +71,7 @@ With variable products:
 
 
 
-### 3.1) Attribute
+### Attribute
 > **Attribute** example:
 
 ```json
@@ -87,12 +87,12 @@ With variable products:
 | :--- | :--- | :--- | :--- |
 | id | Integer | 498 | id of attribute |
 | code | String | author | attribute code use to put into the attributes branch in payload |
-| display\_name | String | Author | the display name of this attribute |
-| is\_required | Integer | 1/0 | user must complete all of required attribute in payload |
+| display_name | String | Author | the display name of this attribute |
+| is_required | Integer | 1/0 | user must complete all of required attribute in payload |
 
 
 
-### 3.2) Product
+### Product
 > **Product** example:
 
 ```json
@@ -132,21 +132,21 @@ With variable products:
 
 | Field | Type | Mandatory | Description |
 | :--- | :--- | :--- | :--- |
-| category\_id | Integer | Y | TIKI categoryId you mapped before |
+| category_id | Integer | Y | TIKI categoryId you mapped before |
 | name | String | Y | the name of product |
 | description | String | Y | the description of product |
-| market\_price | Integer | N | the price of product before discount |
+| market_price | Integer | N | the price of product before discount |
 | attributes | List&lt;Attribute&gt; | Y | list of attributes retrieve from category\_id  |
-| image\(\*\) | String | Y | the avatar url of product |
-| images\(\*\) | List&lt;String&gt; | Y | list urls of product gallery |
-| option\_attributes\(\*\) | List&lt;String&gt; | Y | list of attribute code to config product \( up to 2 \) |
+| image(*) | String | Y | the avatar url of product |
+| images(*) | List&lt;String&gt; | Y | list urls of product gallery |
+| option_attributes(*) | List&lt;String&gt; | Y | list of attribute code to config product \( up to 2 \) |
 | variants | List&lt;Variant&gt; | Y | list of variants, simple product have only 1 |
 
 
 
 **\*Note**:
 
-+ if product type is simple \( only one variant \) then **option\_attributes** must be empty list instead of null value because option attributes is a required field.
++ if product type is simple (only one variant) then **option_attributes** must be empty list instead of null value because option attributes is a required field.
 
 + **images** do not accept null value, please put empty list if product don't have any image. The avatar from **image** will be added to **images** later so you don't need to add it 2 times.
 
@@ -154,13 +154,13 @@ Even you do that, we will check duplicate image by url.
 
 \*For the best user experience, TIKI only display image have size greater than 500x500 pixel in the media gallery and lower than 700 width pixel inside description
 
-### 3.4\) Variant
+### Variant
 
-| Field | Type | Mandatory | Override rule\(\*\) | Description |
+| Field | Type | Mandatory | Override rule(*) | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | sku | String | Y | No | variant 's sku from source side |
 | price | Integer | Y | No | variant 's sell price |
-| market\_price | Integer | N | Replace | variant 's market price \( price before discount \) |
+| market_price | Integer | N | Replace | variant 's market price \( price before discount \) |
 | option1 | String | N | No | attribute code of the first option attribute |
 | option2 | String | N | No | attribute code of the first second attribute |
 | inventory\_type\(\*\) | String | N | No | inventory type of this variant |
@@ -186,7 +186,7 @@ Even you do that, we will check duplicate image by url.
 * Replace : Field of variant will replace the parent one.
 * Merge : **attributes** will merged from both side.
 
-+ **inventory\_type** must be one of below values and have to be in registered list. If you don't put value in product request, then the latest method will be picked up.
++ **inventory_type** must be one of below values and have to be in registered list. If you don't put value in product request, then the latest method will be picked up.
 
 + **supplier** is an integer constant describe the location of seller 's storage.Each seller can have some **supplier** but each product must be stored in a fixed **supplier**
 
@@ -194,7 +194,7 @@ If seller is in Vietnam, please register your supplier list in TIKI **Seller Cen
 
 If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
 
-**\*\) List inventory\_type :**
+**\*\) List inventory_type :**
 
 > Example:
 
@@ -215,40 +215,25 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 }
 ```
 
-| inventory\_type | customer | description |
+| inventory_type | customer | description |
 | :--- | :--- | :--- |
-| cross\_border | for Global seller | products is transported from abroad |
+| cross_border | for Global seller | products is transported from abroad |
 | instock | for Vietnamese seller | products in TIKI storage, TIKI pack, TIKI deliver |
 | backorder | for Vietnamese seller | products in seller storage, TIKI pack, TIKI deliver |
-| seller\_backorder | for Vietnamese seller | products in seller storage, seller pack, seller deliver |
-| drop\_ship | for Vietnamese seller | products in seller storage, seller pack, TIKI deliver  |
+| seller_backorder | for Vietnamese seller | products in seller storage, seller pack, seller deliver |
+| drop_ship | for Vietnamese seller | products in seller storage, seller pack, TIKI deliver  |
 
 
 
-## 4) Get categories
+## Get categories
 
-    GET https://api.tiki.vn/integration/{version}/categories
+GET https://api.tiki.vn/integration/{version}/categories
 
+Return the summary list of categories in integration system
 
-| description | return the summary list of categories in integration system |
-| :--- | :--- |
-
-
-**4.1\) Request**
-
-| Headers          | Content-type | application/json |           |                                                            |             |
-|:---------------- |:------------ |:---------------- |:--------- |:---------------------------------------------------------- |:----------- |
-| Path Parameters  | Name         | Type             | Mandatory | Example                                                    | Description |
-| version          | String       | Y                | v1        | version of API                                             |             |
-| Query Parameters | Name         | Type             | Mandatory | Example                                                    | Description |
-| |lang             | String       | N                | en        | Filter by language en/vi \( **default is en - english** \) |             |
-| |name             | String       | N                | book      | Filter name by keyword \( case insensitive \)              |             |
-| |parent           | Integer      | N                | 8         | Filter children of this parent\_id only   |
-| |primary | Integer | N | 1 | Filter product pushable category |  |
-
-**4.2\) Response :** 
-
-> Example: GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
+```http
+GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
+```
 
 ```json
 [
@@ -297,14 +282,26 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 ]
 ```
 
-> Response Status Code: 200
+### **Request**
+
+| Headers          | Content-type | application/json |           |                                                            |             |
+|:---------------- |:------------ |:---------------- |:--------- |:---------------------------------------------------------- |:----------- |
+| Path Parameters  | Name         | Type             | Mandatory | Example                                                    | Description |
+| version          | String       | Y                | v1        | version of API                                             |             |
+| Query Parameters | Name         | Type             | Mandatory | Example                                                    | Description |
+| |lang             | String       | N                | en        | Filter by language en/vi \( **default is en - english** \) |             |
+| |name             | String       | N                | book      | Filter name by keyword \( case insensitive \)              |             |
+| |parent           | Integer      | N                | 8         | Filter children of this parent\_id only   |
+| |primary | Integer | N | 1 | Filter product pushable category |  |
+
+### **Response :** 
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | root | List&lt;**Category**&gt; | the summary list of category filtered by request params |
 
 
-**4.3\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -312,11 +309,15 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 
 ---------------------------------------------------------------------------------------------------------------
 
-## 5) Get category detail \( include attribute \)
+## Get category detail (include attribute)
 
-    GET https://api.tiki.vn/integration/{version}/categories/{id}
+GET https://api.tiki.vn/integration/{version}/categories/{id}
 
-> Example: GET https://api.tiki.vn/integration/v1/categories/218
+Retrieve detail of a single categories with its attributes
+
+```http
+GET https://api.tiki.vn/integration/v1/categories/218
+```
 
 ```json
 {
@@ -348,11 +349,7 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 }
 ```
 
-| description | retrieve detail of a single categories with its attributes |
-| :--- | :--- |
-
-
-**5.1\) Request**
+### **Request**
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -360,10 +357,7 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 | |version | String | Y | v1 | version of API |  |
 | |id | Integer | Y | 218 | id of category \( category\_id \) |  |
 
-**5.2\) Response**
-
-
-> Response Status Code: 200
+### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -374,7 +368,7 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 | description | String | Children's Books \| international purchases buy at \| [Tiki.vn](http://tiki.vn/) \| Cheaper \| Free shipping \| 100% genuine | describe the detail of this category |
 | attributes | List&lt;**Attribute**&gt;(*) | see detail below | attributes list of this category |
 
-**5.3\) Exception Case**
+### **Exception Case**
 
 > Example:
 
@@ -391,19 +385,11 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 | 500 | Internal server error | having error in server, can't serving |
 | 404 | Category not found |  |
 
-## 6) Create Product
+## Create Product
 
+POST https://api.tiki.vn/integration/{version}/products
 
-    POST https://api.tiki.vn/integration/{version}/products
-
-| description | create new product |
-| :--- | :--- |
-
-
-**6.1\) Request**
-
-You must complete all required attribute from category, all others can be ignored or pass null value
-
+Create new product
 
 > Simple product example:
 
@@ -502,6 +488,10 @@ You must complete all required attribute from category, all others can be ignore
 
 **\*Note**: To understand the relation between variant and it's product parent please read the detail from: **Variant**(*)
 
+### **Request**
+You must complete all required attribute from category, all others can be ignored or pass null value
+
+
 | Headers | Content-type | application/json |  |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |  |  |
@@ -510,11 +500,9 @@ You must complete all required attribute from category, all others can be ignore
 | Body Parameters | Namespace | Field | Type | Mandatory | Example | Description |
 |  | Root | **Product**(*) | Y | below | product detail to create |  |
 
-**6.2\) Response**
+### **Response**
 
-> HttpStatus: 200
-
-> Response: 
+> Response body: 
 
 ```json
 {
@@ -525,12 +513,12 @@ You must complete all required attribute from category, all others can be ignore
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
-| trace\_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace\_id to tracking this request |
+| trace_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace_id to tracking this request |
 | state | String | queuing | current state of your request |
 
-**6.3\) Exception Case:**
+### **Exception Case:**
 
-Configurable Product have invalid payload  \( missing option2 value & price in sku2 \)
+Configurable Product have invalid payload  (missing option2 value & price in sku2)
 
 > Request body
 
@@ -590,7 +578,7 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 }
 ```
 
-> Response: 
+> Response body: 
 
 ```json
 {
@@ -610,31 +598,12 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 | 422 | Unprocessable Entity | Payload is missing or invalid field  |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
-## 7\) Tracking history
+## Tracking history
 
-    GET https://api.tiki.vn/integration/{version}/tracking 
+GET https://api.tiki.vn/integration/{version}/tracking 
 
-| description | tracking latest request of user \( via token \) |
-| :--- | :--- |
+Tracking latest request of user (via token)
 
-
-**7.1\) Request**
-
-| Headers | Content-type | application/json |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
-| Path Parameters | Name | Type | Mandatory | Example | Description |
-| |version | String | Y | v1 | version of API |  |
-| Query Parameters | Name | Type | Mandatory | Example | Description |
-| |limit | Integer | N | 50 | return up to this many requests |  |
-| |created\_at\_min | String | N | 2019-06-27 10:47:34 | Show request created after date \( format as example \)  |  |
-| |created\_at\_max | String | N | 2019-06-27 10:47:34 | Show request created before date \( format as example \)  |  |
-| |updated\_at\_min | String | N | 2019-06-27 10:47:34 | Show request updated after date \( format as example \)  |  |
-| |updated\_at\_max | String | N | 2019-06-27 10:47:34 | Show request created before date \( format as example \)  |  |
-
-**7.2\) Response**
-
-> Response Status Code: 200
 
 > Response body: 
 
@@ -661,6 +630,22 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 ]
 ```
 
+### **Request**
+
+| Headers | Content-type | application/json |  |  |  |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  | tiki-api | seller token key (contact Tiki supporter) |  |  |  |
+| Path Parameters | Name | Type | Mandatory | Example | Description |
+| |version | String | Y | v1 | version of API |  |
+| Query Parameters | Name | Type | Mandatory | Example | Description |
+| |limit | Integer | N | 50 | return up to this many requests |  |
+| |created_at_min | String | N | 2019-06-27 10:47:34 | Show request created after date (format as example)  |  |
+| |created_at_max | String | N | 2019-06-27 10:47:34 | Show request created before date (format as example)  |  |
+| |updated_at_min | String | N | 2019-06-27 10:47:34 | Show request updated after date (format as example)  |  |
+| |updated_at_max | String | N | 2019-06-27 10:47:34 | Show request created before date (format as example)  |  |
+
+### **Response**
+
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | root | List&lt;Request&gt; | list filtered request match with request params |
@@ -675,7 +660,7 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 | tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
 
 
-**7.3\) State list**
+### **State list**
 
 | State | Description |
 | :--- | :--- |
@@ -689,7 +674,7 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 | **rejected** | request is rejected, use tracking API for more information |
 | deleted | request is deleted, no more available in system |
 
-**7.4\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -700,27 +685,11 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 
 ---------------------------------------------------------------------------------------------------------------
 
-## 8) Tracking a request
+## Tracking a request
 
+GET https://api.tiki.vn/integration/{version}/tracking/{trace_id} 
 
-    GET https://api.tiki.vn/integration/{version}/tracking/{trace\_id} 
-
-| description | retrieve detail of a single request |
-| :--- | :--- |
-
-
-**8.1\) Request**
-
-| Headers | Content-type | application/json |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
-| Path Parameters | Name | Type | Mandatory | Example | Description |
-| |version | String | Y | v1 | version of API |  |
-| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | trace\_id of request get from product API |  |
-
-**8.2\) Response**
-
-> Response Status Code: 200
+Retrieve detail of a single request
 
 > Response body: 
 
@@ -733,6 +702,16 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 }
 ```
 
+### **Request**
+
+| Headers | Content-type | application/json |  |  |  |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
+| Path Parameters | Name | Type | Mandatory | Example | Description |
+| |version | String | Y | v1 | version of API |  |
+| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | trace\_id of request get from product API |  |
+
+### **Response**
 
 | Field | Type | Example | Description | Note |
 | :--- | :--- | :--- | :--- | :--- |
@@ -742,7 +721,7 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 | tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
 
 
-**8.3\) State list**
+### **State list**
 
 | State | Description |
 | :--- | :--- |
@@ -756,7 +735,7 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 | **rejected** | request is rejected, use tracking API for more information |
 | deleted | request is deleted, no more available in system |
 
-**8.4\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -768,17 +747,15 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 
 ---------------------------------------------------------------------------------------------------------------
 
-## 9) Update variant price/quantity/active
+## Update variant price/quantity/active
 
-    POST https://api.tiki.vn/integration/{version}/products/{sku}/updateSku
+POST https://api.tiki.vn/integration/{version}/products/{sku}/updateSku
 
-| description | update non validate fields like price/quantity/active of a created product |
-| :--- | :--- |
+Update non validate fields like price/quantity/active of a created product
 
-
-**9.1\) Request**
-
-> Example: https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
+```http
+GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
+```
 
 ```json
 {
@@ -787,6 +764,16 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
   "active": 1
 }
 ```
+
+> Response body: 
+
+```json
+{
+   "state": "approved"
+}
+```
+
+### **Request**
 
 | Headers | Content-type | application/json |  |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -800,24 +787,14 @@ Configurable Product have invalid payload  \( missing option2 value & price in s
 |  | |active | Integer | N | 1 | product 's new status \( 1=active / 0=inactive\) |  |
 
 
-
-**9.2\) Response**
-> Response Status Code: 200
-
-> Response body: 
-```json
-{
-   "state": "approved"
-}
-```
-
+### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | state | String | approved | your product is updated successfully |
 
 
-**9.3\) Exception Case**
+### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
