@@ -22,7 +22,7 @@ Please take look those API docs below for more detail
 ## Sequence diagram
 
 ### Seller delivery
-![](https://i.imgur.com/nrieEw6.png)
+![](https://i.imgur.com/W7gDfgJ.png)
 
 
 **(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
@@ -31,7 +31,7 @@ Please take look those API docs below for more detail
 
 **(3)** After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
 
-**(4)** After seller delivery, seller will confirm delivery status using api **Confirm delivery status** status=**successful_delivery**.
+**(4)** when seller delivery, seller will update delivery status using api **Update delivery status**
 
 ### TIKI Delivery
 ![](https://i.imgur.com/wGDoCKW.png)
@@ -45,7 +45,7 @@ Please take look those API docs below for more detail
 
 **(4)** Once products in TIKI warehouse, we will pack and delivery to customer.
 
-**(5)** Finally TIKI will confirm delivery order using api **Confirm delivery**, status=**successful_delivery**. 
+**(5)** Finally TIKI will confirm delivery order using api **Update delivery status**, status=**successful_delivery**. 
 
 ## Entity 
 ### Order

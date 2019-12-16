@@ -97,34 +97,42 @@ With variable products:
 
 ```json
 {
-  "category_id": 1846,
-  "name": "Laptop Dell Vostro 17 XPPP",
-  "description": "this is description",
-  "market_price": 12222222,
+  "category_id": 21458,
+  "name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
+  "description": "<style>\r\n#productDetails_techSpec_section_2{width:70%;}\r\n#prodDetails .prodDetSectionEntry {width: 50%!important;white-space: normal;word-wrap: break-word;}\r\ntable.a-keyvalue th {background-color: #f3f3f3;}\r\ntable.a-keyvalue td, table.a-keyvalue th {padding: 7px 14px 6px;border-top: 1px solid #e7e7e7;}\r\n#prodDetails th {text-align: left;}\r\ntable.a-keyvalue{border-bottom: 1px solid #e7e7e7;}\r\n</style><div id=\"prodDetails\"><table id=\"productDetails_techSpec_section_2\" class=\"a-keyvalue prodDetTable\" role=\"presentation\"><tbody><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Item Shape</th><td class=\"a-size-base\">Round</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Display Type</th><td class=\"a-size-base\">Analog</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case diameter</th><td class=\"a-size-base\">37 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Material</th><td class=\"a-size-base\">metal-alloy</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band length</th><td class=\"a-size-base\">Women&#039;s Standard</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band width</th><td class=\"a-size-base\">18 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Dial color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Bezel material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Brand, Seller, or Collection Name</th><td class=\"a-size-base\">Disney</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Model number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Part Number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case Thickness</th><td class=\"a-size-base\">9.3 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Special features</th><td class=\"a-size-base\">includes a seconds-hand</td></tr></tbody></table></div><p></p><p>White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design</p><p>37-mm metal case with glass dial window</p><p>Quartz movement with analog display</p><p>Metal alloy bracelet with jewelry-clasp closure</p><p>Not water resistant</p><p><p>Great timepiece for Disney Mickey Mouse fans! This spray white bracelet watch features round case with clear rhinestone accented, genuine white Mother-Of-Pearl dial, Arabic number 12,3,9 and dots display and jewelry clasp. Cute rhinestone accented Mickey Mouse image on dial. It is also powered by quartz movement that tells you the accurate time. It is casual and fashionable that is nice for everyday wear.</p></p>",
+  "market_price": 1,
   "attributes": {
-    "ram": "8GB",
-    "ram_type": "Nvidia",
-    "bus": "1333hz",
-    "camera": "32MP",
-    "audio_technology": "",
-    "hard_drive": "1TB",
-    "connection_port": "",
-    "card_reader": "",
-    "brand": "Dell Vostro"
+    "bulky": 1,
+    "origin": "my",
+    "product_top_features": "White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design\n37-mm metal case with glass dial window\nQuartz movement with analog display\nMetal alloy bracelet with jewelry-clasp closure\nNot water resistant\n",
+    "brand": "Disney",
+    "case_diameter": "37 millimeters",
+    "filter_case_diameter": "37 millimeters",
+    "band_material": "metal-alloy",
+    "filter_band_material": "metal-alloy",
+    "brand_origin": "viet nam",
+    "require_expiry_date": 1
   },
-  "image": "https://www.laptopvip.vn/images/laptopvip_cache/e393b8aa5ec204efbea7582fc83a97ad/2/2/2249/original/2990378119/laptop-dell-xps-15-9570-05.png",
+  "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
   "images": [
-    "https://www.laptopvip.vn/images/companies/1/san-pham/untitled%20folder/dell%20xps%209570/800x530xdell-xps-15-2-in-1-review-front-display-1200x9999.jpg",
-    "https://www.laptopvip.vn/images/companies/1/san-pham/untitled%20folder/dell%20xps%209570/x39b57caa-31ac-4872-9411-62bc6b15bffd.png"
+    "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
   ],
   "option_attributes": [],
   "variants": [
     {
-      "sku": "sku1",
-      "price": 20000,
-      "quantity": 20,
-      "inventory_type" : "cross_border",
-      "supplier" : 239091
+      "sku": "B0055QD0EC11",
+      "price": 984000,
+      "market_price": 984000,
+      "inventory_type": "cross_border",
+      "supplier": 167797,
+      "quantity": 100,
+      "brand_origin": "viet nam",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
+      ]
     }
   ]
 }
@@ -414,34 +422,42 @@ Create new product
 
 ```json
 {
-  "category_id": 1846,
-  "name": "Laptop Dell Vostro 17 XPPP",
-  "description": "this is description",
-  "market_price": 12222222,
+  "category_id": 21458,
+  "name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
+  "description": "<style>\r\n#productDetails_techSpec_section_2{width:70%;}\r\n#prodDetails .prodDetSectionEntry {width: 50%!important;white-space: normal;word-wrap: break-word;}\r\ntable.a-keyvalue th {background-color: #f3f3f3;}\r\ntable.a-keyvalue td, table.a-keyvalue th {padding: 7px 14px 6px;border-top: 1px solid #e7e7e7;}\r\n#prodDetails th {text-align: left;}\r\ntable.a-keyvalue{border-bottom: 1px solid #e7e7e7;}\r\n</style><div id=\"prodDetails\"><table id=\"productDetails_techSpec_section_2\" class=\"a-keyvalue prodDetTable\" role=\"presentation\"><tbody><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Item Shape</th><td class=\"a-size-base\">Round</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Display Type</th><td class=\"a-size-base\">Analog</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case diameter</th><td class=\"a-size-base\">37 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Material</th><td class=\"a-size-base\">metal-alloy</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band length</th><td class=\"a-size-base\">Women&#039;s Standard</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band width</th><td class=\"a-size-base\">18 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Dial color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Bezel material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Brand, Seller, or Collection Name</th><td class=\"a-size-base\">Disney</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Model number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Part Number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case Thickness</th><td class=\"a-size-base\">9.3 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Special features</th><td class=\"a-size-base\">includes a seconds-hand</td></tr></tbody></table></div><p></p><p>White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design</p><p>37-mm metal case with glass dial window</p><p>Quartz movement with analog display</p><p>Metal alloy bracelet with jewelry-clasp closure</p><p>Not water resistant</p><p><p>Great timepiece for Disney Mickey Mouse fans! This spray white bracelet watch features round case with clear rhinestone accented, genuine white Mother-Of-Pearl dial, Arabic number 12,3,9 and dots display and jewelry clasp. Cute rhinestone accented Mickey Mouse image on dial. It is also powered by quartz movement that tells you the accurate time. It is casual and fashionable that is nice for everyday wear.</p></p>",
+  "market_price": 1,
   "attributes": {
-    "ram": "8GB",
-    "ram_type": "Nvidia",
-    "bus": "1333hz",
-    "camera": "32MP",
-    "audio_technology": "",
-    "hard_drive": "1TB",
-    "connection_port": "",
-    "card_reader": "",
-    "brand": "Dell Vostro"
+    "bulky": 1,
+    "origin": "my",
+    "product_top_features": "White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design\n37-mm metal case with glass dial window\nQuartz movement with analog display\nMetal alloy bracelet with jewelry-clasp closure\nNot water resistant\n",
+    "brand": "Disney",
+    "case_diameter": "37 millimeters",
+    "filter_case_diameter": "37 millimeters",
+    "band_material": "metal-alloy",
+    "filter_band_material": "metal-alloy",
+    "brand_origin": "viet nam",
+    "require_expiry_date": 1
   },
-  "image": "https://www.laptopvip.vn/images/laptopvip_cache/e393b8aa5ec204efbea7582fc83a97ad/2/2/2249/original/2990378119/laptop-dell-xps-15-9570-05.png",
+  "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
   "images": [
-    "https://www.laptopvip.vn/images/companies/1/san-pham/untitled%20folder/dell%20xps%209570/800x530xdell-xps-15-2-in-1-review-front-display-1200x9999.jpg",
-    "https://www.laptopvip.vn/images/companies/1/san-pham/untitled%20folder/dell%20xps%209570/x39b57caa-31ac-4872-9411-62bc6b15bffd.png"
+    "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
   ],
   "option_attributes": [],
   "variants": [
     {
-      "sku": "sku1",
-      "price": 20000,
-      "quantity": 20,
+      "sku": "B0055QD0EC11",
+      "price": 984000,
+      "market_price": 984000,
       "inventory_type": "cross_border",
-      "supplier": 239091
+      "supplier": 167797,
+      "quantity": 100,
+      "brand_origin": "viet nam",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
+      ]
     }
   ]
 }
@@ -451,54 +467,44 @@ Create new product
 
 ```json
 {
-  "category_id": 1846,
-  "name": "Samsung Galaxy Note 10+",
-  "description": "this is description",
-  "market_price": 10000000,
+  "category_id": 21458,
+  "name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
+  "description": "<style>\r\n#productDetails_techSpec_section_2{width:70%;}\r\n#prodDetails .prodDetSectionEntry {width: 50%!important;white-space: normal;word-wrap: break-word;}\r\ntable.a-keyvalue th {background-color: #f3f3f3;}\r\ntable.a-keyvalue td, table.a-keyvalue th {padding: 7px 14px 6px;border-top: 1px solid #e7e7e7;}\r\n#prodDetails th {text-align: left;}\r\ntable.a-keyvalue{border-bottom: 1px solid #e7e7e7;}\r\n</style><div id=\"prodDetails\"><table id=\"productDetails_techSpec_section_2\" class=\"a-keyvalue prodDetTable\" role=\"presentation\"><tbody><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Item Shape</th><td class=\"a-size-base\">Round</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Display Type</th><td class=\"a-size-base\">Analog</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case diameter</th><td class=\"a-size-base\">37 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Material</th><td class=\"a-size-base\">metal-alloy</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band length</th><td class=\"a-size-base\">Women&#039;s Standard</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band width</th><td class=\"a-size-base\">18 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Dial color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Bezel material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Brand, Seller, or Collection Name</th><td class=\"a-size-base\">Disney</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Model number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Part Number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case Thickness</th><td class=\"a-size-base\">9.3 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Special features</th><td class=\"a-size-base\">includes a seconds-hand</td></tr></tbody></table></div><p></p><p>White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design</p><p>37-mm metal case with glass dial window</p><p>Quartz movement with analog display</p><p>Metal alloy bracelet with jewelry-clasp closure</p><p>Not water resistant</p><p><p>Great timepiece for Disney Mickey Mouse fans! This spray white bracelet watch features round case with clear rhinestone accented, genuine white Mother-Of-Pearl dial, Arabic number 12,3,9 and dots display and jewelry clasp. Cute rhinestone accented Mickey Mouse image on dial. It is also powered by quartz movement that tells you the accurate time. It is casual and fashionable that is nice for everyday wear.</p></p>",
+  "market_price": 1,
   "attributes": {
-    "ram": "16GB",
-    "ram_type": "Built-in",
-    "bus": "1666hz",
-    "camera": "",
-    "audio_technology": "",
-    "hard_drive": "",
-    "connection_port": "",
-    "brand": "Samsung"
+    "bulky": 1,
+    "origin": "my",
+    "product_top_features": "White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design\n37-mm metal case with glass dial window\nQuartz movement with analog display\nMetal alloy bracelet with jewelry-clasp closure\nNot water resistant\n",
+    "brand": "Disney",
+    "case_diameter": "37 millimeters",
+    "filter_case_diameter": "37 millimeters",
+    "band_material": "metal-alloy",
+    "filter_band_material": "metal-alloy",
+    "brand_origin": "viet nam",
+    "require_expiry_date": 1
   },
-  "image": "http://cdn.fptshop.com.vn/Uploads/Originals/2019/8/9/637009754161317464_samsung-galaxy-note-10-plus-1.jpg",
+  "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
   "images": [
-    "http://cdn.fptshop.com.vn/Uploads/Originals/2019/8/9/637009754161387464_samsung-galaxy-note-10-plus-9.jpg",
-    "http://cdn.fptshop.com.vn/Uploads/Originals/2019/8/9/637009754164217464_samsung-galaxy-note-10-plus.jpg"
+    "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
   ],
   "option_attributes": [
     "color"
   ],
   "variants": [
     {
-      "sku": "sku1",
-      "quantity": 21,
+      "sku": "B0055QD0EC11",
+      "price": 984000,
+      "market_price": 984000,
       "option1": "Black",
-      "option2": null,	
-      "price": 10000001,
       "inventory_type": "cross_border",
-      "supplier": 239091,
-      "image": "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008711602926121_SS-note-10-pl-den-1-1.png",
+      "supplier": 167797,
+      "quantity": 100,
+      "brand_origin": "viet nam",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
       "images": [
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619323404785_SS-note-10-pl-den-2.png",
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619327294396_SS-note-10-pl-den-4.png"
-      ]
-    },
-    {
-      "sku": "sku2",
-      "quantity": 22,
-      "option1": "White",
-      "price": 10000002,
-      "inventory_type": "cross_border",
-      "supplier": 239091,
-      "image": "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008710284136121_SS-note-10-pl-trang-1-1.png",
-      "images": [
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008624715439429_SS-note-10-pl-trang-2.png",
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008624715279445_SS-note-10-pl-trang-3.png"
+        "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
       ]
     }
   ]
@@ -1431,7 +1437,7 @@ DELETE https://api.tiki.vn/integration/v1/requests/1115320939429986651
 
 > Response body
 
-```http
+```json
 {
     "request_id": "1115320939429986651",
     "state": "deleted"

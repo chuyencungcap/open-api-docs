@@ -12,7 +12,7 @@ It contains some kinds of APIs:
  
 These APIs are opened and sellers can use these APIs to manage their business in TIKI platform
 
-***Note**: update/delete API or any requested API will be supported in the near future 
+**Note**: update/delete API or any requested API will be supported in the near future 
 
 ## Authentication
 
