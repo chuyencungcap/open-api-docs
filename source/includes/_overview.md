@@ -1,5 +1,5 @@
 # OVERVIEW
-## 1. Introduction
+## Introduction
 
 TIKI Marketplace System is the platform for sellers to run marketplace business on TIKI Platform. Tiki integration system is a system which supports seller to manage their product in Tiki dynamically .
 
@@ -14,7 +14,7 @@ These APIs are opened and sellers can use these APIs to manage their business in
 
 ***Note**: update/delete API or any requested API will be supported in the near future 
 
-## 2. Authentication
+## Authentication
 
 Sellers has to use a secret token to integrate with our APIs.
 The secret token is provided by the TIKI supporters or sellers can acquire in seller systems.
@@ -43,7 +43,7 @@ If lacks API key in API headers when calling an API you might have got an authen
 }
 ```
 
-## 3. API Base URL
+## API Base URL
 API Base URL is the URL prefix of every API mentioned in this document.
 
 Sandbox
