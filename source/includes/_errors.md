@@ -1,6 +1,6 @@
 # HTTP ERROR CODES
 
-The Seller Center APIs use the following HTTP error codes:
+The Open APIs use the following HTTP error codes:
 
 Error Code | Meaning
 ---------- | -------
