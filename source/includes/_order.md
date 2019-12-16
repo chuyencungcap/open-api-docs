@@ -76,7 +76,7 @@ Please take look those API docs below for more detail
       <td style="text-align:left">status</td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">&quot;complete&quot;</td>
-      <td style="text-align:left">Order status, see List of Order Status for more details</td>
+      <td style="text-align:left">Order status, see List of <b>Order Status</b> for more details</td>
     </tr>
     <tr>
       <td style="text-align:left">total_price_before_discount</td>
@@ -689,7 +689,7 @@ GET https://api.tiki.vn/integration/v1/warehouses
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |  |
+|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |  |
 | Query Parameters | Name | Type | Mandatory | Example | Description |
 |  | warehouse_id | Integer | N | 2 | the id of warehouse |
 |  | warehouse_code | String | N | hn | the code of warehouse |
@@ -759,11 +759,11 @@ Seller confirm available status and location of each item in the list
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Body Parameters | Name | Type | Mandatory | Description |
 |  | order_code | String | Y | order code |
-|  | item_ids | Array Integer | Y | list of item\_id of a specific backorder that seller want to confirm,  |
+|  | item_ids | Array Integer | Y | list of item_id of a specific backorder that seller want to confirm,  |
 |  | warehouse_code | String | Y | warehouse code |
 |  | seller_inventory_id | String | Y | seller inventory id |
 |  | delivery_commitment_time(*) | String | N | Seller delivery commitment time, String datetime with format Y-m-d H:i:s. |
-|  | tracking_number(*) | String | N | maybe equal order code, tracking\_number is code for tracking order via 3rd party system or anything like this  |
+|  | tracking_number(*) | String | N | maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this  |
 
 **Note:** We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
 
@@ -928,13 +928,26 @@ Update delivery status, base on order codes. When order delivery, we need know o
 
 ### **Request**
 
-| Headers | Content-type | application/json |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key \( contact Tiki supporter \)  |  |  |  |
-| Body Parameters | Name | Type | Mandatory | Description | Example |
-|  | order_code | String | Y | Order code of seller delivery. | "20939384" |
-|  | status | String | Y | Status of delivery. | "ready for delivery" |
-|  | update_time | String | Y | String datetime with format Y-m-d H:i:s. | "2019-06-22 18:12:17" |
+| Headers         | Content-type | application/json                          |           |                                          |                       |
+|:--------------- |:------------ |:----------------------------------------- |:--------- |:---------------------------------------- |:--------------------- |
+|                 | tiki-api     | seller token key (contact Tiki supporter) |           |                                          |                       |
+| Body Parameters | Name         | Type                                      | Mandatory | Description                              | Example               |
+|                 | order_code   | String                                    | Y         | Order code of seller delivery.           | "20939384"            |
+|                 | status       | String                                    | Y         | Status of delivery, status in options(*) | successful_delivery   |
+|                 | update_time  | String                                    | Y         | String datetime with format Y-m-d H:i:s. | "2019-06-22 18:12:17" |
+
+
+**Status options:**
+
+* transferring_to_foreign_warehouses
+* has_come_to_foreign_warehouses
+* rotating_to_vietnam
+* customs_clearance
+* customs_clearance_complete
+* item_arrived_in_vietnam
+* ready_for_delivery
+* on_delivery
+* successful_delivery
 
 ### **Response**  
 
