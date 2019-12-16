@@ -23,6 +23,13 @@ jobs:
                   workload: open-api-docs
                   has_worker: 'no'
 
+    deploy_production:
+        steps:
+            - deploy_production:
+                  cluster: marketplace
+                  workload: open-api-docs
+                  has_worker: 'no'
+
 workflows:
     jenkins_pipeline:
         jobs:
@@ -44,3 +51,11 @@ workflows:
                       branches:
                           only:
                               - dev
+
+            - deploy_production:
+                  requires:
+                      - publish_docker
+                  filters:
+                      branches:
+                          only:
+                              - master
