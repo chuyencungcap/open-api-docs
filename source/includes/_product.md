@@ -296,9 +296,9 @@ GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
 | Path Parameters  | Name         | Type             | Mandatory | Example                                                    | Description |
 | version          | String       | Y                | v1        | version of API                                             |             |
 | Query Parameters | Name         | Type             | Mandatory | Example                                                    | Description |
-| |lang             | String       | N                | en        | Filter by language en/vi \( **default is en - english** \) |             |
-| |name             | String       | N                | book      | Filter name by keyword \( case insensitive \)              |             |
-| |parent           | Integer      | N                | 8         | Filter children of this parent\_id only   |
+| |lang             | String       | N                | en        | Filter by language en/vi (**default is en - english**) |             |
+| |name             | String       | N                | book      | Filter name by keyword (case insensitive)              |             |
+| |parent           | Integer      | N                | 8         | Filter children of this parent_id only   |
 | |primary | Integer | N | 1 | Filter product pushable category |  |
 
 ### **Response :** 
@@ -368,7 +368,7 @@ GET https://api.tiki.vn/integration/v1/categories/218
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Path Parameters | Name | Type | Mandatory | Example | Description |
 | |version | String | Y | v1 | version of API |  |
-| |id | Integer | Y | 218 | id of category \( category\_id \) |  |
+| |id | Integer | Y | 218 | id of category (category_id) |  |
 
 ### **Response**
 
@@ -376,9 +376,9 @@ GET https://api.tiki.vn/integration/v1/categories/218
 | :--- | :--- | :--- | :--- |
 | id | Integer | 218 | id of category |
 | name | String | Children's Books | name of category |
-| parent | Integer | 320 | category\_id of parent category |
+| parent | Integer | 320 | category_id of parent category |
 | primary | Integer | 1 | only primary category can have product |
-| description | String | Children's Books \| international purchases buy at \| [Tiki.vn](http://tiki.vn/) \| Cheaper \| Free shipping \| 100% genuine | describe the detail of this category |
+| description | String | Children's Books, international purchases buy at [Tiki.vn](http://tiki.vn/) Cheaper Free shipping 100% genuine | describe the detail of this category |
 | attributes | List&lt;**Attribute**&gt;(*) | see detail below | attributes list of this category |
 
 ### **Exception Case**
@@ -513,7 +513,7 @@ You must complete all required attribute from category, all others can be ignore
 
 | Headers | Content-type | application/json |  |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |  |  |
+| tiki-api | seller token key (contact Tiki supporter) |  |  |  |  |  |
 | Path Parameters | Name | Type | Mandatory | Example | Description |  |
 | |version | String | Y | v1 | version of API |  |  |
 | Body Parameters | Namespace | Field | Type | Mandatory | Example | Description |
@@ -537,7 +537,7 @@ You must complete all required attribute from category, all others can be ignore
 
 ### **Exception Case:**
 
-Configurable Product have invalid payload  (missing option2 value & price in sku2)
+Configurable Product have invalid payload (missing option2 value & price in sku2)
 
 > Request body
 
@@ -613,7 +613,7 @@ Configurable Product have invalid payload  (missing option2 value & price in sku
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | missing header or required params |
 | 401 | Unauthorized | your tiki-api token is not valid |
-| 404 | Not found | Attributes not found for category\_id in payload |
+| 404 | Not found | Attributes not found for category_id in payload |
 | 422 | Unprocessable Entity | Payload is missing or invalid field  |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
@@ -679,10 +679,10 @@ Tracking latest request of user (via token)
 
 | Field | Type | Example | Description | Note |
 | :--- | :--- | :--- | :--- | :--- |
-| trace\_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace\_id to tracking this request |  |
+| trace_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace\_id to tracking this request |  |
 | state | String | processing | current state of your request |  |
 | reason | String | Image does not match product name | the reason why your request is rejected | only rejected request have reason |
-| tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
+| tiki_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
 
 
 ### **State list**
@@ -739,7 +739,7 @@ Retrieve detail of a single request
 |  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
 | Path Parameters | Name | Type | Mandatory | Example | Description |
 | |version | String | Y | v1 | version of API |  |
-| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | trace\_id of request get from product API |  |
+| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | trace_id of request get from product API |  |
 
 ### **Response**
 
@@ -817,9 +817,9 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 | |version | String | Y | v1 | version of API |  |  |
 | |sku | String | Y | DANG19951995 | the original sku from your side system |  |  |
 | Body Parameters | Namespace | Field | Type | Mandatory | Example | Description |
-| |Variant | price | [I](https://docs.tiki.com.vn/display/BOP/Tiki+Integration+System+Guideline#TikiIntegrationSystemGuideline-3%29Product)nteger | N | 10000 | product 's new price |  |
+| |Variant | price | Integer | N | 10000 | product 's new price |  |
 |  | |quantity | String | N | 10 | product 's new quantity |  |
-|  | |active | Integer | N | 1 | product 's new status \( 1=active / 0=inactive\) |  |
+|  | |active | Integer | N | 1 | product 's new status (1=active / 0=inactive) |  |
 
 
 ### **Response**

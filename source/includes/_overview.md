@@ -51,7 +51,7 @@ The base URL of sanbox environment is: https://api-sandbox.tiki.vn/integration
 This URL used for testing APIs before launching on production environment.
 
 For example the method of API Search Products mentioned in this document is GET/products.
-When calling this API in sanbox environment, the full URL must be GET https://api-sandbox.tiki.vn/integration/products
+When calling this API in sanbox environment, the full URL must be GET https://api-sandbox.tiki.vn/integration/v1/products
 
 Production
 The base URL of product environment is: https://api.tiki.vn/integration

@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: TIKI Open API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - http
