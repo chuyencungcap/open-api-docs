@@ -786,111 +786,6 @@ So if you want to reject all of item in this order, just send an empty **item_id
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | Params in body request invalid. See detail response |
 
-## Confirm delivery
-### HTTP Request ###
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">POST</i>
-		<h6>https://api.tiki.vn/integration/v1/orders/confirmDelivery</h6>
-	</div>
-</div>
-
-```http
-POST https://api.tiki.vn/integration/v1/orders/confirmDelivery
-```
-
-Confirm delivery for order of seller delivery. Update status successful_delivery delivery order, same as Seller center.
-
-> request body 
-
-```json
-{
-    "order_code": "20939384",
-    "status": "successful_delivery"
-}
-```
-
-> Response body
-
-```json
-{
-    "order_code": "20939384"
-}
-```
-
-
-
-### **Request**
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Headers</th>
-      <th style="text-align:left">Content-type</th>
-      <th style="text-align:left">application/json</th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">tiki-api</td>
-      <td style="text-align:left">seller token key ( contact Tiki supporter )</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Body Parameters</td>
-      <td style="text-align:left">Name</td>
-      <td style="text-align:left">Type</td>
-      <td style="text-align:left">Mandatory</td>
-      <td style="text-align:left">Description</td>
-      <td style="text-align:left">Example</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">order_code</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Y</td>
-      <td style="text-align:left">Order code of seller delivery.</td>
-      <td style="text-align:left">&quot;20939384&quot;</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">status</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Y</td>
-      <td style="text-align:left">
-        <p>Status is successful_delivery
-     </td>
-      <td style="text-align:left">&quot;**successful_delivery**&quot;</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">appointment_date</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">N</td>
-      <td style="text-align:left">String datetime with format Y-m-d H:i:s.</td>
-      <td style="text-align:left">&quot;2019-06-22 18:12:17&quot;</td>
-    </tr>
-  </tbody>
-</table>
-
-### **Response**
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| order_code | String | "20939384" | Order code |
-
-### **Exception Case**
-
-| HTTP Code | message | Description |
-| :--- | :--- | :--- |
-| 500 | Internal server error | having error in server, can't serving |
-| 400 | Bad request | request not valid |
-
 ## Update delivery status
 
 ### HTTP Request ###
@@ -924,7 +819,6 @@ Update delivery status, base on order codes. When order delivery, we need know o
     "message": "success"
 }
 ```
-
 
 ### **Request**
 
