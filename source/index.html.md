@@ -10,9 +10,13 @@ toc_footers:
 
 includes:
   - overview
-  - product
-  - order
-  - errors
+  - authentication
+  - making_your_first_request
+  - api_guides
+  - api_documents
+  - api_versioning
+  - tiki_theory
+  - faqs
 
 search: true
 ---
