@@ -9,6 +9,14 @@ We are providing some kinds of APIs to manage your business in TIKI platform
 - Tracking APIs: tracing request, product in history or by trace_id
 - Order APIs: to query, confirm order/delivery information
 
+The following table shows API versions present in each major version of TIKI Platform:
+
+| API Version | Version      | Documentation             |
+|:------------|:-------------|:--------------------------|
+| `v1`        | 1.0 or later |                           |
+
+
+
 *Note : If you have any idea to develop this API system better, please tell us , we will try our best.
 
 ## Base URL
