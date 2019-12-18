@@ -1,240 +1,26 @@
-# Product Endpoint
-## Let's get started
-Sellers can create **products** to sell on TIKI. A product can be sold by many sellers. Sellers offer their price and quantity for a product on TIKI.
+# API Documents
+## Product API
+The table below lists APIs that can be used for product management.
 
-There are two kinds of product at TIKI: simple product and variable products. 
-
-* **Simple products** are the products that has attributes and only one instance/variant
-* **Variable products** are the products that has many variants.
-
-Variable products has many variants. Example: an iPhone has many variants differ by colors.
-
-They are called **option_attribute**s. Tiki support up to 2 option attributes ( size, color , capacity , ... )
-
-![](https://i.imgur.com/EaZ1z0c.png)
-
-
-Each product belong to a specific **category** in a hierarchy. Example : iPhone belong to Cellphones → Smartphones → Apple → iPhone
-
-Normally , only some category is **primary** that you can put products into it. In this case, the **primary category** is iPhone.
-
-Each product has basic attributes: 
-
-* Name: the name of product that is displayed on TIKI
-* Price: the sell price of a product
-* Market price : the price before discount of a product
-* Description: describe the information of products
-* Category: the primary category that products are belong. You must choose over Tiki Information APIs carefully
-* Image: the avatar of product on TIKI
-* Images: the image gallery of product on TIKI
-* The other attributes are based on the category of products, like RAM/CPU/Screen. That's why you need to choose category carefully at first
-![](https://i.imgur.com/A2x7oeo.png)
-
-* **Price** and **market price** use the **currency** which seller set with TIKI supporter when registry.
-
-With variable products:
-
-* A variable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
-* Variants differ by maximized two attributes. Example: a T Shirt has many variants that differ by color and size
-* The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
-
-## Sequence diagram
-
-![](https://i.imgur.com/9qFwq2i.png)
-1. Client get/search tiki categories
-2. Select tiki category, your product will map to tiki category
-3. Using categoryId, get list attributes by categoryId
-4. Mapping from your attribute to tiki attribute by code
-5. After mapping success, you call API create product
-
-## Entity
+| API name | Description |
+| -------- | -------- |
+| [Get list products](#get-categories)| Get all of product (approved request) order by created_at desc (latest product)     |
+| [Get category detail](#get-category-detail-include-attribute)| Retrieve detail of a single categories with its attributes|
+| [Create Product](#create-product)| Create new product|
+| [Tracking history](#tracking-history)| Tracking latest request of user (via token)|
+| [Create Product](#create-product)| Create new product|
+| [Tracking a request](#tracking-a-request)| Retrieve detail of a single request|
+| [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update non validate fields like price/quantity/active of a created product|
+| [Get list products](#get-list-products)| Get all of product (approved request) order by created_at desc (latest product)|
+| [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
+| [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
+| [Get list requests](#get-list-requests)| Get all of product requests order by created_at desc (latest request)|
+| [Get a request](#get-a-request)| Get a request with request_id from TIKI system|
+| [Get a request by original sku](#get-a-request-by-original-sku)| Get a product match with seller original sku|
+| [Delete a request](#delete-a-request)| Delete a created product request base on request_id of TIKI system|
 
 
-> **Entity** example:
-
-```json
-{
-    "id": 218,
-    "name": "Medical Books",
-    "parent": 320,
-    "primary": 1
-}
-```
-
-| Field   | Type    | Example       | Description                            |
-| ------- | ------- | ------------- | -------------------------------------- |
-| id      | Integer | 218           | id of category                         |
-| name    | String  | Medical Books | name of category                       |
-| parent  | Integer | 320           | category_id of parent category         |
-| primary | Integer | 1             | only primary category can have product |
-
-
-
-
-### Attribute
-> **Attribute** example:
-
-```json
-{
-      "id": 498,
-      "code": "author",
-      "display_name": "Author",
-      "is_required": 1
-}
-```
-
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| id | Integer | 498 | id of attribute |
-| code | String | author | attribute code use to put into the attributes branch in payload |
-| display_name | String | Author | the display name of this attribute |
-| is_required | Integer | 1/0 | user must complete all of required attribute in payload |
-
-
-
-### Product
-> **Product** example:
-
-```json
-{
-  "category_id": 21458,
-  "name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
-  "description": "<style>\r\n#productDetails_techSpec_section_2{width:70%;}\r\n#prodDetails .prodDetSectionEntry {width: 50%!important;white-space: normal;word-wrap: break-word;}\r\ntable.a-keyvalue th {background-color: #f3f3f3;}\r\ntable.a-keyvalue td, table.a-keyvalue th {padding: 7px 14px 6px;border-top: 1px solid #e7e7e7;}\r\n#prodDetails th {text-align: left;}\r\ntable.a-keyvalue{border-bottom: 1px solid #e7e7e7;}\r\n</style><div id=\"prodDetails\"><table id=\"productDetails_techSpec_section_2\" class=\"a-keyvalue prodDetTable\" role=\"presentation\"><tbody><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Item Shape</th><td class=\"a-size-base\">Round</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Display Type</th><td class=\"a-size-base\">Analog</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case diameter</th><td class=\"a-size-base\">37 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Material</th><td class=\"a-size-base\">metal-alloy</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band length</th><td class=\"a-size-base\">Women&#039;s Standard</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band width</th><td class=\"a-size-base\">18 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Dial color</th><td class=\"a-size-base\">White</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Bezel material</th><td class=\"a-size-base\">Metal</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Brand, Seller, or Collection Name</th><td class=\"a-size-base\">Disney</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Model number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Part Number</th><td class=\"a-size-base\">MK2106</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case Thickness</th><td class=\"a-size-base\">9.3 millimeters</td></tr><tr><th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Special features</th><td class=\"a-size-base\">includes a seconds-hand</td></tr></tbody></table></div><p></p><p>White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design</p><p>37-mm metal case with glass dial window</p><p>Quartz movement with analog display</p><p>Metal alloy bracelet with jewelry-clasp closure</p><p>Not water resistant</p><p><p>Great timepiece for Disney Mickey Mouse fans! This spray white bracelet watch features round case with clear rhinestone accented, genuine white Mother-Of-Pearl dial, Arabic number 12,3,9 and dots display and jewelry clasp. Cute rhinestone accented Mickey Mouse image on dial. It is also powered by quartz movement that tells you the accurate time. It is casual and fashionable that is nice for everyday wear.</p></p>",
-  "market_price": 1,
-  "attributes": {
-    "bulky": 1,
-    "origin": "my",
-    "product_top_features": "White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design\n37-mm metal case with glass dial window\nQuartz movement with analog display\nMetal alloy bracelet with jewelry-clasp closure\nNot water resistant\n",
-    "brand": "Disney",
-    "case_diameter": "37 millimeters",
-    "filter_case_diameter": "37 millimeters",
-    "band_material": "metal-alloy",
-    "filter_band_material": "metal-alloy",
-    "brand_origin": "viet nam",
-    "require_expiry_date": 1
-  },
-  "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
-  "images": [
-    "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
-    "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
-  ],
-  "option_attributes": [],
-  "variants": [
-    {
-      "sku": "B0055QD0EC11",
-      "price": 984000,
-      "market_price": 984000,
-      "inventory_type": "cross_border",
-      "supplier": 167797,
-      "quantity": 100,
-      "brand_origin": "viet nam",
-      "image": "https://images-na.ssl-images-amazon.com/images/I/715uwlmCWsL.jpg",
-      "images": [
-        "https://images-na.ssl-images-amazon.com/images/I/6110JInm%2BBL.jpg",
-        "https://images-na.ssl-images-amazon.com/images/I/41FuQMh3FUL.jpg"
-      ]
-    }
-  ]
-}
-```
-
-| Field | Type | Mandatory | Description |
-| :--- | :--- | :--- | :--- |
-| category_id | Integer | Y | TIKI categoryId you mapped before |
-| name | String | Y | the name of product |
-| description | String | Y | the description of product |
-| market_price | Integer | N | the price of product before discount |
-| attributes | List&lt;Attribute&gt; | Y | list of attributes retrieve from category\_id  |
-| image(*) | String | Y | the avatar url of product |
-| images(*) | List&lt;String&gt; | Y | list urls of product gallery |
-| option_attributes(*) | List&lt;String&gt; | Y | list of attribute code to config product \( up to 2 \) |
-| variants | List&lt;Variant&gt; | Y | list of variants, simple product have only 1 |
-
-
-
-**\*Note**:
-
-+ if product type is simple (only one variant) then **option_attributes** must be empty list instead of null value because option attributes is a required field.
-
-+ **images** do not accept null value, please put empty list if product don't have any image. The avatar from **image** will be added to **images** later so you don't need to add it 2 times.
-
-Even you do that, we will check duplicate image by url.
-
-\*For the best user experience, TIKI only display image have size greater than 500x500 pixel in the media gallery and lower than 700 width pixel inside description
-
-### Variant
-
-| Field | Type | Mandatory | Override rule(*) | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| sku | String | Y | No | variant 's sku from source side |
-| price | Integer | Y | No | variant 's sell price |
-| market_price | Integer | N | Replace | variant 's market price \( price before discount \) |
-| option1 | String | N | No | attribute code of the first option attribute |
-| option2 | String | N | No | attribute code of the first second attribute |
-| inventory\_type\(\*\) | String | N | No | inventory type of this variant |
-| quantity | Integer | Y | No | number of products available for sell |
-| supplier\(\*\) | Integer | Y | No | see detail below |
-| name | String | N | Replace | name of this variant |
-| description | String | N | Replace | description of this variant |
-| attributes | List&lt;Attribute&gt; | N | Merge  | list specific/addition attribute for this variant |
-| image | String | N | Replace | avatar url of this variant |
-| images | String | N | Replace | list urls of variant product gallery |
-
-**\*Note**:
-
-+ **option1**, **option2** is required corresponding with the number of option attributes start from 1.
-
-    The unused option value maybe null or empty or even don't need to appear.That's why it's mandatory still equal "no"  
-
-+ **Override rule** describe how transform system will treat your request if any field is conflict between variant and parent product.
-
-    By default child product will inherit all of member from its parent.
-
-* No : Field can't not override 
-* Replace : Field of variant will replace the parent one.
-* Merge : **attributes** will merged from both side.
-
-+ **inventory_type** must be one of below values and have to be in registered list. If you don't put value in product request, then the latest method will be picked up.
-
-+ **supplier** is an integer constant describe the location of seller 's storage.Each seller can have some **supplier** but each product must be stored in a fixed **supplier**
-
-If seller is in Vietnam, please register your supplier list in TIKI **Seller Center** system
-
-If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
-
-**\*\) List inventory_type :**
-
-> Example:
-
-```json
-{
-      "sku": "sku1",
-      "quantity": 21,
-      "option1": "Black",
-      "option2": null,
-      "price": 10000001,
-      "inventory_type" : "cross_border",
-      "supplier" : 239091,
-      "image": "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008711602926121_SS-note-10-pl-den-1-1.png",
-      "images": [
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619323404785_SS-note-10-pl-den-2.png",
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619327294396_SS-note-10-pl-den-4.png"
-      ]
-}
-```
-
-| inventory_type | customer | description |
-| :--- | :--- | :--- |
-| cross_border | for Global seller | products is transported from abroad |
-| instock | for Vietnamese seller | products in TIKI storage, TIKI pack, TIKI deliver |
-| backorder | for Vietnamese seller | products in seller storage, TIKI pack, TIKI deliver |
-| seller_backorder | for Vietnamese seller | products in seller storage, seller pack, seller deliver |
-| drop_ship | for Vietnamese seller | products in seller storage, seller pack, TIKI deliver  |
-
-
-
-## Get categories
-
+### Get categories
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -324,7 +110,7 @@ GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
 
 ---------------------------------------------------------------------------------------------------------------
 
-## Get category detail (include attribute)
+### Get category detail (include attribute)
 
 ### HTTP Request ###
 <div class="api-endpoint">
@@ -406,7 +192,7 @@ GET https://api.tiki.vn/integration/v1/categories/218
 | 500 | Internal server error | having error in server, can't serving |
 | 404 | Category not found |  |
 
-## Create Product
+### Create Product
 
 ### HTTP Request ###
 <div class="api-endpoint">
@@ -623,7 +409,7 @@ Configurable Product have invalid payload (missing option2 value & price in sku2
 | 422 | Unprocessable Entity | Payload is missing or invalid field  |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
-## Tracking history
+### Tracking history
 
 ### HTTP Request ###
 <div class="api-endpoint">
@@ -716,7 +502,7 @@ Tracking latest request of user (via token)
 
 ---------------------------------------------------------------------------------------------------------------
 
-## Tracking a request
+### Tracking a request
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -783,7 +569,7 @@ Retrieve detail of a single request
 
 ---------------------------------------------------------------------------------------------------------------
 
-## Update variant price/quantity/active
+### Update variant price/quantity/active
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -856,7 +642,7 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 }
 ```
 
-## Get list products
+### Get list products
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -956,7 +742,7 @@ GET https://api.tiki.vn/integration/v1/products
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 
-## Get a product
+### Get a product
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1056,7 +842,7 @@ GET https://api.tiki.vn/integration/v1/products/2088336
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 
-## Get a product by original sku
+### Get a product by original sku
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1155,7 +941,7 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 
-## Get list requests
+###Get list requests
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1257,7 +1043,7 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 
 
 
-## Get a request
+### Get a request
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1338,7 +1124,7 @@ GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
 
 
 
-## Get a request by original sku
+### Get a request by original sku
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1418,7 +1204,7 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?original_sku=YOUR_ORIGINA
 
 
 
-## Delete a request
+### Delete a request
 ### HTTP Request ###
 <div class="api-endpoint">
 	<div class="endpoint-data">

@@ -13,7 +13,8 @@ includes:
   - authentication
   - making_your_first_request
   - api_guides
-  - api_documents
+  - v1/api_documents_product
+  - v1/api_documents_order
   - api_versioning
   - tiki_theory
   - faqs
