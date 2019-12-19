@@ -9,8 +9,8 @@ TIKI will update your request status step by step. Once the status become approv
 
 #### Before creating product, please refer to these following link:
    1. [Authentication](#authentication)
-   2. [TIKI 's product structure](#product)
-   3. [TIKI 's product request status flow]()
+   2. [TIKI 's product structure](#tiki-product-structure)
+   3. [TIKI 's product request status flow](#tiki-request-status-flow)
 
 ### Alright, you can create products on TIKI easily by following these steps:
 ![](https://i.imgur.com/9qFwq2i.png)
@@ -40,8 +40,11 @@ TIKI will update your request status step by step. Once the status become approv
 ]
 ```
 
-   - You can search categories by keyword like this or maybe travel over categories tree like this until you got a primary category because product must be in exactly one category
-   - Save the category_id to use it later
+   - You can search categories : 
+        * by keyword [https://api.tiki.vn/integration/v1/categories?name=book&primary=1](https://api.tiki.vn/integration/v1/categories?name=book&primary=1) 
+        * travel over categories tree [https://api.tiki.vn/integration/v1/categories?parent=17166](https://api.tiki.vn/integration/v1/categories?parent=17166) 
+   - until you got a primary category because product must be in exactly one category
+   - Save the **category_id** to use it later
    
     
 ### 2. Get attribute from category you chosen → map with your original attribute
@@ -72,11 +75,11 @@ TIKI will update your request status step by step. Once the status become approv
 ]
 ```
 * visit category detail to see its attributes like this : [https://api.tiki.vn/integration/v1/categories/20768](https://api.tiki.vn/integration/v1/categories/20768)
-* each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like "updating" because your product request will be reviewed by TIKI content
+* each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like `updating` because your product request will be reviewed by TIKI content
 * if you can't find some important attribute in your side but TIKI don't have, please contact TIKI supporter , we will add them into the list while we developing **create attribute endpoint**
 
-### 3. Choose your inventory_type from here then ask TIKI supporter to get your supplier
-### 4. [Create product via endpoint](#create-product) . There are some important point need to focus please visit TIKI product structure for more detail : 
+### 3. Choose your inventory_type from [here](#list-inventory-type) then ask TIKI supporter to get your supplier
+### 4. [Create product via endpoint](#create-product) . There are some important point need to focus please visit [TIKI product structure](#tiki-product-structure) for more detail : 
     
 ```json
  {
@@ -178,7 +181,7 @@ TIKI will update your request status step by step. Once the status become approv
 
 ## Tracking created request
 
-After TIKI received your product request then you can trace its current status by the trace_id we gave you in the http response here
+After TIKI received your product request then you can trace its current status by the **trace_id** we gave you in the http response [here](#create-product)
 
 ```json
 {
@@ -187,7 +190,7 @@ After TIKI received your product request then you can trace its current status b
 }
 ````
 
-When your product state is queuing , it means your request just received . You can refer request status flow here. 
+When your product state is queuing , it means your request just received . You can refer [request status flow](#tiki-request-status-flow) here. 
 
 - note that **drafted** is a temporary state only appear in test environment . In production your request will be redirected directly into **awaiting_approve** . Your task finish once request 's state become drafted/awaiting_approve
 - while your request is on flow , it maybe become **rejected** by some reason , please check it
