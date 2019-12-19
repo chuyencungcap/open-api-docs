@@ -21,7 +21,7 @@ The table below lists APIs that can be used for product management.
 
 
 ### Get categories
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -83,7 +83,7 @@ GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
 ]
 ```
 
-### **Request**
+#### **Request**
 
 | Headers          | Content-type | application/json |           |                                                            |             |
 |:---------------- |:------------ |:---------------- |:--------- |:---------------------------------------------------------- |:----------- |
@@ -95,14 +95,14 @@ GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
 | |parent           | Integer      | N                | 8         | Filter children of this parent_id only   |
 | |primary | Integer | N | 1 | Filter product pushable category |  |
 
-### **Response :** 
+#### **Response :** 
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | root | List&lt;**Category**&gt; | the summary list of category filtered by request params |
 
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -112,7 +112,7 @@ GET https://api.tiki.vn/integration/v1/categories?name=book&primary=1
 
 ### Get category detail (include attribute)
 
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -156,7 +156,7 @@ GET https://api.tiki.vn/integration/v1/categories/218
 }
 ```
 
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -164,7 +164,7 @@ GET https://api.tiki.vn/integration/v1/categories/218
 | |version | String | Y | v1 | version of API |  |
 | |id | Integer | Y | 218 | id of category (category_id) |  |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -175,7 +175,7 @@ GET https://api.tiki.vn/integration/v1/categories/218
 | description | String | Children's Books, international purchases buy at [Tiki.vn](http://tiki.vn/) Cheaper Free shipping 100% genuine | describe the detail of this category |
 | attributes | List&lt;**Attribute**&gt;(*) | see detail below | attributes list of this category |
 
-### **Exception Case**
+#### **Exception Case**
 
 > Example:
 
@@ -194,7 +194,7 @@ GET https://api.tiki.vn/integration/v1/categories/218
 
 ### Create Product
 
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
@@ -299,7 +299,7 @@ Create new product
 
 **\*Note**: To understand the relation between variant and it's product parent please read the detail from: **Variant**(*)
 
-### **Request**
+#### **Request**
 You must complete all required attribute from category, all others can be ignored or pass null value
 
 
@@ -311,7 +311,7 @@ You must complete all required attribute from category, all others can be ignore
 | Body Parameters | Namespace | Field | Type | Mandatory | Example | Description |
 |  | Root | **Product**(*) | Y | below | product detail to create |  |
 
-### **Response**
+#### **Response**
 
 > Response body: 
 
@@ -327,7 +327,7 @@ You must complete all required attribute from category, all others can be ignore
 | trace_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace_id to tracking this request |
 | state | String | queuing | current state of your request |
 
-### **Exception Case:**
+#### **Exception Case:**
 
 Configurable Product have invalid payload (missing option2 value & price in sku2)
 
@@ -411,7 +411,7 @@ Configurable Product have invalid payload (missing option2 value & price in sku2
 
 ### Tracking history
 
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -447,7 +447,7 @@ Tracking latest request of user (via token)
 ]
 ```
 
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -461,7 +461,7 @@ Tracking latest request of user (via token)
 | |updated_at_min | String | N | 2019-06-27 10:47:34 | Show request updated after date (format as example)  |  |
 | |updated_at_max | String | N | 2019-06-27 10:47:34 | Show request created before date (format as example)  |  |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
@@ -477,7 +477,7 @@ Tracking latest request of user (via token)
 | tiki_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
 
 
-### **State list**
+#### **State list**
 
 | State | Description |
 | :--- | :--- |
@@ -491,7 +491,7 @@ Tracking latest request of user (via token)
 | **rejected** | request is rejected, use tracking API for more information |
 | deleted | request is deleted, no more available in system |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -503,7 +503,7 @@ Tracking latest request of user (via token)
 ---------------------------------------------------------------------------------------------------------------
 
 ### Tracking a request
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -524,7 +524,7 @@ Retrieve detail of a single request
 }
 ```
 
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -533,7 +533,7 @@ Retrieve detail of a single request
 | |version | String | Y | v1 | version of API |  |
 | |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | trace_id of request get from product API |  |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description | Note |
 | :--- | :--- | :--- | :--- | :--- |
@@ -543,7 +543,7 @@ Retrieve detail of a single request
 | tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
 
 
-### **State list**
+#### **State list**
 
 | State | Description |
 | :--- | :--- |
@@ -557,7 +557,7 @@ Retrieve detail of a single request
 | **rejected** | request is rejected, use tracking API for more information |
 | deleted | request is deleted, no more available in system |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -570,7 +570,7 @@ Retrieve detail of a single request
 ---------------------------------------------------------------------------------------------------------------
 
 ### Update variant price/quantity/active
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
@@ -600,7 +600,7 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 }
 ```
 
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -614,14 +614,14 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 |  | |active | Integer | N | 1 | product 's new status (1=active / 0=inactive) |  |
 
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | state | String | approved | your product is updated successfully |
 
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -643,7 +643,7 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 ```
 
 ### Get list products
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -717,7 +717,7 @@ GET https://api.tiki.vn/integration/v1/products
   }
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -726,14 +726,14 @@ GET https://api.tiki.vn/integration/v1/products
 |  | page | Integer | N | move to the page you choose in the data set, default 1|
 |  | limit | Integer | N | number result per page, default 20 |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Product**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -743,7 +743,7 @@ GET https://api.tiki.vn/integration/v1/products
 
 
 ### Get a product
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -817,7 +817,7 @@ GET https://api.tiki.vn/integration/v1/products/2088336
   }
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -826,14 +826,14 @@ GET https://api.tiki.vn/integration/v1/products/2088336
 |  | version | String | Y | version of API|
 |  | product_id | Integer | Y | product_id of TIKI system |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Product**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -843,7 +843,7 @@ GET https://api.tiki.vn/integration/v1/products/2088336
 
 
 ### Get a product by original sku
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -917,7 +917,7 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
   }
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -925,14 +925,14 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 | Request Parameters | Name | Type | Mandatory | Description |
 |  | original_sku | Integer | Y | The original sku from seller side |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Product**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -942,7 +942,7 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 
 
 ###Get list requests
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -1014,7 +1014,7 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
   }
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -1026,14 +1026,14 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 |  | state | String | N | choose 1 from state list table |
 
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Request**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -1044,7 +1044,7 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 
 
 ### Get a request
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -1098,7 +1098,7 @@ GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
   }
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -1107,14 +1107,14 @@ GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
 |  | version | String | Y | version of API |
 |  | request_id | String | Y | request_id of TIKI system |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Request**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -1125,7 +1125,7 @@ GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
 
 
 ### Get a request by original sku
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -1179,7 +1179,7 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?original_sku=YOUR_ORIGINA
   }
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -1187,14 +1187,14 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?original_sku=YOUR_ORIGINA
 | Request Parameters | Name | Type | Mandatory | Description |
 |  | original_sku | Integer | Y | The original sku from seller side |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Request**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -1205,7 +1205,7 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?original_sku=YOUR_ORIGINA
 
 
 ### Delete a request
-### HTTP Request ###
+#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">DEL</i>
@@ -1229,7 +1229,7 @@ DELETE https://api.tiki.vn/integration/v1/requests/1115320939429986651
     "state": "deleted"
 }
 ```
-### **Request**
+#### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
@@ -1237,14 +1237,14 @@ DELETE https://api.tiki.vn/integration/v1/requests/1115320939429986651
 | Path Parameters | Name | Type | Mandatory | Description |
 |  | request_id | String | Y | the request_id you want to delete |
 
-### **Response**
+#### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | request_id | String| 1115320939429986651 | the request_id you just deleted |
 | state | String | deleted| the new state of this request |
 
-### **Exception Case**
+#### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
