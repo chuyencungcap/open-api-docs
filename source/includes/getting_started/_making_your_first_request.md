@@ -1,4 +1,4 @@
-# Making your first request
+## Making your first request
 
 Once you read and understand our [authentication](#authentication) , you can try to call a "hello world" request.
 

@@ -1,4 +1,4 @@
-# API Guides
+# API Integration step by step
 
 ## Create new product request
 

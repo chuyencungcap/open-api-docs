@@ -1,4 +1,6 @@
-# Overview
+# Getting started
+
+## Overview
 
 TIKI Marketplace System is the platform for sellers to run marketplace business on TIKI Platform. Tiki integration system is a system which supports seller to manage their product in Tiki dynamically .
 
@@ -18,8 +20,6 @@ The following table shows API versions present in each major version of TIKI Pla
 
 
 *Note : If you have any idea to develop this API system better, please tell us , we will try our best.
-
-### Base URL
 
 ### Production Environment
 
