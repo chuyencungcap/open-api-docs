@@ -8,7 +8,7 @@ The table below lists APIs that can be used for product management.
 | [Order detail](#order-detail)| Returns detail information including product items of a sales order, base on order code.|
 | [Get warehouses](#get-warehouses)| Returns detail information of warehouse of Tiki that seller registries for backorder model.|
 | [Confirm order items](#confirm-order-items)| Seller confirm available status and location of each item in the list|
-| [Update delivery status](#update-delivery-status)| Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.|
+| [Update delivery status](#api-update-delivery-status)| Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.|
 | [Print order labels](#print-order-labels)| Return shipping label url of sale orders, base on order codes.|
 
 
@@ -557,7 +557,7 @@ So if you want to reject all of item in this order, just send an empty **item_id
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | Params in body request invalid. See detail response |
 
-### Update delivery status
+### API Update delivery status
 
 #### HTTP Request ####
 <div class="api-endpoint">

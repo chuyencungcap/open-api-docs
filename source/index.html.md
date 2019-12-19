@@ -2,7 +2,7 @@
 title: TIKI Open API
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - http
+  - example
   
   
 toc_footers:

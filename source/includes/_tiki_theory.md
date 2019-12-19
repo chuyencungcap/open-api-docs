@@ -263,6 +263,35 @@ Via API, we provide some solution to confirm order & delivery status step by ste
 
 Please take look those API docs below for more detail 
 
+### Sequence diagram
+
+#### Seller delivery
+![](https://i.imgur.com/W7gDfgJ.png)
+
+
+**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
+
+**(2)** Seller pull order, using api **get list order**  with status = "**queueing**"
+
+**(3)** After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
+
+**(4)** when seller delivery, seller will update delivery status using api **Update delivery status**
+
+#### TIKI Delivery
+![](https://i.imgur.com/wGDoCKW.png)
+
+
+**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
+
+**(2)** Seller pull order, using api **get list order**  with status = "_**queueing**_"
+
+**(3)**  After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
+
+**(4)** Once products in TIKI warehouse, we will pack and delivery to customer.
+
+**(5)** Finally TIKI will confirm delivery order using api **Update delivery status**, status=**successful_delivery**. 
+
+
 ### Entity 
 #### Order
 

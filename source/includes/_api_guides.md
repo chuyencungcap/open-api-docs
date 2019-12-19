@@ -297,7 +297,7 @@ We will continue supporting some other method in the near future , please contri
 
 After customer place an order , seller have to send a confirm request to make sure your product is still available. This is a important step before delivery product to customer so please confirm it as soon as possible 
 
-### 1. [Query list order periodically to find new order to confirm](#get-list-orders)
+### 1. Query list order periodically to find new order to [confirm](#get-list-orders)
 
 ```json
 {
@@ -420,15 +420,10 @@ After customer place an order , seller have to send a confirm request to make su
 ```
       
 ## Update delivery status
-### TIKI delivery product
-![](https://i.imgur.com/wGDoCKW.png)
 
-Congratulation , after you confirm order items , TIKI will help you complete this order.
+If your order is **tiki_delivery** congratulation , after you confirm order items, TIKI will help you complete this order.
 
-### Seller delivery product
-![](https://i.imgur.com/W7gDfgJ.png)
-
-You still have one more steps to complete this order. You have to [update delivery status](#update-delivery-status) step by step whenever you reach a new status in this list 
+If your order is **seller_delivery** you still have one more steps to complete this order. You have to [update delivery status](#api-update-delivery-status) step by step whenever you reach a new status in this list 
 
 ```json
 {
