@@ -1,6 +1,6 @@
 # TIKI Theory
 ## Product
-### Let's get started
+### TIKI product structure
 Sellers can create **products** to sell on TIKI. A product can be sold by many sellers. Sellers offer their price and quantity for a product on TIKI.
 
 There are two kinds of product at TIKI: simple product and variable products. 
@@ -38,6 +38,23 @@ With variable products:
 * A variable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
 * Variants differ by maximized two attributes. Example: a T Shirt has many variants that differ by color and size
 * The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
+
+### TIKI request status flow
+In order for your product to sell on TIKI website, you need to send us your product request. Depend on policy, TIKI need to take a look. Your request may pass some following status:
+
+![](https://salt.tikicdn.com/ts/docs/b4/63/37/1a065637ded38bbd3373eee0c4832961.png)
+
+via tracking api , you can see what is your current request 's status . Here is our full status list :
+
+| State            | Type             | Description                                                |
+|------------------|------------------|------------------------------------------------------------|
+| queuing          | auto             | request is in queue, waiting for processing                |
+| processing       | auto             | request is transforming to tiki format                     |
+| drafted          | auto (temporary) | TIKI product request created, ready to review              |
+| awaiting_approve | manual           | request waiting for approving, we need to take a look      |
+| approved         | manual           | request is approved, product created successfully          |
+| rejected         | auto/manual      | request is rejected, use tracking API for more information |
+| deleted          | manual           | request is deleted, no more available in system            |
 
 ### Entity
 
@@ -194,7 +211,7 @@ If seller is in Vietnam, please register your supplier list in TIKI **Seller Cen
 
 If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
 
-**\*\) List inventory_type :**
+#### List inventory_type
 
 > Example:
 

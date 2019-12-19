@@ -31,7 +31,7 @@ The product variations must be listed with a single request. That is, in the req
 
 ### Q: What do the mangrove errors mean? Who should I reach out to?
 These errors are caused by a failure to comply to our platform product content rules. These rules are set by the TIKI Content team, please reach out to the Partner Seller Support (https://sellercenter.tiki.vn/) to find out more about the rules and what you should do.
-We have compiled some frequently encoutered mangrove errors below for your reference.
+We have compiled some frequently encountered mangrove errors below for your reference.
 
 ### Q: If I have other technical questions about API, whom shall I contact for technical support?
 You can get technical support through [Telegram group](https://t.me/technicaltikisupport)  for English Support.
