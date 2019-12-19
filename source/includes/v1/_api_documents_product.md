@@ -4,7 +4,7 @@ The table below lists APIs that can be used for product management.
 
 | API name | Description |
 | -------- | -------- |
-| [Get list products](#get-categories)| Get all of product (approved request) order by created_at desc (latest product)     |
+| [Get categories](#get-categories)| Return the summary list of categories in integration system |
 | [Get category detail](#get-category-detail-include-attribute)| Retrieve detail of a single categories with its attributes|
 | [Create Product](#create-product)| Create new product|
 | [Tracking history](#tracking-history)| Tracking latest request of user (via token)|
