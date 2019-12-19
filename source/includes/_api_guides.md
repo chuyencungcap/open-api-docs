@@ -40,11 +40,11 @@ TIKI will update your request status step by step. Once the status become approv
 ]
 ```
 
-   - You can search categories : 
-        * by keyword [https://api.tiki.vn/integration/v1/categories?name=book&primary=1](https://api.tiki.vn/integration/v1/categories?name=book&primary=1) 
-        * travel over categories tree [https://api.tiki.vn/integration/v1/categories?parent=17166](https://api.tiki.vn/integration/v1/categories?parent=17166) 
-   - until you got a primary category because product must be in exactly one category
-   - Save the **category_id** to use it later
+- You can search categories :
+    - by keyword [https://api.tiki.vn/integration/v1/categories?name=book&primary=1](https://api.tiki.vn/integration/v1/categories?name=book&primary=1) 
+    - travel over categories tree [https://api.tiki.vn/integration/v1/categories?parent=17166](https://api.tiki.vn/integration/v1/categories?parent=17166) 
+- Until you got a primary category because product must be in exactly one category
+- Save the **category_id** to use it later
    
     
 ### 2. Get attribute from category you chosen → map with your original attribute
@@ -74,11 +74,16 @@ TIKI will update your request status step by step. Once the status become approv
  }
 ]
 ```
-* visit category detail to see its attributes like this : [https://api.tiki.vn/integration/v1/categories/20768](https://api.tiki.vn/integration/v1/categories/20768)
-* each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like `updating` because your product request will be reviewed by TIKI content
+* Visit category detail to see its attributes like this : [https://api.tiki.vn/integration/v1/categories/20768](https://api.tiki.vn/integration/v1/categories/20768)
+* Each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like `updating` because your product request will be reviewed by TIKI content
 * if you can't find some important attribute in your side but TIKI don't have, please contact TIKI supporter , we will add them into the list while we developing **create attribute endpoint**
 
 ### 3. Choose your inventory_type from [here](#list-inventory-type) then ask TIKI supporter to get your supplier
+
+**inventory_type** have to be in registered list. If you have only one **inventory_type**, then that method will be picked up so you can ignore this field in payload
+
+**supplier** is an integer constant describe the location of seller 's storage. Each seller can have some supplier but each product must be stored in a fixed supplier
+
 ### 4. [Create product via endpoint](#create-product) . There are some important point need to focus please visit [TIKI product structure](#tiki-product-structure) for more detail : 
     
 ```json
@@ -203,7 +208,7 @@ At first your request is checked automatically, you can track it by these method
 
 After that, your request is sent to the other queue to check manually, in this phase beside the methods listed above , you can try these 
 
-1. [Query the latest request ( exclude queuing , processing request )]((#tracking-a-request))
+1. [Query the latest request]((#tracking-a-request)) ( exclude queuing , processing request )
     - you can include product_info here
     - you can filter by state ( rejected , deleted , approved , ... )
 2. [Query a request by **request_id** from TIKI system]((#tracking-a-request))
@@ -212,7 +217,7 @@ After that, your request is sent to the other queue to check manually, in this p
 
 If you want to rejected your request by yourself or maybe you don't want to see it in the query list anymore. So we provide you a method to do it.
 
-1. Find a request from the list then choose by request_id or choose it directly by the trace_id
+1. [Find a request](#tracking-created-request) from the list then choose by **request_id** or choose it directly by the **trace_id**
 2. [Use its request_id to send delete request]((#delete-a-request))
 
 So easy right ?
@@ -292,73 +297,85 @@ We will continue supporting some other method in the near future , please contri
 
 After customer place an order , seller have to send a confirm request to make sure your product is still available. This is a important step before delivery product to customer so please confirm it as soon as possible 
 
-1. [Query list order periodically to find new order to confirm](#get-list-orders)
+### 1. [Query list order periodically to find new order to confirm](#get-list-orders)
 
 ```json
 {
-  "order_code": "814423357",
-  "coupon_code": null,
-  "status": "queueing",
-  "total_price_before_discount": 40004,
-  "total_price_after_discount": 0,
-  "updated_at": "2019-11-15 15:34:46",
-  "purchased_at": "2019-11-15 15:34:39",
-  "fulfillment_type": "cross_border",
-  "note": "",
-  "deliveryConfirmed": "",
-  "is_rma": null,
-  "warehouse_id": 17,
-  "tax": {
-    "code": null,
-    "name": null,
-    "address": null
-  },
-  "discount": {
-    "discount_amount": 58004,
-    "discount_coupon": 0
-  },
-  "shipping": {
-    "name": "Trần Thị Huyền ",
-    "street": "Phòng GD&ĐT Huyện Yên Thủy Tỉnh Hòa Bình",
-    "ward": "Xã Lạc Sỹ",
-    "city": "Huyện Yên Thủy",
-    "region": "Hoà Bình",
-    "country": "VN",
-    "phone": "0386508852",
-    "email": null,
-    "estimate_description": "false",
-    "shipping_fee": 18000
-  },
-  "items": [
-    {
-      "id": 25225718,
-      "product_id": 2060558,
-      "product_name": "L",
-      "sku": "4387879511223",
-      "original_sku": "1112211111111123451",
-      "qty": 4,
-      "price": 10001,
-      "confirmation_status": "waiting",
-      "confirmed_at": "",
-      "must_confirmed_before_at": "2019-11-18 10:34:00",
-      "warehouse_code": null,
-      "inventory_type": "cross_border",
-      "serial_number": [],
-      "imei": []
+    "data": [
+        {
+            "order_code": "554520865",
+            "coupon_code": null,
+            "status": "queueing",
+            "total_price_before_discount": 200000,
+            "total_price_after_discount": 200000,
+            "updated_at": "2019-12-19 15:38:23",
+            "purchased_at": "2019-12-19 15:38:23",
+            "fulfillment_type": "tiki_delivery",
+            "note": "",
+            "deliveryConfirmed": "",
+            "is_rma": null,
+            "warehouse_id": 4,
+            "tax": {
+                "code": null,
+                "name": null,
+                "address": null
+            },
+            "discount": {
+                "discount_amount": 0,
+                "discount_coupon": 0
+            },
+            "shipping": {
+                "name": "hoa nguyễn",
+                "street": "ewewq",
+                "ward": "Phường An Lợi Đông",
+                "city": "Quận 2",
+                "region": "Hồ Chí Minh",
+                "country": "VN",
+                "phone": "",
+                "email": "",
+                "estimate_description": "Dự kiến giao hàng vào Thứ hai, 23/12/2019",
+                "shipping_fee": 0
+            },
+            "items": [
+                {
+                    "id": 25278755,
+                    "product_id": 2090562,
+                    "product_name": "Backorder 100",
+                    "sku": "3685812177996",
+                    "original_sku": "",
+                    "qty": 1,
+                    "price": 200000,
+                    "confirmation_status": "waiting",
+                    "confirmed_at": "",
+                    "must_confirmed_before_at": "2019-12-20 10:38:00",
+                    "warehouse_code": null,
+                    "inventory_type": "instock",
+                    "serial_number": [],
+                    "imei": []
+                }
+            ],
+            "payment": {
+                "payment_method": "cod",
+                "updated_at": "2019-12-19 15:38:23",
+                "description": "Thanh toán tiền mặt khi nhận hàng"
+            },
+            "handling_fee": 0,
+            "collectable_total_price": 200000
+        }
+    ],
+    "paging": {
+        "total": 197,
+        "per_page": 1,
+        "current_page": 1,
+        "last_page": 197,
+        "from": 1,
+        "to": 1
     }
-  ],
-  "payment": {
-    "payment_method": "cod",
-    "updated_at": "2019-11-15 15:34:46",
-    "description": "Thanh toán tiền mặt khi nhận hàng"
-  },
-  "handling_fee": 0,
-  "collectable_total_price": 0
 }
 ```
 
-2. Each order have 1 or more items to confirm where they are
-3. After that you use [Get warehouse endpoint](#get-warehouses) to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
+### 2. Each order have 1 or more items to confirm where they are
+### 3. After that you use [Get warehouse endpoint](#get-warehouses) to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
 
 ```json
 {
@@ -389,24 +406,26 @@ After customer place an order , seller have to send a confirm request to make su
 }
 ```        
 
-4. Via [confirm order endpoint](#confirm-order-items) , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
+### 4. Via [confirm order endpoint](#confirm-order-items) , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
 
 ```json
 {
-  "order_code": "814423357",
+  "order_code": "931380328",
   "warehouse_code": "hn",
-  "seller_inventory_id": 809,
-  "item_ids": [25225718]
+  "seller_inventory_id": 885,
+  "item_ids": [25275169],
+  "delivery_commitment_time":"2019-12-23 23:59:59",
+  "tracking_number": "931380328"
 }
 ```
       
-
-## TIKI delivery product
+## Update delivery status
+### TIKI delivery product
 ![](https://i.imgur.com/wGDoCKW.png)
 
 Congratulation , after you confirm order items , TIKI will help you complete this order.
 
-## Seller delivery product
+### Seller delivery product
 ![](https://i.imgur.com/W7gDfgJ.png)
 
 You still have one more steps to complete this order. You have to [update delivery status](#update-delivery-status) step by step whenever you reach a new status in this list 
@@ -418,10 +437,9 @@ You still have one more steps to complete this order. You have to [update delive
 }
 ```
 
-
 Finally, your order delivery status becomes successful delivery, everything is settled.
 
-## Print order label/invoice
+## Print order label
 
 Sometime while making an order , you may need to [print order label](#print-order-labels). We provide a method to do it.
 

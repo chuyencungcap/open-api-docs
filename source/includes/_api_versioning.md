@@ -1,4 +1,4 @@
-# API changelog
+# API Changelog
 *  17/12/2019: Add manage product request method
 *  04/12/2019: Add inventory_type logic
 *  26/11/2019: Add field handling_fee, shipping_fee, inventory_type

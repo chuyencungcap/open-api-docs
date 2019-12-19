@@ -203,7 +203,7 @@ Even you do that, we will check duplicate image by url.
 * Replace : Field of variant will replace the parent one.
 * Merge : **attributes** will merged from both side.
 
-+ **inventory_type** must be one of below values and have to be in registered list. If you don't put value in product request, then the latest method will be picked up.
++ **inventory_type** must be one of below values and have to be in registered list. If you have only one **inventory_type**, then that method will be picked up so you can ignore this field in payload
 
 + **supplier** is an integer constant describe the location of seller 's storage.Each seller can have some **supplier** but each product must be stored in a fixed **supplier**
 
@@ -211,7 +211,7 @@ If seller is in Vietnam, please register your supplier list in TIKI **Seller Cen
 
 If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
 
-#### List inventory_type
+#### List inventory type
 
 > Example:
 

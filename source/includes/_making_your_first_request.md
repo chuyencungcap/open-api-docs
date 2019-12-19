@@ -2,7 +2,7 @@
 
 Once you read and understand our [authentication](#authentication) , you can try to call a "hello world" request.
 
-In this example I'm going to use [Postman](https://www.getpostman.com/downloads/) to create request , you can use it as well 
+In this example I'm going to use [Postman](https://documenter.getpostman.com/view/4164542/SWEDyZ6r?version=latest) to create request , you can use it as well 
 
 ![making your first request](https://salt.tikicdn.com/ts/docs/14/39/61/2d9de8c00ac14f1ae30986da50d6f597.png)
 
