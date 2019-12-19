@@ -202,3 +202,208 @@ After that, your request is sent to the other queue to check manually, in this p
     - you can include product_info here
     - you can filter by state ( rejected , deleted , approved , ... )
 2. Query a request by **request_id** from TIKI system
+
+## Delete a request
+
+If you want to rejected your request by yourself or maybe you don't want to see it in the query list anymore. So we provide you a method to do it.
+
+1. Find a request from the list then choose by request_id or choose it directly by the trace_id
+2. Use its request_id to send delete request
+
+So easy right ?
+
+![https://salt.tikicdn.com/ts/docs/46/16/49/8b39e405d4e7e25a8385456e6592fe05.png](https://salt.tikicdn.com/ts/docs/46/16/49/8b39e405d4e7e25a8385456e6592fe05.png)
+
+## Manage your product
+
+After all , your requests are approved , they become TIKI product :D And now you want to manage them ? "How many product do you have? What are they ? " So we have some method for you :
+
+1. Get all of your product 
+2. Get your product by TIKI product_id
+3. Get your product by your original_sku
+
+```json
+ {
+  "product_id": 1351493,
+  "sku": "3784172855527",
+  "name": "Instock SKU",
+  "master_id": 1351492,
+  "master_sku": "2253996985457",
+  "super_id": 0,
+  "super_sku": null,
+  "active": 1,
+  "original_sku": "AB078AVD",
+  "type": "simple",
+  "entity_type": "seller_simple",
+  "price": 200000,
+  "market_price": 250000,
+  "version": 11,
+  "created_at": "2019-04-11 10:50:53",
+  "created_by": "admin@tiki.vn",
+  "thumbnail": "https://uat.tikicdn.com/ts/product/04/48/20/781bec172c768e17101c0dc08c5e0131.jpg",
+  "images": [
+    {
+      "id": 47914343,
+      "url": "https://uat.tikicdn.com/ts/product/04/48/20/781bec172c768e17101c0dc08c5e0131.jpg",
+      "path": "product/04/48/20/781bec172c768e17101c0dc08c5e0131.jpg",
+      "position": 0,
+      "width": null,
+      "height": null
+    }
+  ],
+  "categories": [
+    {
+      "id": 1801,
+      "name": "Máy Ảnh - Máy Quay Phim",
+      "url_key": "may-anh",
+      "is_primary": false
+    },
+    {
+      "id": 1809,
+      "name": "Máy ảnh DSLR",
+      "url_key": "may-anh-chuyen-nghiep-dslr",
+      "is_primary": true
+    }
+  ]
+}
+```
+   
+
+## Update  product information
+
+Unfortunately, we only can provide method to update price , quantity , active but we have a good new for you that your request will be approved automatically. You can refer it here.
+
+    {
+        "price": 13000,
+    		"quantity":100,
+    		"active":1
+    }
+
+We will continue supporting some other method in the near future , please contribute us for the best user experience
+
+## Confirm an order
+
+After customer place an order , seller have to send a confirm request to make sure your product is still available. This is a important step before delivery product to customer so please confirm it as soon as possible 
+
+1. Query list order periodically to find new order to confirm
+
+        {
+          "order_code": "814423357",
+          "coupon_code": null,
+          "status": "queueing",
+          "total_price_before_discount": 40004,
+          "total_price_after_discount": 0,
+          "updated_at": "2019-11-15 15:34:46",
+          "purchased_at": "2019-11-15 15:34:39",
+          "fulfillment_type": "cross_border",
+          "note": "",
+          "deliveryConfirmed": "",
+          "is_rma": null,
+          "warehouse_id": 17,
+          "tax": {
+            "code": null,
+            "name": null,
+            "address": null
+          },
+          "discount": {
+            "discount_amount": 58004,
+            "discount_coupon": 0
+          },
+          "shipping": {
+            "name": "Trần Thị Huyền ",
+            "street": "Phòng GD&ĐT Huyện Yên Thủy Tỉnh Hòa Bình",
+            "ward": "Xã Lạc Sỹ",
+            "city": "Huyện Yên Thủy",
+            "region": "Hoà Bình",
+            "country": "VN",
+            "phone": "0386508852",
+            "email": null,
+            "estimate_description": "false",
+            "shipping_fee": 18000
+          },
+          "items": [
+            {
+              "id": 25225718,
+              "product_id": 2060558,
+              "product_name": "L",
+              "sku": "4387879511223",
+              "original_sku": "1112211111111123451",
+              "qty": 4,
+              "price": 10001,
+              "confirmation_status": "waiting",
+              "confirmed_at": "",
+              "must_confirmed_before_at": "2019-11-18 10:34:00",
+              "warehouse_code": null,
+              "inventory_type": "cross_border",
+              "serial_number": [],
+              "imei": []
+            }
+          ],
+          "payment": {
+            "payment_method": "cod",
+            "updated_at": "2019-11-15 15:34:46",
+            "description": "Thanh toán tiền mặt khi nhận hàng"
+          },
+          "handling_fee": 0,
+          "collectable_total_price": 0
+        }
+
+2. Each order have 1 or more items to confirm where they are
+3. After that you use Get warehouse endpoint to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
+
+        {
+          "warehouse_id": 2,
+          "contact_email": "adad@gmail.com",
+          "contact_name": "Nguyễn",
+          "contact_phone": "0932829435",
+          "country": {
+            "code": "vn",
+            "name": "Viet Nam"
+          },
+          "district": {
+            "code": "VN034025",
+            "name": "Quận Hoàng Mai"
+          },
+          "name": "Nguyễn Lam",
+          "region": {
+            "code": "VN034",
+            "name": "Hà Nội"
+          },
+          "seller_inventory_id": 809,
+          "street": "52, Út Tịch",
+          "ward": {
+            "code": "VN034025005",
+            "name": "Phường Hoàng Văn Thụ"
+          },
+          "warehouse_code": "hn"
+        }
+
+4. Via confirm order endpoint , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
+
+        {
+          "order_code": "814423357",
+          "warehouse_code": "hn",
+          "seller_inventory_id": 809,
+          "item_ids": [25225718]
+        }
+
+### TIKI delivery product
+
+Congratulation , after you confirm order items , TIKI will help you complete this order.
+
+### Seller delivery product
+
+You still have one more steps to complete this order. You have to confirm delivery status step by step whenever you reach a new status in this list 
+
+    {
+        "order_code": "401734337",
+        "status": "successful_delivery"
+    }
+
+Finally, your order delivery status becomes successful delivery, everything is settled.
+
+### Print order label/invoice
+
+Sometime while making an order , you may need to print order label or order invoice . We provide a method to do it.
+
+![https://salt.tikicdn.com/ts/docs/3f/03/bd/6b9f2046f09d7b030c64f032a4f5d7e4.png](https://salt.tikicdn.com/ts/docs/3f/03/bd/6b9f2046f09d7b030c64f032a4f5d7e4.png)
