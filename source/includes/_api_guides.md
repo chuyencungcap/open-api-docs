@@ -8,12 +8,14 @@ Because Tiki need to take a look , we have to review your product data , documen
 TIKI will update your request status step by step. Once the status become approved , your product will be displayed in TIKI website immediately. 
 
 #### Before creating product, please refer to these following link:
-    1. Authentication
-    2. TIKI 's product structure
-    3. TIKI 's product request status flow
+   1. [Authentication](#authentication)
+   2. [TIKI 's product structure](#product)
+   3. [TIKI 's product request status flow]()
 
 ### Alright, you can create products on TIKI easily by following these steps:
-### 1. Search TIKI categories using this endpoint → map with your original category
+![](https://i.imgur.com/9qFwq2i.png)
+
+### 1. [Search TIKI categories using this endpoint](#get-categories) → map with your original category
     
 ```json
 [
@@ -74,7 +76,7 @@ TIKI will update your request status step by step. Once the status become approv
 * if you can't find some important attribute in your side but TIKI don't have, please contact TIKI supporter , we will add them into the list while we developing **create attribute endpoint**
 
 ### 3. Choose your inventory_type from here then ask TIKI supporter to get your supplier
-### 4. Create product via endpoint . There are some important point need to focus please visit TIKI product structure for more detail : 
+### 4. [Create product via endpoint](#create-product) . There are some important point need to focus please visit TIKI product structure for more detail : 
     
 ```json
  {
@@ -191,24 +193,24 @@ When your product state is queuing , it means your request just received . You c
 - while your request is on flow , it maybe become **rejected** by some reason , please check it
 - if you want to close your request , use delete request endpoint to force request 's state into **deleted**
 
-At first your request is checked automatically, you can track it by these method : 
+At first your request is checked automatically, you can track it by these method: 
 
 1. Track the latest request ( include queuing , processing request )
 2. Track a request using **trace_id** in create product response
 
 After that, your request is sent to the other queue to check manually, in this phase beside the methods listed above , you can try these 
 
-1. Query the latest request ( exclude queuing , processing request )
+1. [Query the latest request ( exclude queuing , processing request )]((#tracking-a-request))
     - you can include product_info here
     - you can filter by state ( rejected , deleted , approved , ... )
-2. Query a request by **request_id** from TIKI system
+2. [Query a request by **request_id** from TIKI system]((#tracking-a-request))
 
 ## Delete a request
 
 If you want to rejected your request by yourself or maybe you don't want to see it in the query list anymore. So we provide you a method to do it.
 
 1. Find a request from the list then choose by request_id or choose it directly by the trace_id
-2. Use its request_id to send delete request
+2. [Use its request_id to send delete request]((#delete-a-request))
 
 So easy right ?
 
@@ -218,9 +220,9 @@ So easy right ?
 
 After all , your requests are approved , they become TIKI product :D And now you want to manage them ? "How many product do you have? What are they ? " So we have some method for you :
 
-1. Get all of your product 
-2. Get your product by TIKI product_id
-3. Get your product by your original_sku
+1. [Get all of your product](#get-list-products) 
+2. [Get your product by TIKI product_id](#get-a-product)
+3. [Get your product by your original_sku](#get-a-product-by-original-sku)
 
 ```json
  {
@@ -269,9 +271,9 @@ After all , your requests are approved , they become TIKI product :D And now you
 ```
    
 
-## Update  product information
+## Update product information
 
-Unfortunately, we only can provide method to update price , quantity , active but we have a good new for you that your request will be approved automatically. You can refer it here.
+Unfortunately, we only can provide method to [update price, quantity, active]((#update-variant-price-quantity-active)) but we have a good new for you that your request will be approved automatically. You can refer it here.
 
 ```json
 {
@@ -287,7 +289,7 @@ We will continue supporting some other method in the near future , please contri
 
 After customer place an order , seller have to send a confirm request to make sure your product is still available. This is a important step before delivery product to customer so please confirm it as soon as possible 
 
-1. Query list order periodically to find new order to confirm
+1. [Query list order periodically to find new order to confirm](#get-list-orders)
 
 ```json
 {
@@ -353,7 +355,7 @@ After customer place an order , seller have to send a confirm request to make su
 ```
 
 2. Each order have 1 or more items to confirm where they are
-3. After that you use Get warehouse endpoint to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
+3. After that you use [Get warehouse endpoint](#get-warehouses) to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
 
 ```json
 {
@@ -384,7 +386,7 @@ After customer place an order , seller have to send a confirm request to make su
 }
 ```        
 
-4. Via confirm order endpoint , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
+4. Via [confirm order endpoint](#confirm-order-items) , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
 
 ```json
 {
@@ -397,12 +399,14 @@ After customer place an order , seller have to send a confirm request to make su
       
 
 ## TIKI delivery product
+![](https://i.imgur.com/wGDoCKW.png)
 
 Congratulation , after you confirm order items , TIKI will help you complete this order.
 
 ## Seller delivery product
+![](https://i.imgur.com/W7gDfgJ.png)
 
-You still have one more steps to complete this order. You have to confirm delivery status step by step whenever you reach a new status in this list 
+You still have one more steps to complete this order. You have to [update delivery status](#update-delivery-status) step by step whenever you reach a new status in this list 
 
 ```json
 {
@@ -416,6 +420,6 @@ Finally, your order delivery status becomes successful delivery, everything is s
 
 ## Print order label/invoice
 
-Sometime while making an order , you may need to print order label or order invoice . We provide a method to do it.
+Sometime while making an order , you may need to [print order label](#print-order-labels). We provide a method to do it.
 
 ![https://salt.tikicdn.com/ts/docs/3f/03/bd/6b9f2046f09d7b030c64f032a4f5d7e4.png](https://salt.tikicdn.com/ts/docs/3f/03/bd/6b9f2046f09d7b030c64f032a4f5d7e4.png)
