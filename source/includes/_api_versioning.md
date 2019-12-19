@@ -1,4 +1,4 @@
-# API versioning
+# API Versioning
 
 # Version info
 
