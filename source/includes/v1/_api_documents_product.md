@@ -6,15 +6,14 @@ The table below lists APIs that can be used for product management.
 | -------- | -------- |
 | [Get categories](#get-categories)| Return the summary list of categories in integration system |
 | [Get category detail](#get-category-detail-include-attribute)| Retrieve detail of a single categories with its attributes|
-| [Create Product](#create-product)| Create new product|
-| [Tracking history](#tracking-history)| Tracking latest request of user (via token)|
-| [Create Product](#create-product)| Create new product|
+| [Create Product Request](#create-product-request)| Create new a product request|
+| [Tracking latest ](#tracking-latest-request)| Tracking latest request |
 | [Tracking a request](#tracking-a-request)| Retrieve detail of a single request|
-| [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update non validate fields like price/quantity/active of a created product|
-| [Get list products](#get-list-products)| Get all of product (approved request) order by created_at desc (latest product)|
+| [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately|
+| [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)|
 | [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
 | [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
-| [Get list requests](#get-list-requests)| Get all of product requests order by created_at desc (latest request)|
+| [Get latest requests](#get-latest-requests)| Get all of product requests order by created_at desc (latest request)|
 | [Get a request](#get-a-request)| Get a request with request_id from TIKI system|
 | [Get a request by original sku](#get-a-request-by-original-sku)| Get a product match with seller original sku|
 | [Delete a request](#delete-a-request)| Delete a created product request base on request_id of TIKI system|
@@ -192,17 +191,17 @@ GET https://api.tiki.vn/integration/v1/categories/218
 | 500 | Internal server error | having error in server, can't serving |
 | 404 | Category not found |  |
 
-### Create Product
+### Create Product Request
 
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
-		<h6>https://api.tiki.vn/integration/{version}/products</h6>
+		<h6>https://api.tiki.vn/integration/{version}/requests</h6>
 	</div>
 </div>
 
-Create new product
+Create new product request
 
 > Simple product example:
 
@@ -409,7 +408,7 @@ Configurable Product have invalid payload (missing option2 value & price in sku2
 | 422 | Unprocessable Entity | Payload is missing or invalid field  |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
-### Tracking history
+### Tracking latest request
 
 #### HTTP Request ####
 <div class="api-endpoint">
@@ -642,7 +641,7 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 }
 ```
 
-### Get list products
+### Get latest products
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -941,7 +940,7 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 
-###Get list requests
+###Get latest requests
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
