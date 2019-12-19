@@ -39,15 +39,6 @@ With variable products:
 * Variants differ by maximized two attributes. Example: a T Shirt has many variants that differ by color and size
 * The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
 
-### Sequence diagram
-
-![](https://i.imgur.com/9qFwq2i.png)
-1. Client get/search tiki categories
-2. Select tiki category, your product will map to tiki category
-3. Using categoryId, get list attributes by categoryId
-4. Mapping from your attribute to tiki attribute by code
-5. After mapping success, you call API create product
-
 ### Entity
 
 
@@ -224,6 +215,10 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 }
 ```
 
++ If your product have **inventory_type** is **cross_border** → you also have to fill supplier and quantity in variants
+
++ If your product have **inventory_type** is **instock** → **supplier** & **quantity** may be absent or will be ignored
+
 | inventory_type | customer | description |
 | :--- | :--- | :--- |
 | cross_border | for Global seller | products is transported from abroad |
@@ -250,31 +245,6 @@ Via API, we provide some solution to confirm order & delivery status step by ste
 * Print shipping order (if needed) 
 
 Please take look those API docs below for more detail 
-
-### Sequence diagram
-#### Seller delivery
-![](https://i.imgur.com/W7gDfgJ.png)
-
-**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
-
-**(2)** Seller pull order, using api **get list order**  with status = "**queueing**"
-
-**(3)** After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
-
-**(4)** when seller delivery, seller will update delivery status using api **Update delivery status**
-
-#### TIKI Delivery
-![](https://i.imgur.com/wGDoCKW.png)
-
-**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
-
-**(2)** Seller pull order, using api **get list order**  with status = "_**queueing**_"
-
-**(3)**  After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
-
-**(4)** Once products in TIKI warehouse, we will pack and delivery to customer.
-
-**(5)** Finally TIKI will confirm delivery order using api **Update delivery status**, status=**successful_delivery**. 
 
 ### Entity 
 #### Order
