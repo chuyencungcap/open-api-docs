@@ -1,4 +1,4 @@
-# API guides
+# API Guides
 
 ## Create new product request
 
@@ -15,32 +15,32 @@ Alright, you can create products on TIKI easily by following these steps :
 1. Search TIKI categories using this endpoint → map with your original category
     - you can search categories by keyword like this or maybe travel over categories tree like this until you got a primary category because product must be in exactly one category
     ```json
-        [
-            {
-              "id": 17166,
-              "name": "International Products",
-              "parent": 2,
-              "primary": 0
-            },
-            {
-              "id": 20768,
-              "name": "Snacks & Candies",
-              "parent": 20766,
-              "primary": 1
-            },
-            {
-              "id": 20770,
-              "name": "Pet Care",
-              "parent": 20766,
-              "primary": 1
-            }
-        ]
+    [
+        {
+          "id": 17166,
+          "name": "International Products",
+          "parent": 2,
+          "primary": 0
+        },
+        {
+          "id": 20768,
+          "name": "Snacks & Candies",
+          "parent": 20766,
+          "primary": 1
+        },
+        {
+          "id": 20770,
+          "name": "Pet Care",
+          "parent": 20766,
+          "primary": 1
+        }
+    ]
     ```
     - save the category_id to use it later
 2. Get attribute from category you chosen → map with your original attribute
     - visit category detail to see its attributes like this : [https://api.tiki.vn/integration/v1/categories/20768](https://api.tiki.vn/integration/v1/categories/20768)
-    ```JSON
-   [
+    ```json
+    [
      {
        "id": 560,
        "code": "origin",
@@ -62,7 +62,7 @@ Alright, you can create products on TIKI easily by following these steps :
        "is_required": 1,
        "example": "1 or 0"
      }
-   ]
+    ]
     ```
 
     - each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like "updating" because your product request will be reviewed by TIKI content
@@ -164,3 +164,30 @@ Alright, you can create products on TIKI easily by following these steps :
     - option_attributes → TIKI support update 2 option attributes so if you need more than 2 option , please merge some of them before create product
     - missing required attribute → try to map attribute → fill dummy data like "updating"
     - image error → TIKI support image at 500x500 px at least for the best UI/UX → so please resize your invalid image if you don't want to miss them
+
+## Tracking created request
+
+After TIKI received your product request then you can trace its current status by the trace_id we gave you in the http response here
+```json
+{
+    "id": "3385dfc74f3e4a6bb947766c6e9a742f",
+    "state": "queuing"
+}
+```
+When your product state is queuing , it means your request just received . You can refer request status flow here. 
+
+- note that **drafted** is a temporary state only appear in test environment . In production your request will be redirected directly into **awaiting_approve** . Your task finish once request 's state become drafted/awaiting_approve
+- while your request is on flow , it maybe become **rejected** by some reason , please check it
+- if you want to close your request , use delete request endpoint to force request 's state into **deleted**
+
+At first your request is checked automatically, you can track it by these method : 
+
+1. Track the latest request ( include queuing , processing request )
+2. Track a request using **trace_id** in create product response
+
+After that, your request is sent to the other queue to check manually, in this phase beside the methods listed above , you can try these 
+
+1. Query the latest request ( exclude queuing , processing request )
+    - you can include product_info here
+    - you can filter by state ( rejected , deleted , approved , ... )
+2. Query a request by **request_id** from TIKI system
