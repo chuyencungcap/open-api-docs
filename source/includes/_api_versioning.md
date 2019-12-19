@@ -1,11 +1,3 @@
-# API Versioning
-
-# Version info
-
-*  v1: The beginning
-
----
-
 # API changelog
 *  17/12/2019: Add manage product request method
 *  04/12/2019: Add inventory_type logic

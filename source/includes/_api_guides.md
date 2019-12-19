@@ -13,7 +13,7 @@ TIKI will update your request status step by step. Once the status become approv
     3. TIKI 's product request status flow
 
 ### Alright, you can create products on TIKI easily by following these steps:
-#### 1. Search TIKI categories using this endpoint → map with your original category
+### 1. Search TIKI categories using this endpoint → map with your original category
     
 ```json
 [
@@ -42,7 +42,7 @@ TIKI will update your request status step by step. Once the status become approv
    - Save the category_id to use it later
    
     
-#### 2. Get attribute from category you chosen → map with your original attribute
+### 2. Get attribute from category you chosen → map with your original attribute
 
 ```json
 [
@@ -73,8 +73,8 @@ TIKI will update your request status step by step. Once the status become approv
 * each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like "updating" because your product request will be reviewed by TIKI content
 * if you can't find some important attribute in your side but TIKI don't have, please contact TIKI supporter , we will add them into the list while we developing **create attribute endpoint**
 
-#### 3. Choose your inventory_type from here then ask TIKI supporter to get your supplier
-#### 4. Create product via endpoint . There are some important point need to focus please visit TIKI product structure for more detail : 
+### 3. Choose your inventory_type from here then ask TIKI supporter to get your supplier
+### 4. Create product via endpoint . There are some important point need to focus please visit TIKI product structure for more detail : 
     
 ```json
  {
@@ -115,7 +115,7 @@ TIKI will update your request status step by step. Once the status become approv
     ]
  }
 ```
-#### 5. If you want to create a configurable product , please  data in option_attributes and option1,option2 field. Maybe your payload will look like this . In this case, of course your variants  : 
+### 5. If you want to create a configurable product , please  data in option_attributes and option1,option2 field. Maybe your payload will look like this . In this case, of course your variants  : 
    
 ```json
 {
@@ -168,7 +168,7 @@ TIKI will update your request status step by step. Once the status become approv
 }
 ```
 
-#### 6. Some common error while create product 
+### 6. Some common error while create product 
 - missing supplier → supplier is a constant present for the location of your storage → please contact TIKI supporter to get this while **develop a create supplier endpoint**
 - option_attributes → TIKI support update 2 option attributes so if you need more than 2 option , please merge some of them before create product
 - missing required attribute → try to map attribute → fill dummy data like "updating"
@@ -273,11 +273,13 @@ After all , your requests are approved , they become TIKI product :D And now you
 
 Unfortunately, we only can provide method to update price , quantity , active but we have a good new for you that your request will be approved automatically. You can refer it here.
 
-    {
-        "price": 13000,
-    		"quantity":100,
-    		"active":1
-    }
+```json
+{
+    "price": 13000,
+    "quantity":100,
+    "active":1
+}
+```
 
 We will continue supporting some other method in the near future , please contribute us for the best user experience
 
@@ -287,122 +289,132 @@ After customer place an order , seller have to send a confirm request to make su
 
 1. Query list order periodically to find new order to confirm
 
-        {
-          "order_code": "814423357",
-          "coupon_code": null,
-          "status": "queueing",
-          "total_price_before_discount": 40004,
-          "total_price_after_discount": 0,
-          "updated_at": "2019-11-15 15:34:46",
-          "purchased_at": "2019-11-15 15:34:39",
-          "fulfillment_type": "cross_border",
-          "note": "",
-          "deliveryConfirmed": "",
-          "is_rma": null,
-          "warehouse_id": 17,
-          "tax": {
-            "code": null,
-            "name": null,
-            "address": null
-          },
-          "discount": {
-            "discount_amount": 58004,
-            "discount_coupon": 0
-          },
-          "shipping": {
-            "name": "Trần Thị Huyền ",
-            "street": "Phòng GD&ĐT Huyện Yên Thủy Tỉnh Hòa Bình",
-            "ward": "Xã Lạc Sỹ",
-            "city": "Huyện Yên Thủy",
-            "region": "Hoà Bình",
-            "country": "VN",
-            "phone": "0386508852",
-            "email": null,
-            "estimate_description": "false",
-            "shipping_fee": 18000
-          },
-          "items": [
-            {
-              "id": 25225718,
-              "product_id": 2060558,
-              "product_name": "L",
-              "sku": "4387879511223",
-              "original_sku": "1112211111111123451",
-              "qty": 4,
-              "price": 10001,
-              "confirmation_status": "waiting",
-              "confirmed_at": "",
-              "must_confirmed_before_at": "2019-11-18 10:34:00",
-              "warehouse_code": null,
-              "inventory_type": "cross_border",
-              "serial_number": [],
-              "imei": []
-            }
-          ],
-          "payment": {
-            "payment_method": "cod",
-            "updated_at": "2019-11-15 15:34:46",
-            "description": "Thanh toán tiền mặt khi nhận hàng"
-          },
-          "handling_fee": 0,
-          "collectable_total_price": 0
-        }
+```json
+{
+  "order_code": "814423357",
+  "coupon_code": null,
+  "status": "queueing",
+  "total_price_before_discount": 40004,
+  "total_price_after_discount": 0,
+  "updated_at": "2019-11-15 15:34:46",
+  "purchased_at": "2019-11-15 15:34:39",
+  "fulfillment_type": "cross_border",
+  "note": "",
+  "deliveryConfirmed": "",
+  "is_rma": null,
+  "warehouse_id": 17,
+  "tax": {
+    "code": null,
+    "name": null,
+    "address": null
+  },
+  "discount": {
+    "discount_amount": 58004,
+    "discount_coupon": 0
+  },
+  "shipping": {
+    "name": "Trần Thị Huyền ",
+    "street": "Phòng GD&ĐT Huyện Yên Thủy Tỉnh Hòa Bình",
+    "ward": "Xã Lạc Sỹ",
+    "city": "Huyện Yên Thủy",
+    "region": "Hoà Bình",
+    "country": "VN",
+    "phone": "0386508852",
+    "email": null,
+    "estimate_description": "false",
+    "shipping_fee": 18000
+  },
+  "items": [
+    {
+      "id": 25225718,
+      "product_id": 2060558,
+      "product_name": "L",
+      "sku": "4387879511223",
+      "original_sku": "1112211111111123451",
+      "qty": 4,
+      "price": 10001,
+      "confirmation_status": "waiting",
+      "confirmed_at": "",
+      "must_confirmed_before_at": "2019-11-18 10:34:00",
+      "warehouse_code": null,
+      "inventory_type": "cross_border",
+      "serial_number": [],
+      "imei": []
+    }
+  ],
+  "payment": {
+    "payment_method": "cod",
+    "updated_at": "2019-11-15 15:34:46",
+    "description": "Thanh toán tiền mặt khi nhận hàng"
+  },
+  "handling_fee": 0,
+  "collectable_total_price": 0
+}
+```
 
 2. Each order have 1 or more items to confirm where they are
 3. After that you use Get warehouse endpoint to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
 
-        {
-          "warehouse_id": 2,
-          "contact_email": "adad@gmail.com",
-          "contact_name": "Nguyễn",
-          "contact_phone": "0932829435",
-          "country": {
-            "code": "vn",
-            "name": "Viet Nam"
-          },
-          "district": {
-            "code": "VN034025",
-            "name": "Quận Hoàng Mai"
-          },
-          "name": "Nguyễn Lam",
-          "region": {
-            "code": "VN034",
-            "name": "Hà Nội"
-          },
-          "seller_inventory_id": 809,
-          "street": "52, Út Tịch",
-          "ward": {
-            "code": "VN034025005",
-            "name": "Phường Hoàng Văn Thụ"
-          },
-          "warehouse_code": "hn"
-        }
+```json
+{
+  "warehouse_id": 2,
+  "contact_email": "adad@gmail.com",
+  "contact_name": "Nguyễn",
+  "contact_phone": "0932829435",
+  "country": {
+    "code": "vn",
+    "name": "Viet Nam"
+  },
+  "district": {
+    "code": "VN034025",
+    "name": "Quận Hoàng Mai"
+  },
+  "name": "Nguyễn Lam",
+  "region": {
+    "code": "VN034",
+    "name": "Hà Nội"
+  },
+  "seller_inventory_id": 809,
+  "street": "52, Út Tịch",
+  "ward": {
+    "code": "VN034025005",
+    "name": "Phường Hoàng Văn Thụ"
+  },
+  "warehouse_code": "hn"
+}
+```        
 
 4. Via confirm order endpoint , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
 
-        {
-          "order_code": "814423357",
-          "warehouse_code": "hn",
-          "seller_inventory_id": 809,
-          "item_ids": [25225718]
-        }
+```json
+{
+  "order_code": "814423357",
+  "warehouse_code": "hn",
+  "seller_inventory_id": 809,
+  "item_ids": [25225718]
+}
+```
+      
 
-### TIKI delivery product
+## TIKI delivery product
 
 Congratulation , after you confirm order items , TIKI will help you complete this order.
 
-### Seller delivery product
+## Seller delivery product
 
 You still have one more steps to complete this order. You have to confirm delivery status step by step whenever you reach a new status in this list 
 
-    {
-        "order_code": "401734337",
-        "status": "successful_delivery"
-    }
+```json
+{
+    "order_code": "401734337",
+    "status": "successful_delivery"
+}
+```
+
 
 Finally, your order delivery status becomes successful delivery, everything is settled.
 
-### Print order label/invoice
+## Print order label/invoice
 
 Sometime while making an order , you may need to print order label or order invoice . We provide a method to do it.
 
