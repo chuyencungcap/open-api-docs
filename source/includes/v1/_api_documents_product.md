@@ -1,6 +1,7 @@
 # API Documents
 ## Product API
 The table below lists APIs that can be used for product management.
+But if it is the first time you come to integrate with us, please take a look at our [tutorial documents](#api-integration-step-by-step) first
 
 | API name | Description |
 | -------- | -------- |

@@ -2,21 +2,25 @@
 
 ## Create new product request
 
-#### Why is it still a request ? 
-Because Tiki need to take a look , we have to review your product data , document , ...  both automatically and manually before bring product to the shelves.
+#### I need to create product , Why TIKI called it is a "request" ?
+Because TIKI product data is different from your original data so we need to transform it a bit. Base on [TIKI 's product structure](#tiki-product-structure) each variant will be become a brand new Tiki product. It means 1 request made from 1 product from your side can create one or more product in Tiki side.
+
+![](https://i.imgur.com/EaZ1z0c.png)
+
+Tiki need to take a look , we have to review your product data, document,...  both automatically and manually before bring product to the shelves. Maybe it can be rejected by some reason, please check via [tracking method](#tracking-a-request), fix it then create a new one. 
+
+![](https://salt.tikicdn.com/ts/docs/b4/63/37/1a065637ded38bbd3373eee0c4832961.png) 
 
 TIKI will update your request status step by step. Once the status become approved , your product will be displayed in TIKI website immediately. 
 
-#### Before creating product, please refer to these following link:
-   1. [Authentication](#authentication)
-   2. [TIKI 's product structure](#tiki-product-structure)
-   3. [TIKI 's product request status flow](#tiki-request-status-flow)
 
 ### Alright, you can create products on TIKI easily by following these steps:
 ![](https://i.imgur.com/9qFwq2i.png)
 
 ### 1. [Search TIKI categories using this endpoint](#get-categories) → map with your original category
-    
+
+`GET https://api.tiki.vn/integration/v1/categories`
+
 ```json
 [
     {
@@ -41,8 +45,9 @@ TIKI will update your request status step by step. Once the status become approv
 ```
 
 - You can search categories :
-    - by keyword [https://api.tiki.vn/integration/v1/categories?name=book&primary=1](https://api.tiki.vn/integration/v1/categories?name=book&primary=1) 
-    - travel over categories tree [https://api.tiki.vn/integration/v1/categories?parent=17166](https://api.tiki.vn/integration/v1/categories?parent=17166) 
+    - by keyword : https://api.tiki.vn/integration/v1/categories?name=book&primary=1
+    - travel over categories tree : https://api.tiki.vn/integration/v1/categories?parent=17166
+
 - Until you got a primary category because product must be in exactly one category
 - Save the **category_id** to use it later
    
@@ -78,14 +83,20 @@ TIKI will update your request status step by step. Once the status become approv
 * Each category have some required attribute like `brand` . You have to complete this field base on our example . The last choice if you still not have any idea , you can fill some dummy data like `updating` because your product request will be reviewed by TIKI content
 * if you can't find some important attribute in your side but TIKI don't have, please contact TIKI supporter , we will add them into the list while we developing **create attribute endpoint**
 
-### 3. Choose your inventory_type from [here](#list-inventory-type) then ask TIKI supporter to get your supplier
+### 3. Ask Tiki supporter for your inventory_type and supplier
 
-**inventory_type** have to be in registered list. If you have only one **inventory_type**, then that method will be picked up so you can ignore this field in payload
+**inventory_type** is a selected value describe Where are you come from ? How are you and Tiki committed to delivery product ? 
 
 **supplier** is an integer constant describe the location of seller 's storage. Each seller can have some supplier but each product must be stored in a fixed supplier
 
-### 4. [Create product via endpoint](#create-product) . There are some important point need to focus please visit [TIKI product structure](#tiki-product-structure) for more detail : 
-    
+You must provide these value to the payload when creating request. 
+
+Note : In the case you have only one inventory type, TIKI will choose it as default value so you can ignore this field
+
+### 4. [Create product request via endpoint](#create-product-request) . There are some important point need to focus please visit [TIKI product structure](#tiki-product-structure) for more detail : 
+
+>POST https://api.tiki.vn/integration/v1/requests
+
 ```json
  {
     "category_id": 21458,
@@ -180,13 +191,13 @@ TIKI will update your request status step by step. Once the status become approv
 
 ### 6. Some common error while create product 
 - missing supplier → supplier is a constant present for the location of your storage → please contact TIKI supporter to get this while **develop a create supplier endpoint**
-- option_attributes → TIKI support update 2 option attributes so if you need more than 2 option , please merge some of them before create product
+- option_attributes not valid → TIKI support 2 option attributes at most so if you need more than 2 option , please merge some of them before create product
 - missing required attribute → try to map attribute → fill dummy data like "updating"
 - image error → TIKI support image at 500x500 px at least for the best UI/UX → so please resize your invalid image if you don't want to miss them
 
 ## Tracking created request
 
-After TIKI received your product request then you can trace its current status by the **trace_id** we gave you in the http response [here](#create-product)
+After TIKI received your product request then you can trace its current status by the **trace_id** we gave you in the http response from [create product request](#create-product-request)
 
 ```json
 {
@@ -195,7 +206,9 @@ After TIKI received your product request then you can trace its current status b
 }
 ````
 
-When your product state is queuing , it means your request just received . You can refer [request status flow](#tiki-request-status-flow) here. 
+When your product state is queuing , it means your request just received . You can refer [request status flow](#tiki-request-status-flow) here.
+
+![](https://salt.tikicdn.com/ts/docs/b4/63/37/1a065637ded38bbd3373eee0c4832961.png) 
 
 - note that **drafted** is a temporary state only appear in test environment . In production your request will be redirected directly into **awaiting_approve** . Your task finish once request 's state become drafted/awaiting_approve
 - while your request is on flow , it maybe become **rejected** by some reason , please check it
@@ -203,34 +216,63 @@ When your product state is queuing , it means your request just received . You c
 
 At first your request is checked automatically, you can track it by these method: 
 
-1. Track the latest request ( include queuing , processing request )
-2. Track a request using **trace_id** in create product response
+- [Track the latest request](#tracking-latest-request) ( include queuing , processing request )
 
-After that, your request is sent to the other queue to check manually, in this phase beside the methods listed above , you can try these 
+`GET https://api.tiki.vn/integration/v1/tracking`
 
-1. [Query the latest request]((#tracking-a-request)) ( exclude queuing , processing request )
-    - you can include product_info here
-    - you can filter by state ( rejected , deleted , approved , ... )
-2. [Query a request by **request_id** from TIKI system]((#tracking-a-request))
+- [Track a request](#tracking-a-request) using **trace_id** in [create product response](#create-product-request)
+
+`GET https://api.tiki.vn/integration/v1/tracking/{trace_id}`
+
+After that, your request is sent to the other queue to check manually, in this phase beside the methods listed above , you can try these to tracking or query, manage your requests
+
+1. [Query the latest request](#get-latest-requests) ( exclude queuing , processing request )
+  - you can include product_info here
+  - you can filter by state ( rejected, deleted, approved,... )
+  
+`GET https://api.tiki.vn/integration/v1/requests`
+
+`GET https://api.tiki.vn/integration/v1/requests?include=product_info`
+    
+`GET https://api.tiki.vn/integration/v1/requests?state=approved`
+   
+2. [Query a request by request_id](#get-a-request) from TIKI system, you can get them through TIKI seller center or our latest request method
+
+3. [Query a request by trace_id](#get-a-request) from [create product request](#create-product-request) response
 
 ## Delete a request
 
 If you want to rejected your request by yourself or maybe you don't want to see it in the query list anymore. So we provide you a method to do it.
 
-1. [Find a request](#tracking-created-request) from the list then choose by **request_id** or choose it directly by the **trace_id**
-2. [Use its request_id to send delete request]((#delete-a-request))
+- [Find a request](#tracking-created-request) from the list then choose by **request_id** or choose it directly by the **trace_id**
+
+`GET https://api.tiki.vn/integration/v1/requests/`
+
+`GET https://api.tiki.vn/integration/v1/requests/findBy?trace_id={trace_id}`
+
+- [Use its request_id to send delete request]((#delete-a-request))
+
+`DEL https://api.tiki.vn/integration/v1/requests/{request_id}`
 
 So easy right ?
 
-![https://salt.tikicdn.com/ts/docs/46/16/49/8b39e405d4e7e25a8385456e6592fe05.png](https://salt.tikicdn.com/ts/docs/46/16/49/8b39e405d4e7e25a8385456e6592fe05.png)
+![](https://salt.tikicdn.com/ts/docs/83/68/f8/1e17d3443855741ccefb3a5e51a4000a.png)
 
 ## Manage your product
 
-After all , your requests are approved , they become TIKI product :D And now you want to manage them ? "How many product do you have? What are they ? " So we have some method for you :
+After all , your requests are approved , they become TIKI product :D And now you want to manage them ? "How many product do I have? Where are they ?" So we have some method for you :
 
-1. [Get all of your product](#get-list-products) 
-2. [Get your product by TIKI product_id](#get-a-product)
-3. [Get your product by your original_sku](#get-a-product-by-original-sku)
+- [Get all of your product](#get-list-products) : 
+
+    `GET https://api.tiki.vn/integration/v1/products`
+
+- [Get your product by TIKI product_id](#get-a-product)  :
+
+    `GET https://api.tiki.vn/integration/v1/products/{product_id}`
+
+- [Get your product by your original_sku](#get-a-product-by-original-sku) : 
+
+    `GET https://api.tiki.vn/integration/v1/products/findBy?original_sku={original_sku}`
 
 ```json
  {
@@ -281,7 +323,10 @@ After all , your requests are approved , they become TIKI product :D And now you
 
 ## Update product information
 
-Unfortunately, we only can provide method to [update price, quantity, active]((#update-variant-price-quantity-active)) but we have a good new for you that your request will be approved automatically. You can refer it here.
+Unfortunately, we only can provide method to [update price, quantity, active]((#update-variant-price-quantity-active)) but we have a good new for you that your request will be approved automatically.
+Note that in this API you have to use your original sku from your system to update this product: 
+
+`POST https://api.tiki.vn/integration/v1/products/{original_sku}/updateSku `
 
 ```json
 {
