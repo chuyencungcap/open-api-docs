@@ -12,4 +12,4 @@ In this demo , I use [https://api-sandbox.tiki.vn/integration/v1/categories](htt
 2. Don't forget add header tiki-api with value is your token get from [here](#authentication).
 3. Done , click Send 
 
-→ If your response look like this then  ** Congratulations ** you just moved a first step into Tiki integration system :D
+→ If your response look like this then  **Congratulations** you just moved a first step into Tiki integration system :D

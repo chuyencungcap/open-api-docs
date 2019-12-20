@@ -3,6 +3,9 @@
 After customer place an order , seller have to send a confirm request to make sure your product is still available. This is a important step before delivery product to customer so please confirm it as soon as possible 
 
 ### 1. Query list order periodically to find new order to [confirm](#get-list-orders)
+You get list order with status **queueing**
+
+> List order response body
 
 ```json
 {
@@ -80,48 +83,58 @@ After customer place an order , seller have to send a confirm request to make su
 ```
 
 ### 2. Each order have 1 or more items to confirm where they are
-### 3. After that you use [Get warehouse endpoint](#get-warehouses) to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
+You need select item for confirm and _add_ item to **item_ids**
+
+### 3. Get warehouse [endpoint](#get-warehouses)
+
+After that you use get warehouse endpoint to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
+
+> Warehouse response body
 
 ```json
-{
-  "warehouse_id": 2,
-  "contact_email": "adad@gmail.com",
-  "contact_name": "Nguyễn",
-  "contact_phone": "0932829435",
-  "country": {
-    "code": "vn",
-    "name": "Viet Nam"
-  },
-  "district": {
-    "code": "VN034025",
-    "name": "Quận Hoàng Mai"
-  },
-  "name": "Nguyễn Lam",
-  "region": {
-    "code": "VN034",
-    "name": "Hà Nội"
-  },
-  "seller_inventory_id": 809,
-  "street": "52, Út Tịch",
-  "ward": {
-    "code": "VN034025005",
-    "name": "Phường Hoàng Văn Thụ"
-  },
-  "warehouse_code": "hn"
-}
+[
+    {
+        "contact_email": "dsada@gmail.com",
+        "contact_name": "Nguyễn Thị Bích a",
+        "contact_phone": "0988909999",
+        "country": {
+            "code": "vn",
+            "name": "Viet Nam"
+        },
+        "district": {
+            "code": "VN034025",
+            "name": "Quận Hoàng Mai"
+        },
+        "name": "Kho giáp bát hà nội",
+        "region": {
+            "code": "VN034",
+            "name": "Hà Nội"
+        },
+        "seller_inventory_id": 919,
+        "street": "dsa ds",
+        "ward": {
+            "code": "VN034025003",
+            "name": "Phường Giáp Bát"
+        },
+        "warehouse_code": "hn",
+        "warehouse_id": 2
+    }
+]
 ```        
 
-### 4. Via [confirm order endpoint](#confirm-order-items) , please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
+### 4. Confirm order [endpoint](#confirm-order-items)
+Via confirm order endpoint, please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
 
-```json
-{
-  "order_code": "931380328",
-  "warehouse_code": "hn",
-  "seller_inventory_id": 885,
-  "item_ids": [25275169],
-  "delivery_commitment_time":"2019-12-23 23:59:59",
-  "tracking_number": "931380328"
-}
+```shell
+curl --location --request POST 'https://api-sandbox.tiki.vn/integration/v1/orders/confirmItems' \
+--header 'Content-Type: application/json' \
+--header 'tiki-api: 55f438d1-3438-409e-b5a4-9d16e764c5b8' \
+--data-raw '{
+  "order_code": "929231617",
+  "warehouse_code": "sgn",
+  "seller_inventory_id": 903,
+  "item_ids": [25205113]
+}'
 ```
       
 ## Update delivery status
@@ -129,12 +142,16 @@ After customer place an order , seller have to send a confirm request to make su
 If your order is **tiki_delivery** congratulation , after you confirm order items, TIKI will help you complete this order.
 
 If your order is **seller_delivery** you still have one more steps to complete this order. You have to [update delivery status](#api-update-delivery-status) step by step whenever you reach a new status in this list 
-
-```json
-{
+ 
+```shell
+curl --location --request POST 'https://api-sandbox.tiki.vn/integration/v1/orders/updateDeliveryStatus' \
+--header 'Content-Type: application/json' \
+--header 'tiki-api: 55f438d1-3438-409e-b5a4-9d16e764c5b8' \
+--data-raw '{
     "order_code": "401734337",
+    "update_time":"2020-11-23 23:59:59",
     "status": "successful_delivery"
-}
+}'
 ```
 
 Finally, your order delivery status becomes successful delivery, everything is settled.
@@ -142,5 +159,10 @@ Finally, your order delivery status becomes successful delivery, everything is s
 ## Print order label
 
 Sometime while making an order , you may need to [print order label](#print-order-labels). We provide a method to do it.
+
+```shell
+curl --location --request GET 'https://api-sandbox.tiki.vn/integration/v1/orders/905205190/print' \
+--header 'tiki-api: 55f438d1-3438-409e-b5a4-9d16e764c5b8'
+```
 
 ![https://salt.tikicdn.com/ts/docs/3f/03/bd/6b9f2046f09d7b030c64f032a4f5d7e4.png](https://salt.tikicdn.com/ts/docs/3f/03/bd/6b9f2046f09d7b030c64f032a4f5d7e4.png)
