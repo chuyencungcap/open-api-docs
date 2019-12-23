@@ -4,15 +4,15 @@ The table below lists APIs that can be used for product management.
 
 | API name | Description |
 | -------- | -------- |
-| [Get list orders](#get-list-orders)| Returns a list of sales orders managed by signing in seller, base on a specific search query|
-| [Order detail](#order-detail)| Returns detail information including product items of a sales order, base on order code.|
-| [Get warehouses](#get-warehouses)| Returns detail information of warehouse of Tiki that seller registries for backorder model.|
-| [Confirm order items](#confirm-order-items)| Seller confirm available status and location of each item in the list|
+| [Get list orders](#api-get-list-orders)| Returns a list of sales orders managed by signing in seller, base on a specific search query|
+| [Order detail](#api-get-order-detail)| Returns detail information including product items of a sales order, base on order code.|
+| [Get warehouses](#api-get-warehouses)| Returns detail information of warehouse of Tiki that seller registries for backorder model.|
+| [Confirm order items](#api-confirm-order-items)| Seller confirm available status and location of each item in the list|
 | [Update delivery status](#api-update-delivery-status)| Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.|
-| [Print order labels](#print-order-labels)| Return shipping label url of sale orders, base on order codes.|
+| [Print order labels](#api-print-order-labels)| Return shipping label url of sale orders, base on order codes.|
 
 
-### Get list orders
+### API get list orders
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -184,7 +184,7 @@ _**Note**_: We support query data 30 days latest at most.
 | 500 | Internal server error | having error in server, can't serving |
 
 
-### Order detail
+### API get order detail
 #### HTTP Request ####
 
 <div class="api-endpoint">
@@ -279,7 +279,7 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
 | 500 | Internal server error | having error in server, can't serving |
 | 404 | Not found | order code not found |
 
-### Get warehouses
+### API get warehouses
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -478,7 +478,7 @@ GET https://api.tiki.vn/integration/v1/warehouses
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 
-### Confirm order items
+### API confirm order items
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -627,7 +627,7 @@ Update delivery status, base on order codes. When order delivery, we need know o
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
 
-### Print order labels
+### API print order labels
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">

@@ -254,11 +254,11 @@ TIKI have 2 main fulfillment type chosen when seller create product. Each type h
 * TIKI delivery (tiki_delivery) 
 * Seller delivery (seller_delivery)
 
-Via API, we provide some solution to confirm order & delivery status step by step:
+Via API, we provide some solution to confirm order & update delivery status step by step:
 
 * Query list registered warehouse, specific order 
 * Confirm product available status(select warehouse it belong to)
-* Confirm delivery status (for seller delivery) 
+* Update delivery status (for seller delivery) 
 * Print shipping order (if needed) 
 
 Please take look those API docs below for more detail 
@@ -293,7 +293,7 @@ Please take look those API docs below for more detail
 
 
 ### Entity 
-#### Order
+#### Order Entity
 
 <table>
   <thead>
