@@ -297,7 +297,7 @@ With configurable products:
 
 Once you click send request you will be received a response immediately
 
-![](https://salt.tikicdn.com/ts/docs/c4/f6/69/636f4bd2f1cb9b6172abfc76d300a856.png)
+![](https://salt.tikicdn.com/ts/docs/61/a1/d7/54a3cf5b283860b924aec851e2fdd748.png)
 
 This response means that your request has been queued for processing.
 If there are not too many requests then it will probably be done right away
@@ -319,7 +319,7 @@ Note that during the testing phase we temporarily change your state to `drafted`
 After both TIKI and seller confirm testing completed we will set the state to automatically skip `drafted` and switch to `awaiting_approve` from then on.
 `awaiting_approve` means that your request is pending review by the team of TIKI content.
 
-![](https://salt.tikicdn.com/ts/docs/cb/b0/e2/c0944f639d5bad0768b5e6c591587fa5.png)
+![](https://salt.tikicdn.com/ts/docs/b0/ce/15/3ba9f951e6dcca74fcdcf6c1b3f2e0b2.png)
 
 Your job is done, normally you will receive results after 2 to 3 hours of work.
 By the time the status of the request becomes approved, your product is ready on the TIKI website 
@@ -463,7 +463,7 @@ If you want to rejected your request by yourself or maybe you don't want to see 
 	</div>
 </div>
 
-[Use its request_id to send delete request]((#delete-a-request))
+Use its request_id to send [delete request](#delete-a-request)
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -533,7 +533,7 @@ After all , your requests are approved , they become TIKI product :D And now you
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6></h6>
+		<h6>https://api.tiki.vn/integration/v1/products</h6>
 	</div>
 </div>
 
