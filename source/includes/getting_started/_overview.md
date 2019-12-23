@@ -8,7 +8,7 @@ We are providing some kinds of APIs to manage your business in TIKI platform
 
 - Information APIs: provide TIKI 's information such as: categories, attributes , rules, documents , ...
 - Product APIs: create new product, update price, quantity , attributes, ...
-- Tracking APIs: tracing request, product in history or by trace_id
+- Tracking APIs: tracing request, product in history or by track_id
 - Order APIs: to query, confirm order/delivery information
 
 The following table shows API versions present in each major version of TIKI Platform:
