@@ -99,7 +99,7 @@ Once the status become approved , your product will be displayed in TIKI website
 ]
 ```
 * Visit category detail to see its attributes like this : [https://api.tiki.vn/integration/v1/categories/20768](https://api.tiki.vn/integration/v1/categories/20768)
-* Each category have some required attribute like `brand` . You have to complete this field base on our example.
+* Each category have some required attribute like `origin` have `"is_required": 1`. You have to complete this field base on our example.
 * But your side don't have anything to map to these or you still don't have any idea about this then I can give you a small tips.
 It is you can complete required attribute with a dummy data like `updating` maybe it can bypass our automate review but I have to warn you if you abuse this TIKI content reviewer may reject your request.  
 
@@ -305,14 +305,14 @@ If there are not too many requests then it will probably be done right away
 Then use tracking_id to track the next state of the request. Maybe you can be received an error like this
 ,just fix your payload based on the reason, after that send a new product request. Everything will be fine 
 
+![](https://salt.tikicdn.com/ts/docs/a6/b4/bd/b3cc323014a3d2f4eb1a28b6c3b8898a.png)
+
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
 		<h6>https://api.tiki.vn/integration/v1/tracking/{track_id}</h6>
 	</div>
 </div>
-
-![](https://salt.tikicdn.com/ts/docs/97/86/f2/4f91578d65950ee6f1d9ddbbafdb5aff.png)
 
 After all , your request 's status maybe become `drafted` or `awaiting_approve`.
 Note that during the testing phase we temporarily change your state to `drafted` to double check both sides before we actually do it.
@@ -334,6 +334,8 @@ By the time the status of the request becomes approved, your product is ready on
 ## Tracking created request
 
 After TIKI received your product request then you can track its current status by the **track_id** we gave you in the http response from [create product request](#create-product-request)
+
+> create product request response body
 
 ```json
 {
@@ -373,52 +375,9 @@ At first your request is checked automatically, you can track it by these method
 After that, your request is sent to the other queue to check manually, TIKI will generate `product_id` for your request.
 In this phase beside the methods listed above , you can try these to tracking or query product request to manage your requests easier.
 
-#### 1. [Query the latest request](#get-latest-requests) ( exclude queuing , processing request )
-  - you can include product_info here
-  - you can filter by state ( rejected, deleted, approved,... )
+### 1. [Query the latest request](#get-latest-requests) ( exclude queuing , processing request )
 
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/requests</h6>
-	</div>
-</div>
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/requests?include=product_info</h6>
-	</div>
-</div>
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/requests?state=approved</h6>
-	</div>
-</div>
- 
-#### 2. [Query a request by request_id](#get-a-request) from TIKI system, you can get them through TIKI seller center or our latest request method
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/requests/{request_id}</h6>
-	</div>
-</div>
-
-#### 3. [Query a request by track_id](#get-a-request) from [create product request](#create-product-request) response
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/requests/findBy?track_id={track_id}</h6>
-	</div>
-</div>
-
-## Delete a request
-
-> request example
+> product request example 
 
 ```json
 {
@@ -444,6 +403,50 @@ In this phase beside the methods listed above , you can try these to tracking or
   "reasons": null
 }
 ```
+
+  - you can include product_info here
+  - you can filter by state ( rejected, deleted, approved,... )
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/requests</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/requests?include=product_info</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/requests?state=approved</h6>
+	</div>
+</div>
+ 
+### 2. [Query a request by request_id](#get-a-request) from TIKI system, you can get them through TIKI seller center or our latest request method
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/requests/{request_id}</h6>
+	</div>
+</div>
+
+### 3. [Query a request by track_id](#get-a-request) from [create product request](#create-product-request) response
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/requests/findBy?track_id={track_id}</h6>
+	</div>
+</div>
+
+## Delete a request
 
 If you want to rejected your request by yourself or maybe you don't want to see it in the query list anymore. So we provide you a method to do it.
 
@@ -528,7 +531,7 @@ So easy right ?
 
 After all , your requests are approved , they become TIKI product :D And now you want to manage them ? "How many product do I have? Where are they ?" So we have some method for you :
 
-#### 1. [Get all of your product](#get-list-products) : 
+### 1. [Get all of your product](#get-latest-products) : 
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -537,7 +540,7 @@ After all , your requests are approved , they become TIKI product :D And now you
 	</div>
 </div>
 
-#### 2. [Get your product by TIKI product_id](#get-a-product)  :
+### 2. [Get your product by TIKI product_id](#get-a-product)  :
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -546,7 +549,7 @@ After all , your requests are approved , they become TIKI product :D And now you
 	</div>
 </div>
 
-#### 3. [Get your product by your original_sku](#get-a-product-by-original-sku) : 
+### 3. [Get your product by your original_sku](#get-a-product-by-original-sku) : 
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

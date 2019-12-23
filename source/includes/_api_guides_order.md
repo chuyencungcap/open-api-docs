@@ -83,15 +83,16 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
 }
 ```
 
-We support [query data](#api-get-list-orders) 30 days latest at most and **_status_** in options:
-    
-* queueing
-* seller_confirmed
-* seller_canceled
-* complete
+We support [the latest order](#api-get-list-orders) 30 days ago at most and **_status_** must be in the following list:
 
+| Status                       | Description                                |
+| --------------------------- | ------------------------------------------ |
+| queueing | TIKI received order from customer , waiting for seller confirm |
+| seller_confirmed  | Seller has confirmed this order before |
+| seller_canceled | Seller has canceled this order before    |
+| complete                    | The order has been delivered successfully   |
 
-Each order you can see some [fields](#order-entity):
+There are several important fields to focus in each [order](#order):
 
 | Field                       | Description                                |
 | --------------------------- | ------------------------------------------ |
@@ -108,10 +109,9 @@ Each order you can see some [fields](#order-entity):
     * Orders from abroad (Crossborder) are orders with fulfillment_type = **cross_border**
     * Dropship orders directly from the seller (Dropship) are orders with fulfillment_type = **dropship**
     * Tiki Delivery (Tiki Delivery) are orders with fulfillment_type = **tiki_delivery**
-* **collectable_total_price**: total amount deliver need collected from customer
+* **collectable_total_price**: total amount the shipper needs to collect from the customer
 * **shipping**: info address of customer:
-    * If order is **Tiki Delivery** we not public phone, email of customer
-    * If order is **Seller Delivery** we will public phone, email of customer
+Based on TIKI's commitment to confidentiality with customers, we can only publish personal information such as email and phone numbers if you register as seller delivery
 
 ## Get order detail
 > Query example: 
@@ -184,6 +184,10 @@ We support api [get order](#api-get-order-detail) by order_code. API returns det
 
 ## Get warehouse endpoint
 
+`Warehouse` contains information about the address, contact point about your warehouse registered with TIKI
+
+If you register the operation mode as TIKI delivery then you should skip this endpoint as we have supported automatic order confirmation with this type.
+
 [Get warehouse endpoint](#api-get-warehouses) to see the list warehouse you registered before. If you don't see any match warehouse you can add the new one via **add warehouse endpoint**  or tell us to add it manually
 
 > Warehouse response body
@@ -219,6 +223,10 @@ We support api [get order](#api-get-order-detail) by order_code. API returns det
 ]
 ```        
 
+From this response you need to note 2 main points :
+- `warehouse_code` : region code describe where is your warehouse
+- `seller_inventory_id` : the Tiki id of your warehouse
+
 ## Confirm an order
 
 ```shell
@@ -236,11 +244,13 @@ curl --location --request POST 'https://api-sandbox.tiki.vn/integration/v1/order
 After customer place an order, seller have to send a [confirm request](#api-confirm-order-items)) to make sure your product is still available. 
 This is a important step before delivery product to customer so please confirm it as soon as possible 
 
-Each order have 1 or more items to confirm where they are. You need select item for confirm and _add_ item to **item_ids**
+Remember the two fields that I told you to save to confirm your order. Please provide `warehouse_code` & `seller_inventory_id` with `order_code` & your list of available order item id.
+You need these select item for confirm and add item to **item_ids**
 
-Via confirm order endpoint, please tell us which **seller_inventory_id** and **warehouse_code** your products are stored . Note that we need to confirm available item only , if your product is out of stock , please send a confirm request with empty **item_ids**
+For example, your order has 5 items but only 2 of them are in stock.
+Just add these 2 item id to the `item_ids`, we will implicitly assume that the other 3 items are no longer available.
+So if all of your items is not available then give us an empty `item_ids` list.
 
-      
 ## Update delivery status
  
 ```shell
