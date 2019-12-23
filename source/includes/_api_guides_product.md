@@ -112,12 +112,12 @@ You don't even need to know what is your inventory type because we will use the 
 
 And if you still want to learn more about TIKI system , you can refer to the following definition :
 
-* **inventory_type** is a selected value answer some question 
+* [inventory_type](#inventory-type) is a selected value answer some question 
     * "Where are you from?"
     * "Tiki or seller have to bring product to the customer"
     * "TIKI come seller 's warehouse to take product or seller bring product to TIKI 's warehouse?"
 
-* **supplier** is an integer constant describe the location of seller 's warehouse. Each seller can have some supplier but each product must be stored in a fixed supplier
+* [supplier](#supplier) is an integer constant describe the location of seller 's warehouse. Each seller can have some supplier but each product must be stored in a fixed supplier
 
 Note : In the case you have only one inventory type, TIKI will choose it as default value so you can ignore this field
 
