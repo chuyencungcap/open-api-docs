@@ -1,14 +1,13 @@
 # TIKI Theory
-## Product
-### TIKI product structure
+## TIKI product structure
 Sellers can create **products** to sell on TIKI. A product can be sold by many sellers. Sellers offer their price and quantity for a product on TIKI.
 
-There are two kinds of product at TIKI: simple product and variable products. 
+There are two kinds of product at TIKI: simple product and configurable products. 
 
-* **Simple products** are the products that has attributes and only one instance/variant
-* **Variable products** are the products that has many variants.
+* **Simple products** are the products that has attributes and only one variant
+* **Configurable products** are the products that has many variants.
 
-Variable products has many variants. Example: an iPhone has many variants differ by colors.
+Configurable products has many variants. Example: an iPhone has many variants differ by colors.
 
 They are called **option_attribute**s. Tiki support up to 2 option attributes ( size, color , capacity , ... )
 
@@ -29,20 +28,19 @@ Each product has basic attributes:
 * Image: the avatar of product on TIKI
 * Images: the image gallery of product on TIKI
 * The other attributes are based on the category of products, like RAM/CPU/Screen. That's why you need to choose category carefully at first
+
 ![](https://i.imgur.com/A2x7oeo.png)
 
-* **Price** and **market price** use the **currency** which seller set with TIKI supporter when registry.
+With configurable products:
 
-With variable products:
-
-* A variable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
+* A configurable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
 * Variants differ by maximized two attributes. Example: a T Shirt has many variants that differ by color and size
 * The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
 
-### TIKI request status flow
+## TIKI request status flow
 In order for your product to sell on TIKI website, you need to send us your product request. Depend on policy, TIKI need to take a look. Your request may pass some following status:
 
-![](https://salt.tikicdn.com/ts/docs/b4/63/37/1a065637ded38bbd3373eee0c4832961.png)
+![](https://salt.tikicdn.com/ts/docs/d4/00/06/b0a89796eb11796a3d38194dde902214.png) 
 
 via tracking api , you can see what is your current request 's status . Here is our full status list :
 
@@ -56,10 +54,9 @@ via tracking api , you can see what is your current request 's status . Here is 
 | rejected         | auto/manual      | request is rejected, use tracking API for more information |
 | deleted          | manual           | request is deleted, no more available in system            |
 
-### Entity
+## Category
 
-
-> **Entity** example:
+> category example:
 
 ```json
 {
@@ -77,11 +74,13 @@ via tracking api , you can see what is your current request 's status . Here is 
 | parent  | Integer | 320           | category_id of parent category         |
 | primary | Integer | 1             | only primary category can have product |
 
+Each product must belong to only one primary category in the category tree.
 
+For example: Fashion -> Accessories -> Watches -> Men's watches -> Sports watches
 
+## Attribute
 
-#### Attribute
-> **Attribute** example:
+> Attribute example:
 
 ```json
 {
@@ -99,10 +98,13 @@ via tracking api , you can see what is your current request 's status . Here is 
 | display_name | String | Author | the display name of this attribute |
 | is_required | Integer | 1/0 | user must complete all of required attribute in payload |
 
+- Only the primary category has attributes because other categories can't add products, it's so useless to have attributes.
+- Each category have some required attribute like `brand` . You have to complete this field base on our example.
+- But your side don't have anything to map to these or you still don't have any idea about this then I can give you a small tips.
+It is you can complete required attribute with a dummy data like `updating` maybe it can bypass our automate review but I have to warn you if you abuse this TIKI content reviewer may reject your request.  
 
-
-#### Product
-> **Product** example:
+## Product
+> Product example:
 
 ```json
 {
@@ -159,8 +161,6 @@ via tracking api , you can see what is your current request 's status . Here is 
 | option_attributes(*) | List&lt;String&gt; | Y | list of attribute code to config product \( up to 2 \) |
 | variants | List&lt;Variant&gt; | Y | list of variants, simple product have only 1 |
 
-
-
 **\*Note**:
 
 + if product type is simple (only one variant) then **option_attributes** must be empty list instead of null value because option attributes is a required field.
@@ -171,7 +171,26 @@ Even you do that, we will check duplicate image by url.
 
 \*For the best user experience, TIKI only display image have size greater than 500x500 pixel in the media gallery and lower than 700 width pixel inside description
 
-#### Variant
+## Variant
+
+> Variant example:
+
+```json
+{
+      "sku": "sku1",
+      "quantity": 21,
+      "option1": "Black",
+      "option2": null,
+      "price": 10000001,
+      "inventory_type" : "cross_border",
+      "supplier" : 239091,
+      "image": "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008711602926121_SS-note-10-pl-den-1-1.png",
+      "images": [
+        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619323404785_SS-note-10-pl-den-2.png",
+        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619327294396_SS-note-10-pl-den-4.png"
+      ]
+}
+```
 
 | Field | Type | Mandatory | Override rule(*) | Description |
 | :--- | :--- | :--- | :--- | :--- |
@@ -203,38 +222,8 @@ Even you do that, we will check duplicate image by url.
 * Replace : Field of variant will replace the parent one.
 * Merge : **attributes** will merged from both side.
 
-+ **inventory_type** must be one of below values and have to be in registered list. If you have only one **inventory_type**, then that method will be picked up so you can ignore this field in payload
-
-+ **supplier** is an integer constant describe the location of seller 's storage.Each seller can have some **supplier** but each product must be stored in a fixed **supplier**
-
-If seller is in Vietnam, please register your supplier list in TIKI **Seller Center** system
-
-If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
-
-#### List inventory type
-
-> Example:
-
-```json
-{
-      "sku": "sku1",
-      "quantity": 21,
-      "option1": "Black",
-      "option2": null,
-      "price": 10000001,
-      "inventory_type" : "cross_border",
-      "supplier" : 239091,
-      "image": "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008711602926121_SS-note-10-pl-den-1-1.png",
-      "images": [
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619323404785_SS-note-10-pl-den-2.png",
-        "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008619327294396_SS-note-10-pl-den-4.png"
-      ]
-}
-```
-
-+ If your product have **inventory_type** is **cross_border** → you also have to fill supplier and quantity in variants
-
-+ If your product have **inventory_type** is **instock** → **supplier** & **quantity** may be absent or will be ignored
+## Inventory type
+- inventory_type must be one of below values and have to be in registered list. If you have only one **inventory_type**, then that method will be picked up so you can ignore this field in payload
 
 | inventory_type | customer | description |
 | :--- | :--- | :--- |
@@ -244,8 +233,19 @@ If seller is abroad, you have only one supplier, please contact TIKI supporter t
 | seller_backorder | for Vietnamese seller | products in seller storage, seller pack, seller deliver |
 | drop_ship | for Vietnamese seller | products in seller storage, seller pack, TIKI deliver  |
 
+- If your product have **inventory_type** is **cross_border** → you also have to fill supplier and quantity in variants
+
+- If your product have **inventory_type** is **instock** → **supplier** & **quantity** may be absent or will be ignored
+
+## Supplier
+
+- **supplier** is an integer constant describe the location of seller 's storage.Each seller can have some **supplier** but each product must be stored in a fixed **supplier**
+
+- If seller is in Vietnam, please register your supplier list in TIKI **Seller Center** system
+
+- If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
+
 ## Order
-### Let's get started
 
 Whenever customer place an order, TIKI and seller have to collaborate to delivery the product to customer as soon as possible
 
@@ -260,40 +260,6 @@ Via API, we provide some solution to confirm order & update delivery status step
 * Confirm product available status(select warehouse it belong to)
 * Update delivery status (for seller delivery) 
 * Print shipping order (if needed) 
-
-Please take look those API docs below for more detail 
-
-### Sequence diagram
-
-#### Seller delivery
-![](https://i.imgur.com/W7gDfgJ.png)
-
-
-**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
-
-**(2)** Seller pull order, using api **get list order**  with status = "**queueing**"
-
-**(3)** After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
-
-**(4)** when seller delivery, seller will update delivery status using api **Update delivery status**
-
-#### TIKI Delivery
-![](https://i.imgur.com/wGDoCKW.png)
-
-
-**(1)** Seller get warehouses using api **get warehouses** each warehouse have location, _warehouse_code_ and _seller_delivery_id_
-
-**(2)** Seller pull order, using api **get list order**  with status = "_**queueing**_"
-
-**(3)**  After pull order, seller will confirm each item in the list, for-each item in orders, seller confirm one _seller_inventory_id_ have item in stock. Using api **confirm order items**
-
-**(4)** Once products in TIKI warehouse, we will pack and delivery to customer.
-
-**(5)** Finally TIKI will confirm delivery order using api **Update delivery status**, status=**successful_delivery**. 
-
-
-### Entity 
-#### Order Entity
 
 <table>
   <thead>
@@ -424,14 +390,14 @@ Please take look those API docs below for more detail
   </tbody>
 </table>
 
-#### (*)Discount 
+### Discount 
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | discount_amount | Long | 10000 | total amount discount |
 | discount_coupon | Long | 10000 | amount discount of coupon |
 
-#### (*)Tax
+### Tax
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -439,7 +405,7 @@ Please take look those API docs below for more detail
 | name | String | Company |  |
 | address | String | Ha Noi |  |
 
-#### (*)Shipping
+### Shipping
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -453,7 +419,7 @@ Please take look those API docs below for more detail
 | estimation_description | String | Expected delivery on Friday | the delivery info TIKI estimate  |
 | shipping_fee | Long | 0 | shipping fee |
 
-#### (*)Item (Order item)
+## Item (Order item)
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -469,7 +435,7 @@ Please take look those API docs below for more detail
 | must_confirmed_before_at | String | "2019-07-03 09:18:08" | Order must confirm before at that time |
 | **inventory_type**(*) | String | instock | is product inventory type |
 
-#### (*)Payment
+### Payment
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -477,7 +443,7 @@ Please take look those API docs below for more detail
 | updated_at | String | "2019-07-31 14:31:26" | the latest time payment info is updated |
 | description | String | "Thanh toán tiền mặt khi nhận hàng" | the detail of payment |
 
-#### (*)Order status
+## Order status
 
 | **Value** | **Value-VN** | **Description** | **Description - VN** |
 | :--- | :--- | :--- | :--- |
