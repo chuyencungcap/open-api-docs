@@ -3,12 +3,12 @@
 ### TIKI product structure
 Sellers can create **products** to sell on TIKI. A product can be sold by many sellers. Sellers offer their price and quantity for a product on TIKI.
 
-There are two kinds of product at TIKI: simple product and variable products. 
+There are two kinds of product at TIKI: simple product and configurable products. 
 
-* **Simple products** are the products that has attributes and only one instance/variant
-* **Variable products** are the products that has many variants.
+* **Simple products** are the products that has attributes and only one variant
+* **Configurable products** are the products that has many variants.
 
-Variable products has many variants. Example: an iPhone has many variants differ by colors.
+Configurable products has many variants. Example: an iPhone has many variants differ by colors.
 
 They are called **option_attribute**s. Tiki support up to 2 option attributes ( size, color , capacity , ... )
 
@@ -31,11 +31,9 @@ Each product has basic attributes:
 * The other attributes are based on the category of products, like RAM/CPU/Screen. That's why you need to choose category carefully at first
 ![](https://i.imgur.com/A2x7oeo.png)
 
-* **Price** and **market price** use the **currency** which seller set with TIKI supporter when registry.
+With configurable products:
 
-With variable products:
-
-* A variable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
+* A configurable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
 * Variants differ by maximized two attributes. Example: a T Shirt has many variants that differ by color and size
 * The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
 

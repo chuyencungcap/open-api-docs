@@ -317,14 +317,14 @@ You must complete all required attribute from category, all others can be ignore
 
 ```json
 {
-    "trace_id": "c3587ec50976497f837461e0c2ea3da5",
+    "track_id": "c3587ec50976497f837461e0c2ea3da5",
     "state": "queuing"
 }
 ```
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
-| trace_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace_id to tracking this request |
+| track_id | String | `c3587ec50976497f837461e0c2ea3da5` | track_id to tracking this request |
 | state | String | queuing | current state of your request |
 
 #### **Exception Case:**
@@ -427,19 +427,19 @@ Tracking latest request of user (via token)
 ```json
 [
   {
-    "trace_id": "c3587ec50976497f837461e0c2ea3da5",
+    "track_id": "c3587ec50976497f837461e0c2ea3da5",
     "state": "processing",
     "reason": null,
     "tiki_sku": null
   },
   {
-    "trace_id": "c3587ec50976497f83edfgsdfgsdfgf5",
+    "track_id": "c3587ec50976497f83edfgsdfgsdfgf5",
     "state": "rejected",
     "reason": "Image does not match product name",
     "tiki_sku": null
   },
   {
-    "trace_id": "c3587ec50976497f837463gfsdfgbsfg",
+    "track_id": "c3587ec50976497f837463gfsdfgbsfg",
     "state": "approved",
     "reason": null,
     "tiki_sku": "2150725160607"
@@ -471,10 +471,10 @@ Tracking latest request of user (via token)
 
 | Field | Type | Example | Description | Note |
 | :--- | :--- | :--- | :--- | :--- |
-| trace_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace\_id to tracking this request |  |
+| track\_id | String | `c3587ec50976497f837461e0c2ea3da5` | track\_id to tracking this request |  |
 | state | String | processing | current state of your request |  |
 | reason | String | Image does not match product name | the reason why your request is rejected | only rejected request have reason |
-| tiki_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
+| tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
 
 
 #### **State list**
@@ -507,7 +507,7 @@ Tracking latest request of user (via token)
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/{version}/tracking/{trace_id}</h6>
+		<h6>https://api.tiki.vn/integration/{version}/tracking/{track_id}</h6>
 	</div>
 </div>
 
@@ -517,7 +517,7 @@ Retrieve detail of a single request
 
 ```json
 {
-  "trace_id": "c3587ec50976497f837461e0c2ea3da5",
+  "track_id": "c3587ec50976497f837461e0c2ea3da5",
   "state": "rejected",
   "reason": "Image does not match product name",
   "tiki_sku": null
@@ -531,7 +531,7 @@ Retrieve detail of a single request
 |  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
 | Path Parameters | Name | Type | Mandatory | Example | Description |
 | |version | String | Y | v1 | version of API |  |
-| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | trace_id of request get from product API |  |
+| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | track_id of request get from product API |  |
 
 #### **Response**
 
