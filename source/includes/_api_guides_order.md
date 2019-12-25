@@ -1,5 +1,7 @@
 ## Get list orders
 
+The API used when you want to get the order list from TIKI.
+
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -19,64 +21,59 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
 {
     "data": [
         {
-            "order_code": "554520865",
-            "coupon_code": null,
+            "order_code": "929231617",
+            "coupon_code": "ABC",
             "status": "queueing",
             "total_price_before_discount": 200000,
-            "total_price_after_discount": 200000,
-            "updated_at": "2019-12-19 15:38:23",
-            "purchased_at": "2019-12-19 15:38:23",
-            "fulfillment_type": "tiki_delivery",
+            "total_price_after_discount": 205000,
+            "updated_at": "2019-10-30 17:27:24",
+            "purchased_at": "2019-10-30 17:27:17",
+            "fulfillment_type": "seller_delivery",
             "note": "",
-            "deliveryConfirmed": "",
             "is_rma": null,
-            "warehouse_id": 4,
-            "tax": {
-                "code": null,
-                "name": null,
-                "address": null
-            },
+            "warehouse_id": 17,
             "discount": {
-                "discount_amount": 0,
-                "discount_coupon": 0
+                "discount_amount": 10000,
+                "discount_coupon": 1000
+            },
+            "tax": {
+                "code": "123",
+                "name": "nguyen van A",
+                "address": "Ha Noi, Vietnam"
             },
             "shipping": {
-                "name": "hoa nguyễn",
-                "street": "ewewq",
-                "ward": "Phường An Lợi Đông",
-                "city": "Quận 2",
-                "region": "Hồ Chí Minh",
+                "name": "hậu nguyễn",
+                "street": "519 kim mã",
+                "ward": "Phường Kim Mã",
+                "city": "Quận Ba Đình",
+                "region": "Hà Nội",
                 "country": "VN",
-                "phone": "",
-                "email": "",
-                "estimate_description": "Dự kiến giao hàng vào Thứ hai, 23/12/2019",
-                "shipping_fee": 0
+                "phone": "0912611089",
+                "estimate_description": "Dự kiến giao hàng vào Thứ hai, 04/11/2019",
+                "shipping_fee": 15000
             },
             "items": [
                 {
-                    "id": 25278755,
-                    "product_id": 2090562,
-                    "product_name": "Backorder 100",
-                    "sku": "3685812177996",
-                    "original_sku": "",
+                    "id": 25203463,
+                    "product_id": 2050232,
+                    "product_name": "Cơm gà - dropship -hn4",
+                    "sku": "9956112228645",
+                    "original_sku": "123",
                     "qty": 1,
                     "price": 200000,
-                    "confirmation_status": "waiting",
-                    "confirmed_at": "",
-                    "must_confirmed_before_at": "2019-12-20 10:38:00",
-                    "warehouse_code": null,
-                    "inventory_type": "instock",
-                    "serial_number": [],
-                    "imei": []
+                    "confirmation_status": "seller_confirmed",
+                    "confirmed_at": "2019-11-01 10:07:58",
+                    "must_confirmed_before_at": "2019-11-01 23:59:59",
+                    "inventory_type": "seller_backorder"
                 }
             ],
             "payment": {
                 "payment_method": "cod",
-                "updated_at": "2019-12-19 15:38:23",
+                "updated_at": "2019-10-30 17:27:25",
                 "description": "Thanh toán tiền mặt khi nhận hàng"
             },
-            "handling_fee": 0,
-            "collectable_total_price": 200000
+            "handling_fee": 10000,
+            "collectable_total_price": 205000
         }
     ],
     "paging": {
@@ -97,9 +94,9 @@ You must use one of the following _**status**_ to get orders:
 | Status                      | Description                                | User for |
 | --------------------------- | ------------------------------------------ | -------- |
 | queueing                    | TIKI received order from customer, waiting for seller confirm | Get list order waiting confirm |
-| seller_confirmed            | Seller has confirmed this order before | Get list order confirmed |
-| seller_canceled             | Seller has canceled this order before    | Get list order canceled |
-| complete                    | The order has been delivered successfully   | Get list order complete |
+| seller_confirmed            | Seller has confirmed this order before     | Get list order confirmed |
+| seller_canceled             | Seller has canceled this order before      | Get list order canceled |
+| complete                    | The order has been delivered successfully  | Get list order complete |
 
 
 To get list orders you need to confirm, you use status **queueing**
@@ -111,19 +108,45 @@ With every [order](#order) there are important fields that you need to pay atten
 | total_price_before_discount | Total order amount before discounts        |
 | total_price_after_discount  | Total order amount after applied discounts |
 | fulfillment_type            | Order fulfillment                          |
-| tax                         | tax information of customer                            |
+| item.original_sku           | the seller product code of item            |
+| item.must_confirmed_before_at | Orders item need to be confirmed before this time |
+| tax                         | tax information of customer                |
+| payment.payment_method      | Payment method                             |
 | discount                    | discount info                              |
 | discount.discount_amount    | total amount is discounted                 |
 | shipping                    | info of customer such as address, email, phone |
+| shipping_fee                | the fee for shipping       |
+| handling_fee                 | the cost of order need collect if orders bulky       |
 | collectable_total_price     | amount to be collected from customer       |
 
 
 * **fulfillment_type**: _fulfillment types_ is mode of operation of the order specified by TIKI.
     * **tiki_delivery**: This order will be delivery by TIKI
+    * **seller_delivery**: This order will be delivery by Seller (it you)
     * The order may be TIKI delivery or seller delivery depending on the type of product or operation you have registered with tiki
 * **collectable_total_price**: total amount the shipper needs to collect from the customer
 * **shipping**: info of customer such as address, email, phone:
 Based on TIKI's commitment to confidentiality with customers, we can only publish personal information such as email and phone numbers if you register as seller delivery
+
+**For example:**
+Base on order _929231617_ you can see the parameters:
+
+* _tax.code_ = "123": tax code of customer is "123"
+* _tax.name_ = "nguyen Van A": tax name of customer is "nguyen van A"
+* _tax.address_ = "Ha Noi, Vietnam"": tax address of customer is "Ha Noi, Vietnam""
+* _item.original_sku_ = "123": seller product code/sku is "123"
+* _item.must_confirmed_before_at_ = "2019-11-01 23:59:59": Orders item need to be confirmed before "2019-11-01 23:59:59"
+* _total_price_after_discount_ = 205000: The total amount of money the user needs to pay for the order is 205000 VND
+* _coupon_code_ = ABC: The coupon code that the user has used is "_ABC_" with value is _discount.discount_coupon_ = 1000 VND
+* _discount.discount_amount_ = 10000: Total amount discount on the order is 10000 VND
+* _fulfillment_type_ = seller_delivery: This order will be delivery by Seller
+* _shipping.street_ = "519 kim mã": the street of costomer for delivery is "519 kim mã"
+* _shipping.phone_ = "0912611089": the phone number of customer is "0912611089"
+* _shipping.shipping_fee_ = 15000: the fee for shipping is 15000 VND
+* _payment.payment_method_ = "cod": the payment method is cod, shipper needs to collect money from the user
+* _handling_fee_ = 10000: the cost of order need collect if orders bulky
+* _collectable_total_price_ = 205000: total amount shipper to be collected from customer
+
 
 ## Get order detail
 
@@ -148,7 +171,7 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
     "coupon_code": null,
     "status": "queueing",
     "total_price_before_discount": 200000,
-    "total_price_after_discount": 200000,
+    "total_price_after_discount": 205000,
     "updated_at": "2019-10-30 17:27:24",
     "purchased_at": "2019-10-30 17:27:17",
     "fulfillment_type": "dropship",
@@ -156,13 +179,13 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
     "is_rma": null,
     "warehouse_id": 17,
     "discount": {
-        "discount_amount": 0,
+        "discount_amount": 10000,
         "discount_coupon": 0
     },
     "tax": {
-        "code": null,
-        "name": null,
-        "address": null
+        "code": "123",
+        "name": "nguyen van A",
+        "address": "Ha Noi, Vietnam"
     },
     "shipping": {
         "name": "hậu nguyễn",
@@ -173,7 +196,7 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
         "country": "VN",
         "phone": "0912611089",
         "estimate_description": "Dự kiến giao hàng vào Thứ hai, 04/11/2019",
-        "shipping_fee": 0
+        "shipping_fee": 15000
     },
     "items": [
         {
@@ -195,8 +218,8 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
         "updated_at": "2019-10-30 17:27:25",
         "description": "Thanh toán tiền mặt khi nhận hàng"
     },
-    "handling_fee": 0,
-    "collectable_total_price": 0
+    "handling_fee": 10000,
+    "collectable_total_price": 205000
 }
 ```
 
