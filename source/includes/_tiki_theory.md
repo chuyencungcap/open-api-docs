@@ -367,7 +367,7 @@ Via API, we provide some solution to confirm order & update delivery status step
       <td style="text-align:left"><b>tax</b>(*)</td>
       <td style="text-align:left">Object</td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">tax invoice info</td>
+      <td style="text-align:left">tax information of customer</td>
     </tr>
     <tr>
       <td style="text-align:left"><b>shipping</b>(*)</td>
@@ -402,7 +402,7 @@ Via API, we provide some solution to confirm order & update delivery status step
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | code | String | 1 |  |
-| name | String | Company |  |
+| name | String | tax name |  |
 | address | String | Ha Noi |  |
 
 ### Shipping
