@@ -407,7 +407,7 @@ Seller confirm available status and location of each item in the list
 | Body Parameters | Name | Type | Mandatory | Description |
 |  | order_code | String | Y | order code |
 |  | item_ids | Array Integer | Y | list of item_id of a specific backorder that seller want to confirm,  |
-|  | warehouse_id | String | Y | seller inventory id |
+|  | warehouse_id | String | Y | The id identifies your warehouse in the Tiki system |
 |  | delivery_commitment_time(*) | String | Y | Delivery commitment time, String datetime with format Y-m-d H:i:s. |
 |  | tracking_number(*) | String | N | maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this  |
 
