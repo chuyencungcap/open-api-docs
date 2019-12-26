@@ -1,7 +1,10 @@
 # API Documents
 ## Product API
+
+If it is the first time you come to integrate with us, please take a look at our [tutorial documents](#api-integration-step-by-step) first
+This is a [sample postman collection](https://documenter.getpostman.com/view/7737371/SWLZfqJ9?version=latest) that lists all the APIs we support
+
 The table below lists APIs that can be used for product management.
-But if it is the first time you come to integrate with us, please take a look at our [tutorial documents](#api-integration-step-by-step) first
 
 | API name | Description |
 | -------- | -------- |
@@ -1335,7 +1338,7 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?track_id=8b85b2cbd7424f03
 | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Request Parameters | Name | Type | Mandatory | Description |
-|  | original_sku | Integer | Y | The original sku from seller side |
+|  | track_id | String | Y | track_id from create product request response |
 
 #### **Response**
 

@@ -88,7 +88,7 @@ GET https://api.tiki.vn/integration/v1/orders
 
 We only support [get list orders](#api-get-list-orders) of the last 30 days.
 
-By default, you will get orders in the queueing state, queueing is state order waiting for seller confirm
+By default, you will get orders in the queueing state, queueing is state order waiting for confirmation
 
 In addition to status queueing, we support you to query according to some of the status below:
 
@@ -218,7 +218,7 @@ curl --location --request POST 'https://api-sandbox.tiki.vn/integration/v1/order
 }'
 ```
 
-If your order is **tiki_delivery** congratulation, you don't need to confirm the order as we have supported automatic order confirmation with this type.
+If your order fulfillment_type is **tiki_delivery** congratulation, you don't need to confirm the order as we have supported automatic order confirmation with this type.
 
 Before confirm order you need to determine which products are in stock.
 
@@ -278,9 +278,7 @@ You need these select item for confirm and add item to **item_ids**
 In addition to the **warehouse_id** and **item_ids** parameters, you need to pay extra attention:
 
 * _delivery_commitment_time_: It is the time that you commit to deliver to customers, String datetime with format Y-m-d H:i:s.
-* _tracking_number_: maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this
-
-_**Note**_: Don't worry, TIKI has supported all products in one order, then it will be in stock.
+* _tracking_number_: tracking_number is code for tracking order via 3rd party system or anything like this. If you don't know what is it, then you should edit tracking_number equal order_code
 
 ## Update delivery status
  
@@ -321,6 +319,8 @@ You need map from your delivery status to _**tiki delivery status**_:
 * _successful_delivery_: Orders successful delivery
 
 Finally, your order delivery status becomes **successful delivery**, everything is settled.
+
+_**Note**_: If you want to cancel your order, please contact seller support for assistance
 
 ## Print order label
 
