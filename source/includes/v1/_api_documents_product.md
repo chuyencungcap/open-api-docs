@@ -1335,7 +1335,7 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?track_id=8b85b2cbd7424f03
 | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Request Parameters | Name | Type | Mandatory | Description |
-|  | original_sku | Integer | Y | The original sku from seller side |
+|  | track_id | String | Y | track_id from create product request response |
 
 #### **Response**
 
