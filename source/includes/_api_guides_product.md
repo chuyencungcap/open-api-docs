@@ -276,17 +276,20 @@ Please fill data in option_attributes and option1,option2 field.
 Tiki support up to 2 option attributes ( size, color , capacity , ... )
 so if you have products with more than 2, combine them or create separate products before making a product request.
 
-Example : you are selling iPhone by 
+Example : you are selling iPhone by
+ 
 - Model : 7, 8, XS, XS max, ..
 - Color : Black , White , Gold , ...
 - Storage : 32GB , 64GB , 128GB
 
 You can combine 3 single attributes into 2 aggregate attributes `model` and` color + storage`
 or split each iPhone model into 1 product containing 2 option attributes `color` and `storage`.
+
 - option1 is the value for the first option in `option_attributes` ( `XL` for `size` )
 - option2 is the value for the last option in `option_attributes` ( `red` for `color` )
 
 Example : Product is iPhone have `"option_attributes":["color","storage"]` so your variant should be
+
 - "option1" : "Black" , "option2" : "32GB"
 - "option1" : "Black" , "option2" : "64GB"
 - "option1" : "White" , "option2" : "32GB"
@@ -411,7 +414,7 @@ If you want to manage requests made in the past, take a look at the [manage prod
 
 ## Manage product request
 
-### 1. [Query the latest request info](#get-latest-request-info) (created successfully request only)
+### 1. [Query the latest request info](#get-latest-product-request-info) (created successfully request only)
 
 > Get latest product request example
 
@@ -631,7 +634,7 @@ GET https://api.tiki.vn/integration/v1/requests/1121456196340384958
 	</div>
 </div>
  
-### 2. [Query a product request by request_id](#get-a-product-request) from TIKI system
+### 2. [Query a product request by request_id](#get-a-product-request-info) from TIKI system
 
 You can get `request_id` through TIKI seller center or our latest product request method
 
@@ -642,7 +645,7 @@ You can get `request_id` through TIKI seller center or our latest product reques
 	</div>
 </div>
 
-### 3. [Query a product request by track_id](#get-a-product-request-info-by-track-id) from [create product request](#create-product-request) response
+### 3. [Query a product request by track_id](#get-a-product-request-by-track-id) from [create product request](#create-product-request) response
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -675,7 +678,7 @@ or maybe you don't want to see it in the query list anymore. So we provide you 2
 	</div>
 </div>
 
-- You can [Find a request](#tracking-created-request) from the list then choose its **request_id** or choose it directly by the **track_id**
+- You can [Find a request](#manage-product-request) from the list then choose its **request_id** or choose it directly by the **track_id**
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -801,7 +804,7 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
 }
 ```
 
-Unfortunately, we only can provide method to [update price, quantity, active]((#update-variant-price-quantity-active)) but we have a good new for you that your request will be approved automatically.
+Unfortunately, we only can provide method to [update price, quantity, active](#update-variant-price-quantity-active) but we have a good new for you that your request will be approved automatically.
 Note that in this API you have to use your original sku from your system to update this product. You can update price only , active only or mix them up depend on your choice, ... 
 
 <div class="api-endpoint">

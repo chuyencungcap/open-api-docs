@@ -15,8 +15,8 @@ But if it is the first time you come to integrate with us, please take a look at
 | [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
 | [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
 | [Get latest product request 's info](#get-latest-product-request-info)| Get all of product requests order by created_at desc (latest request)|
-| [Get a product request info](#get-a-product-request)| Get a request with request_id from TIKI system|
-| [Get a product request info by track id](#get-a-product-request-info-by-track-id)| Get a product match with seller original sku|
+| [Get a product request info](#get-a-product-request-info)| Get a request with request_id from TIKI system|
+| [Get a product request info by track id](#get-a-product-request-by-track-id)| Get a product match with seller original sku|
 | [Delete a product request](#delete-a-product-request)| Delete a created product request base on request_id of TIKI system|
 
 
@@ -479,7 +479,7 @@ Tracking latest request of user (via token)
 | track\_id | String | `c3587ec50976497f837461e0c2ea3da5` | track\_id to tracking this request |  |
 | state | String | processing | current state of your request |  |
 | reason | String | Image does not match product name | the reason why your request is rejected | only rejected request have reason |
-| tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
+| request\_id | String | 1121447935453136060 | request_id when product request created successfully | once product request created successfully |
 
 
 #### **State list**
@@ -536,16 +536,16 @@ Retrieve detail of a single request
 |  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
 | Path Parameters | Name | Type | Mandatory | Example | Description |
 | |version | String | Y | v1 | version of API |  |
-| |trace\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | track_id of request get from product API |  |
+| |track\_id | String | Y | `c3587ec50976497f837461e0c2ea3da5` | track_id of request get from product API |  |
 
 #### **Response**
 
 | Field | Type | Example | Description | Note |
 | :--- | :--- | :--- | :--- | :--- |
-| trace\_id | String | `c3587ec50976497f837461e0c2ea3da5` | trace\_id to tracking this request |  |
+| track\_id | String | `c3587ec50976497f837461e0c2ea3da5` | track\_id to tracking this request |  |
 | state | String | processing | current state of your request |  |
 | reason | String | Image does not match product name | the reason why your request is rejected | only rejected request have reason |
-| tiki\_sku | String | 2150725160607 | TIKI sku when product created successfully | only approved request have tiki\_sku |
+| request\_id | String | 2150725160607 | request_id when product request created successfully | once product request created successfully |
 
 
 #### **State list**
@@ -569,7 +569,7 @@ Retrieve detail of a single request
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | missing header or required params |
 | 401 | Unauthorized | your tiki-api token is not valid |
-| 404 | TraceId not found | traceId is invalid |
+| 404 | Not found | track_id is invalid |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 ---------------------------------------------------------------------------------------------------------------
@@ -947,7 +947,7 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 
-###Get latest product request info
+### Get latest product request info
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
