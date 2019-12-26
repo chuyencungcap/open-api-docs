@@ -42,7 +42,6 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       "fulfillment_type": "dropship",
       "note": "",
       "is_rma": null,
-      "warehouse_id": 17,
       "tax": {
         "code": null,
         "name": null,
@@ -214,7 +213,6 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
     "fulfillment_type": "dropship",
     "note": "",
     "is_rma": null,
-    "warehouse_id": 17,
     "discount": {
         "discount_amount": 0,
         "discount_coupon": 0
@@ -297,162 +295,54 @@ GET https://api.tiki.vn/integration/v1/warehouses
 
 ```json
 [
-  {
-    "contact_email": "dsada@gmail.com",
-    "contact_name": "Nguyễn Thị Bích a",
-    "contact_phone": "0988909999",
-    "country": {
-      "code": "vn",
-      "name": "Viet Nam"
+    {
+        "contact_email": "dsf@gmail.com",
+        "contact_name": "1",
+        "contact_phone": "0912345666",
+        "country": {
+            "code": "vn",
+            "name": "Viet Nam"
+        },
+        "district": {
+            "code": "VN034019",
+            "name": "Quận Bắc Từ Liêm"
+        },
+        "name": "kho hà nội",
+        "region": {
+            "code": "VN034",
+            "name": "Hà Nội"
+        },
+        "street": "ewqeqw",
+        "ward": {
+            "code": "VN034019006",
+            "name": "Phường Minh Khai"
+        },
+        "warehouse_id": 902
     },
-    "district": {
-      "code": "VN034025",
-      "name": "Quận Hoàng Mai"
-    },
-    "name": "Kho giáp bát hà nội",
-    "region": {
-      "code": "VN034",
-      "name": "Hà Nội"
-    },
-    "seller_inventory_id": 919,
-    "street": "dsa ds",
-    "ward": {
-      "code": "VN034025003",
-      "name": "Phường Giáp Bát"
-    },
-    "warehouse_code": "hn",
-    "warehouse_id": 2
-  },
-  {
-    "contact_email": "32@gmail.com",
-    "contact_name": "7",
-    "contact_phone": "0887999123",
-    "country": {
-      "code": "vn",
-      "name": "Viet Nam"
-    },
-    "district": {
-      "code": "VN023007",
-      "name": "Quận Ninh Kiều"
-    },
-    "name": "7",
-    "region": {
-      "code": "VN023",
-      "name": "Cần Thơ"
-    },
-    "seller_inventory_id": 905,
-    "street": "3432",
-    "ward": {
-      "code": "VN023007005",
-      "name": "Phường An Khánh"
-    },
-    "warehouse_code": "ct",
-    "warehouse_id": 6
-  },
-  {
-    "contact_email": "dsdss@gmail.com",
-    "contact_name": "6",
-    "contact_phone": "0912676787",
-    "country": {
-      "code": "vn",
-      "name": "Viet Nam"
-    },
-    "district": {
-      "code": "VN037011",
-      "name": "Quận Hồng Bàng"
-    },
-    "name": "kho 6",
-    "region": {
-      "code": "VN037",
-      "name": "Hải Phòng"
-    },
-    "seller_inventory_id": 904,
-    "street": "dsdsd",
-    "ward": {
-      "code": "VN037011003",
-      "name": "Phường Hùng Vương"
-    },
-    "warehouse_code": "hp",
-    "warehouse_id": 8
-  },
-  {
-    "contact_email": "email@gmail.com",
-    "contact_name": "kho 5",
-    "contact_phone": "0989000912",
-    "country": {
-      "code": "vn",
-      "name": "Viet Nam"
-    },
-    "district": {
-      "code": "VN039013",
-      "name": "Quận 5"
-    },
-    "name": "kho 5",
-    "region": {
-      "code": "VN039",
-      "name": "Hồ Chí Minh"
-    },
-    "seller_inventory_id": 903,
-    "street": "ewew",
-    "ward": {
-      "code": "VN039013007",
-      "name": "Phường 07"
-    },
-    "warehouse_code": "sgn",
-    "warehouse_id": 4
-  },
-  {
-    "contact_email": "dsf@gmail.com",
-    "contact_name": "1",
-    "contact_phone": "0912345666",
-    "country": {
-      "code": "vn",
-      "name": "Viet Nam"
-    },
-    "district": {
-      "code": "VN034019",
-      "name": "Quận Bắc Từ Liêm"
-    },
-    "name": "kho hà nội",
-    "region": {
-      "code": "VN034",
-      "name": "Hà Nội"
-    },
-    "seller_inventory_id": 902,
-    "street": "ewqeqw",
-    "ward": {
-      "code": "VN034019006",
-      "name": "Phường Minh Khai"
-    },
-    "warehouse_code": "hn",
-    "warehouse_id": 2
-  },
-  {
-    "contact_email": "ntbh@gmail.com",
-    "contact_name": "hoa",
-    "contact_phone": "0989787878",
-    "country": {
-      "code": "vn",
-      "name": "Viet Nam"
-    },
-    "district": {
-      "code": "VN034022",
-      "name": "Quận Hà Đông"
-    },
-    "name": "Kho 2",
-    "region": {
-      "code": "VN034",
-      "name": "Hà Nội"
-    },
-    "seller_inventory_id": 899,
-    "street": "hà đông",
-    "ward": {
-      "code": "VN034022003",
-      "name": "Phường Dương Nội"
-    },
-    "warehouse_code": "hn",
-    "warehouse_id": 2
-  }
+    {
+        "contact_email": "fhds@gmail.com",
+        "contact_name": "lan",
+        "contact_phone": "0989777666",
+        "country": {
+            "code": "vn",
+            "name": "Viet Nam"
+        },
+        "district": {
+            "code": "VN039007",
+            "name": "Quận 10"
+        },
+        "name": "kho 3-hcm",
+        "region": {
+            "code": "VN039",
+            "name": "Hồ Chí Minh"
+        },
+        "street": "cmt8",
+        "ward": {
+            "code": "VN039007001",
+            "name": "Phường 01"
+        },
+        "warehouse_id": 900
+    }
 ]
 ```
 
@@ -461,9 +351,6 @@ GET https://api.tiki.vn/integration/v1/warehouses
 | Headers | Content-type | application/json |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |  |
-| Query Parameters | Name | Type | Mandatory | Example | Description |
-|  | warehouse_id | Integer | N | 2 | the id of warehouse |
-|  | warehouse_code | String | N | hn | the code of warehouse |
 
 #### **Response**
 
@@ -495,21 +382,10 @@ POST https://api.tiki.vn/integration/{version}/orders/confirmItems
 ```json
 {
   "order_code": "419060832",
-  "warehouse_code": "sg",
-  "seller_inventory_id": 882,
+  "warehouse_id": 882,
   "item_ids": [94792486, 94792487],
-  "delivery_commitment_time": "2019-11-03 23:59:59"  
-}
-```
-
-> request body **TIKI delivery**
-
-```json
-{
-  "order_code": "419060832",
-  "warehouse_code": "sg",
-  "seller_inventory_id": 882,
-  "item_ids": [94792486, 94792487]
+  "delivery_commitment_time": "2019-11-03 23:59:59",
+  "tracking_number": "419060832"
 }
 ```
 
@@ -531,16 +407,15 @@ Seller confirm available status and location of each item in the list
 | Body Parameters | Name | Type | Mandatory | Description |
 |  | order_code | String | Y | order code |
 |  | item_ids | Array Integer | Y | list of item_id of a specific backorder that seller want to confirm,  |
-|  | warehouse_code | String | Y | warehouse code |
-|  | seller_inventory_id | String | Y | seller inventory id |
-|  | delivery_commitment_time(*) | String | N | Seller delivery commitment time, String datetime with format Y-m-d H:i:s. |
+|  | warehouse_id | String | Y | The id identifies your warehouse in the Tiki system |
+|  | delivery_commitment_time(*) | String | Y | Delivery commitment time, String datetime with format Y-m-d H:i:s. |
 |  | tracking_number(*) | String | N | maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this  |
 
 **Note:** We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
 
 So if you want to reject all of item in this order, just send an empty **item_ids** list
 
-* **delivery_commitment_time** is required for **seller delivery** order
+* **delivery_commitment_time** is required
 * **tracking_number** is required for **cross_border** order
 
 #### **Response :** 

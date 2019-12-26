@@ -8,16 +8,16 @@ But if it is the first time you come to integrate with us, please take a look at
 | [Get categories](#get-categories)| Return the summary list of categories in integration system |
 | [Get category detail](#get-category-detail-include-attribute)| Retrieve detail of a single categories with its attributes|
 | [Create Product Request](#create-product-request)| Create new a product request|
-| [Tracking latest ](#tracking-latest-request)| Tracking latest request |
-| [Tracking a request](#tracking-a-request)| Retrieve detail of a single request|
+| [Tracking latest product request](#tracking-latest-product-request)| Tracking latest request |
+| [Tracking a product request](#tracking-a-product-request)| Retrieve detail of a single request|
 | [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately|
 | [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)|
 | [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
 | [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
-| [Get latest requests](#get-latest-requests)| Get all of product requests order by created_at desc (latest request)|
-| [Get a request](#get-a-request)| Get a request with request_id from TIKI system|
-| [Get a request by original sku](#get-a-request-by-original-sku)| Get a product match with seller original sku|
-| [Delete a request](#delete-a-request)| Delete a created product request base on request_id of TIKI system|
+| [Get latest product request 's info](#get-latest-product-request-info)| Get all of product requests order by created_at desc (latest request)|
+| [Get a product request info](#get-a-product-request)| Get a request with request_id from TIKI system|
+| [Get a product request info by track id](#get-a-product-request-info-by-track-id)| Get a product match with seller original sku|
+| [Delete a product request](#delete-a-product-request)| Delete a created product request base on request_id of TIKI system|
 
 
 ### Get categories
@@ -409,7 +409,7 @@ Configurable Product have invalid payload (missing option2 value & price in sku2
 | 422 | Unprocessable Entity | Payload is missing or invalid field  |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
-### Tracking latest request
+### Tracking latest product request
 
 #### HTTP Request ####
 <div class="api-endpoint">
@@ -427,22 +427,27 @@ Tracking latest request of user (via token)
 ```json
 [
   {
-    "track_id": "c3587ec50976497f837461e0c2ea3da5",
-    "state": "processing",
-    "reason": null,
-    "tiki_sku": null
-  },
-  {
-    "track_id": "c3587ec50976497f83edfgsdfgsdfgf5",
-    "state": "rejected",
-    "reason": "Image does not match product name",
-    "tiki_sku": null
-  },
-  {
-    "track_id": "c3587ec50976497f837463gfsdfgbsfg",
+    "track_id": "097c43fb664448eba4dfb410b323b615",
     "state": "approved",
-    "reason": null,
-    "tiki_sku": "2150725160607"
+    "reason": "",
+    "request_id": "1121456196340384958"
+  },
+  {
+    "track_id": "06e9fffedf3b4a179ccca85d2aa6f70b",
+    "state": "awaiting_approve",
+    "reason": "",
+    "request_id": "1121448919994696893"
+  },
+  {
+    "track_id": "4cd90cf9294047c9984c1a7f6a1c67de",
+    "state": "approved",
+    "reason": "",
+    "request_id": "1121447935453136060"
+  },
+  {
+    "track_id": "8c526ef8f8504f30ad330682d07a10a7",
+    "state": "rejected",
+    "reason": "{\"errors\":[{\"code\":420,\"data\":null,\"description\":\"Product code B0055QD0EC2 is not unique\",\"msg\":\"Mã seller product không duy nhất\",\"msg_eng\":\"Seller product code is not unique\"}],\"message\":\"Mã seller product không duy nhất\",\"trace_id\":null}"
   }
 ]
 ```
@@ -502,7 +507,7 @@ Tracking latest request of user (via token)
 
 ---------------------------------------------------------------------------------------------------------------
 
-### Tracking a request
+### Tracking a product request
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -517,10 +522,10 @@ Retrieve detail of a single request
 
 ```json
 {
-  "track_id": "c3587ec50976497f837461e0c2ea3da5",
-  "state": "rejected",
-  "reason": "Image does not match product name",
-  "tiki_sku": null
+  "track_id": "4cd90cf9294047c9984c1a7f6a1c67de",
+  "request_id": "1121447935453136060",
+  "state": "approved",
+  "reason": ""
 }
 ```
 
@@ -574,18 +579,19 @@ Retrieve detail of a single request
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
-		<h6>https://api.tiki.vn/integration/{version}/products/{sku}/updateSku</h6>
+		<h6>https://api.tiki.vn/integration/{version}/products/updateSku</h6>
 	</div>
 </div>
 
 Update non validate fields like price/quantity/active of a created product
 
 ```http
-GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
+POST https://api.tiki.vn/integration/v1/products/updateSku
 ```
 
 ```json
 {
+  "original_sku" : "SELLER_SKU",
   "price": 100000,
   "quantity": 20,
   "active": 1
@@ -642,7 +648,7 @@ GET https://api.tiki.vn/integration/v1/products/DANG19951995/updateSku
 }
 ```
 
-### Get latest products
+### Get latest products 
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -941,7 +947,7 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 | 429 | Too Many Requests | Your rate limit is exceed |
 
 
-###Get latest requests
+###Get latest product request info
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -964,10 +970,10 @@ GET https://api.tiki.vn/integration/v1/v1/requests
 GET https://api.tiki.vn/integration/v1/requests?page=2
 ```
   
-> If you want to see product_info data:
+> If you want to see more product information generated from the product request
 
 ```http
-GET https://api.tiki.vn/integration/v1/requests?include=product_info
+GET https://api.tiki.vn/integration/v1/requests?include=products
 ```
   
 > If you want to filter by state: 
@@ -982,26 +988,26 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 {
   "data": [
     {
-      "sku": "2932389999690",
-      "master_sku": "2932389999690",
-      "master_id": 0,
-      "super_sku": "",
-      "super_id": 0,
-      "name": "Instock_03",
-      "entity_type": "master_simple",
-      "type": "simple",
-      "price": 50000,
-      "created_at": "2019-12-03 16:47:13",
-      "created_by": "admin@tiki.vn",
-      "product_id": 2087783,
-      "original_sku": null,
-      "request_id": "1115320939429986651",
+      "request_id": "1121408707461612725",
       "state": "approved",
+      "created_at": "2019-12-20 11:57:50",
+      "created_by": "tran.nguyen2@tiki.vn",
       "kind": "create_product",
-      "approved_at": "2019-12-03 16:48:01",
-      "approved_by": "admin@tiki.vn",
-      "product_info": null,
-      "reasons": null
+      "approved_at": "2019-12-20 12:11:06",
+      "approved_by": "khoa.tran2@tiki.vn",
+      "reasons": null,
+      "products": []
+    },
+    {
+      "request_id": "1120793560477041639",
+      "state": "awaiting_approve",
+      "created_at": "2019-12-18 19:13:28",
+      "created_by": "tran.nguyen2@tiki.vn",
+      "kind": "create_product",
+      "approved_at": null,
+      "approved_by": null,
+      "reasons": null,
+      "products": []
     }
   ],
   "paging": {
@@ -1043,7 +1049,7 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 
 
 
-### Get a request
+### Get a product request info
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1052,52 +1058,196 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 	</div>
 </div>
 
-Get a request with request_id from TIKI system
+Get a request 's information detail with request_id from TIKI system
 
 > Example
 
 ```http
-GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
+GET https://api.tiki.vn/integration/v1/requests/1121456196340384958
 ```
 
 > Response body
 
 ```json
 {
-  "data": [
+  "request_id": "1121456196340384958",
+  "state": "approved",
+  "created_at": "2019-12-20 15:06:32",
+  "created_by": "tran.nguyen2@tiki.vn",
+  "kind": "create_product",
+  "approved_at": "2019-12-20 15:07:07",
+  "approved_by": "khoa.tran2@tiki.vn",
+  "reasons": null,
+  "products": [
     {
-      "sku": "2932389999690",
-      "master_sku": "2932389999690",
-      "master_id": 0,
-      "super_sku": "",
-      "super_id": 0,
-      "name": "Instock_03",
-      "entity_type": "master_simple",
-      "type": "simple",
-      "price": 50000,
-      "created_at": "2019-12-03 16:47:13",
-      "created_by": "admin@tiki.vn",
-      "product_id": 2087783,
-      "original_sku": null,
-      "request_id": "1115320939429986651",
-      "state": "approved",
-      "kind": "create_product",
-      "approved_at": "2019-12-03 16:48:01",
-      "approved_by": "admin@tiki.vn",
-      "product_info": null,
-      "reasons": null
+      "product_id": 2091401,
+      "sku": "2886025648971",
+      "name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
+      "active": 1,
+      "original_sku": "B0055QD0EC5",
+      "price": 984000,
+      "market_price": 984000,
+      "images": [
+        {
+          "id": null,
+          "url": "https://uat.tikicdn.com/ts/product/45/02/eb/b024dce6529a4443fb4ad58c0f914e15.jpg",
+          "path": "product/45/02/eb/b024dce6529a4443fb4ad58c0f914e15.jpg",
+          "position": 0,
+          "width": 1335,
+          "height": 2259
+        },
+        {
+          "id": null,
+          "url": "https://uat.tikicdn.com/ts/product/fa/18/d1/bd7c815ee514344cf56256eb7a3cd9d8.jpg",
+          "path": "product/fa/18/d1/bd7c815ee514344cf56256eb7a3cd9d8.jpg",
+          "position": 1,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "categories": [
+        {
+          "id": 601225,
+          "name": "Laptop of JD",
+          "url_key": null,
+          "is_primary": true
+        },
+        {
+          "id": 601223,
+          "name": "Danh mục hàng JD",
+          "url_key": null,
+          "is_primary": false
+        },
+        {
+          "id": 1882,
+          "name": "Điện Gia Dụng",
+          "url_key": null,
+          "is_primary": false
+        },
+        {
+          "id": 2,
+          "name": "Root yyy",
+          "url_key": null,
+          "is_primary": false
+        }
+      ],
+      "attributes": {
+        "status": {
+          "attribute_code": "status",
+          "value": 1,
+          "input_type": null
+        },
+        "sku": {
+          "attribute_code": "sku",
+          "value": "9493225709765",
+          "input_type": null
+        },
+        "brand": {
+          "attribute_code": "brand",
+          "value": 50583,
+          "input_type": null
+        },
+        "brand_country": {
+          "attribute_code": "brand_country",
+          "value": 630957,
+          "input_type": null
+        },
+        "bulky": {
+          "attribute_code": "bulky",
+          "value": 0,
+          "input_type": null
+        },
+        "description": {
+          "attribute_code": "description",
+          "value": "<html>\n <head>\n  <style>\r\n#productDetails_techSpec_section_2{width:70%;}\r\n#prodDetails .prodDetSectionEntry {width: 50%!important;white-space: normal;word-wrap: break-word;}\r\ntable.a-keyvalue th {background-color: #f3f3f3;}\r\ntable.a-keyvalue td, table.a-keyvalue th {padding: 7px 14px 6px;border-top: 1px solid #e7e7e7;}\r\n#prodDetails th {text-align: left;}\r\ntable.a-keyvalue{border-bottom: 1px solid #e7e7e7;}\r\n</style>\n </head>\n <body>\n  <div id=\"prodDetails\">\n   <table id=\"productDetails_techSpec_section_2\" class=\"a-keyvalue prodDetTable\" role=\"presentation\">\n    <tbody>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Item Shape</th>\n      <td class=\"a-size-base\">Round</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Display Type</th>\n      <td class=\"a-size-base\">Analog</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case material</th>\n      <td class=\"a-size-base\">Metal</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case diameter</th>\n      <td class=\"a-size-base\">37 millimeters</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Material</th>\n      <td class=\"a-size-base\">metal-alloy</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band length</th>\n      <td class=\"a-size-base\">Women's Standard</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band width</th>\n      <td class=\"a-size-base\">18 millimeters</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Band Color</th>\n      <td class=\"a-size-base\">White</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Dial color</th>\n      <td class=\"a-size-base\">White</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Bezel material</th>\n      <td class=\"a-size-base\">Metal</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Brand, Seller, or Collection Name</th>\n      <td class=\"a-size-base\">Disney</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Model number</th>\n      <td class=\"a-size-base\">MK2106</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Part Number</th>\n      <td class=\"a-size-base\">MK2106</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Case Thickness</th>\n      <td class=\"a-size-base\">9.3 millimeters</td>\n     </tr>\n     <tr>\n      <th class=\"a-color-secondary a-size-base prodDetSectionEntry\">Special features</th>\n      <td class=\"a-size-base\">includes a seconds-hand</td>\n     </tr>\n    </tbody>\n   </table>\n  </div>\n  <p></p>\n  <p>White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design</p>\n  <p>37-mm metal case with glass dial window</p>\n  <p>Quartz movement with analog display</p>\n  <p>Metal alloy bracelet with jewelry-clasp closure</p>\n  <p>Not water resistant</p>\n  <p></p>\n  <p>Great timepiece for Disney Mickey Mouse fans! This spray white bracelet watch features round case with clear rhinestone accented, genuine white Mother-Of-Pearl dial, Arabic number 12,3,9 and dots display and jewelry clasp. Cute rhinestone accented Mickey Mouse image on dial. It is also powered by quartz movement that tells you the accurate time. It is casual and fashionable that is nice for everyday wear.</p>\n  <p></p>\n </body>\n</html>",
+          "input_type": null
+        },
+        "list_price": {
+          "attribute_code": "list_price",
+          "value": 984000,
+          "input_type": null
+        },
+        "meta_description": {
+          "attribute_code": "meta_description",
+          "value": "#productDetails_techSpec_section_2{width:70%;}\r\n#prodDetails .prodDetSectionEntry {width: 50%!important;white-space: normal;word-wrap: break-word;}\r\ntable.a-keyvalue th {background-color: #f3f3f3;}\r\ntable.a-keyvalue td, table.a-keyvalue th {padding: 7px...",
+          "input_type": null
+        },
+        "meta_title": {
+          "attribute_code": "meta_title",
+          "value": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch...",
+          "input_type": null
+        },
+        "name": {
+          "attribute_code": "name",
+          "value": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
+          "input_type": null
+        },
+        "url_key": {
+          "attribute_code": "url_key",
+          "value": "disney-women-s-mk2106-mickey-mouse-white-bracelet-watch-with-rhinestones-p2091399",
+          "input_type": null
+        },
+        "url_path": {
+          "attribute_code": "url_path",
+          "value": "disney-women-s-mk2106-mickey-mouse-white-bracelet-watch-with-rhinestones-p2091399.html",
+          "input_type": null
+        },
+        "origin": {
+          "attribute_code": "origin",
+          "value": 10661,
+          "input_type": null
+        },
+        "po_type": {
+          "attribute_code": "po_type",
+          "value": 111134,
+          "input_type": null
+        },
+        "price": {
+          "attribute_code": "price",
+          "value": 984000,
+          "input_type": null
+        },
+        "product_top_features": {
+          "attribute_code": "product_top_features",
+          "value": "White bracelet watch featuring rhinestone-accented bezel and mother-of-pearl dial with sparkling Mickey Mouse design\n37-mm metal case with glass dial window\nQuartz movement with analog display\nMetal alloy bracelet with jewelry-clasp closure\nNot water resistant\n",
+          "input_type": null
+        },
+        "require_expiry_date": {
+          "attribute_code": "require_expiry_date",
+          "value": 0,
+          "input_type": null
+        },
+        "visibility": {
+          "attribute_code": "visibility",
+          "value": 4,
+          "input_type": null
+        },
+        "": {
+          "attribute_code": "",
+          "value": null,
+          "input_type": null
+        },
+        "image": {
+          "attribute_code": "image",
+          "value": "product/45/02/eb/b024dce6529a4443fb4ad58c0f914e15.jpg",
+          "input_type": null
+        },
+        "small_image": {
+          "attribute_code": "small_image",
+          "value": "product/45/02/eb/b024dce6529a4443fb4ad58c0f914e15.jpg",
+          "input_type": null
+        },
+        "thumbnail": {
+          "attribute_code": "thumbnail",
+          "value": "product/45/02/eb/b024dce6529a4443fb4ad58c0f914e15.jpg",
+          "input_type": null
+        }
+      }
     }
-  ],
-  "paging": {
-    "total": 7837,
-    "current_page": 1,
-    "from": 0,
-    "to": 20,
-    "per_page": 20,
-    "last_page": 392
-  }
+  ]
 }
 ```
+
 #### **Request**
 
 | Headers | Content-type | application/json |  |  |
@@ -1124,7 +1274,7 @@ GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
 
 
 
-### Get a request by original sku
+### Get a product request by track id
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1133,12 +1283,12 @@ GET https://api.tiki.vn/integration/v1/requests/1115320939429986651
 	</div>
 </div>
 
-Get a product match with seller original sku
+Get a product request match with track id from create new product
 
 > Example
 
 ```http
-GET https://api.tiki.vn/integration/v1/requests/findBy?original_sku=YOUR_ORIGINAL_SKU_123
+GET https://api.tiki.vn/integration/v1/requests/findBy?track_id=8b85b2cbd7424f03af41ae5b4507eb01
 ```
 
 > Response body
@@ -1204,7 +1354,7 @@ GET https://api.tiki.vn/integration/v1/requests/findBy?original_sku=YOUR_ORIGINA
 
 
 
-### Delete a request
+### Delete a product request
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">

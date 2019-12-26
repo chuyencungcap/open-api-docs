@@ -340,12 +340,6 @@ Via API, we provide some solution to confirm order & update delivery status step
       <td style="text-align:left"> default 0, 1 is return order</td>
     </tr>
     <tr>
-      <td style="text-align:left">warehouse_id</td>
-      <td style="text-align:left">Integer</td>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">id of warehouse</td>
-    </tr>
-    <tr>
       <td style="text-align:left">handling_fee</td>
       <td style="text-align:left">Long</td>
       <td style="text-align:left">0</td>
@@ -367,7 +361,7 @@ Via API, we provide some solution to confirm order & update delivery status step
       <td style="text-align:left"><b>tax</b>(*)</td>
       <td style="text-align:left">Object</td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">tax invoice info</td>
+      <td style="text-align:left">tax information of customer</td>
     </tr>
     <tr>
       <td style="text-align:left"><b>shipping</b>(*)</td>
@@ -402,7 +396,7 @@ Via API, we provide some solution to confirm order & update delivery status step
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | code | String | 1 |  |
-| name | String | Company |  |
+| name | String | tax name |  |
 | address | String | Ha Noi |  |
 
 ### Shipping
