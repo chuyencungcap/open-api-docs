@@ -340,12 +340,6 @@ Via API, we provide some solution to confirm order & update delivery status step
       <td style="text-align:left"> default 0, 1 is return order</td>
     </tr>
     <tr>
-      <td style="text-align:left">warehouse_id</td>
-      <td style="text-align:left">Integer</td>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">id of warehouse</td>
-    </tr>
-    <tr>
       <td style="text-align:left">handling_fee</td>
       <td style="text-align:left">Long</td>
       <td style="text-align:left">0</td>
