@@ -1,6 +1,7 @@
 ## Authentication
 
-Before you can interact with the Tiki API, your app must provide the necessary authentication credentials in each HTTP request that it makes to Tiki. In Tiki seller center, the API key is configured for each seller before integrate with the third party system so you must have an account in [https://sellercenter.tiki.vn/](https://sellercenter.tiki.vn/) 
+In order to interact with the Tiki API, your app must provide the necessary authentication credentials in each HTTP request.
+In Tiki Seller Center (the system where sellers manage their products and orders), the API key is configured for each seller before integrating with the third party system so you must have an account in https://sellercenter.tiki.vn/, please ask your business team for this.
 
 ### How to get tiki-api token
 
@@ -9,7 +10,7 @@ Before you can interact with the Tiki API, your app must provide the necessary a
     - [https://sandbox-sellercenter.tiki.vn/](https://sandbox-sellercenter.tiki.vn/) if you want to get sandbox api token
 2. Register new account ( if this is your first time :D )
 3. Login 
-4. Look at the top right corner , go to your profile setting 
+4. Look at the top right corner, go to your profile setting 
 
     ![Authentication/Untitled.png](https://salt.tikicdn.com/ts/docs/9c/38/94/3be3f97e348f50e508f54f29a45731e3.png)
 

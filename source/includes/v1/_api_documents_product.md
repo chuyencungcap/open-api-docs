@@ -427,22 +427,27 @@ Tracking latest request of user (via token)
 ```json
 [
   {
-    "track_id": "c3587ec50976497f837461e0c2ea3da5",
-    "state": "processing",
-    "reason": null,
-    "tiki_sku": null
-  },
-  {
-    "track_id": "c3587ec50976497f83edfgsdfgsdfgf5",
-    "state": "rejected",
-    "reason": "Image does not match product name",
-    "tiki_sku": null
-  },
-  {
-    "track_id": "c3587ec50976497f837463gfsdfgbsfg",
+    "track_id": "097c43fb664448eba4dfb410b323b615",
     "state": "approved",
-    "reason": null,
-    "tiki_sku": "2150725160607"
+    "reason": "",
+    "request_id": "1121456196340384958"
+  },
+  {
+    "track_id": "06e9fffedf3b4a179ccca85d2aa6f70b",
+    "state": "awaiting_approve",
+    "reason": "",
+    "request_id": "1121448919994696893"
+  },
+  {
+    "track_id": "4cd90cf9294047c9984c1a7f6a1c67de",
+    "state": "approved",
+    "reason": "",
+    "request_id": "1121447935453136060"
+  },
+  {
+    "track_id": "8c526ef8f8504f30ad330682d07a10a7",
+    "state": "rejected",
+    "reason": "{\"errors\":[{\"code\":420,\"data\":null,\"description\":\"Product code B0055QD0EC2 is not unique\",\"msg\":\"Mã seller product không duy nhất\",\"msg_eng\":\"Seller product code is not unique\"}],\"message\":\"Mã seller product không duy nhất\",\"trace_id\":null}"
   }
 ]
 ```
@@ -517,10 +522,10 @@ Retrieve detail of a single request
 
 ```json
 {
-  "track_id": "c3587ec50976497f837461e0c2ea3da5",
-  "state": "rejected",
-  "reason": "Image does not match product name",
-  "tiki_sku": null
+  "track_id": "4cd90cf9294047c9984c1a7f6a1c67de",
+  "request_id": "1121447935453136060",
+  "state": "approved",
+  "reason": ""
 }
 ```
 
