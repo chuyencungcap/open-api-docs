@@ -17,5 +17,4 @@ RUN bundle exec middleman build --clean
 
 FROM nginx
 RUN sed -i '/access_log/c\    access_log off;' /etc/nginx/nginx.conf
-COPY --from=builder /src/open-api-docs/source/gotadi /usr/share/nginx/html/
 COPY --from=builder /src/open-api-docs/build /usr/share/nginx/html/
