@@ -43,6 +43,7 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       "total_price_after_discount": 200000,
       "updated_at": "2019-10-30 17:27:24",
       "purchased_at": "2019-10-30 17:27:17",
+      "delivery_confirmed_at": "2019-10-30 18:57:40",
       "fulfillment_type": "dropship",
       "note": "",
       "is_rma": null,
@@ -53,7 +54,8 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       },
       "discount": {
         "discount_amount": 10,
-        "discount_coupon": 10
+        "discount_coupon": 10,
+        "discount_tiki_point": 0
       },
       "shipping": {
         "name": "hậu nguyễn",
@@ -214,12 +216,14 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
     "total_price_after_discount": 200000,
     "updated_at": "2019-10-30 17:27:24",
     "purchased_at": "2019-10-30 17:27:17",
+    "delivery_confirmed_at": "2019-10-30 18:57:40",
     "fulfillment_type": "dropship",
     "note": "",
     "is_rma": null,
     "discount": {
         "discount_amount": 0,
-        "discount_coupon": 0
+        "discount_coupon": 0,
+        "discount_tiki_point": 0
     },
     "tax": {
         "code": null,

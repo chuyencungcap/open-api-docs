@@ -29,11 +29,13 @@ GET https://api.tiki.vn/integration/v1/orders
             "updated_at": "2019-10-30 17:27:24",
             "purchased_at": "2019-10-30 17:27:17",
             "fulfillment_type": "seller_delivery",
+            "delivery_confirmed_at": "2019-10-30 18:57:40",
             "note": "",
             "is_rma": null,
             "discount": {
                 "discount_amount": 10000,
-                "discount_coupon": 1000
+                "discount_coupon": 1000,
+                "discount_tiki_point": 9000
             },
             "tax": {
                 "code": "123",
@@ -168,9 +170,14 @@ Example:
 | collectable_total_price     | total amount the shipper needs to collect from the customer      |
 | total_price_before_discount | Total order amount before discounts        |
 | total_price_after_discount  | Total order amount after applied discounts |
-| discount.discount_amount  | Total amount discount on the order |
+| discount.discount_amount  | Total amount discount on the order, _discount_amount_ =  _discount_coupon_ + _discount_tiki_point_|
+| discount.discount_coupon  | Total amount discount on the coupon |
+| discount.discount_tiki_point  | Total amount discount on the **TIKI point (*)**  |
 
-We have the recipe: _total_price_after_discount = total_price_before_discount + shipping_fee + handling_fee - discount_amount_
+
+* **TIKI point** is a currency unit that can be used for payment when buying goods online at TIKI.
+
+* We have the recipe: _total_price_after_discount = total_price_before_discount + shipping_fee + handling_fee - discount_amount_
 
 
 Example:
