@@ -13,6 +13,7 @@ The table below lists APIs that can be used for product management.
 | [Create Product Request](#create-product-request)| Create new a product request|
 | [Tracking latest product request](#tracking-latest-product-request)| Tracking latest request |
 | [Tracking a product request](#tracking-a-product-request)| Retrieve detail of a single request|
+| [Replay a product request](#replay-a-product-request)| Replay process of a single request from the beginning |
 | [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately|
 | [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)|
 | [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
@@ -564,6 +565,54 @@ Retrieve detail of a single request
 | **approved** | request is approved, product created successfully |
 | **rejected** | request is rejected, use tracking API for more information |
 | deleted | request is deleted, no more available in system |
+
+#### **Exception Case**
+
+| HTTP Code | message | Description |
+| :--- | :--- | :--- |
+| 500 | Internal server error | having error in server, can't serving |
+| 400 | Bad request | missing header or required params |
+| 401 | Unauthorized | your tiki-api token is not valid |
+| 404 | Not found | track_id is invalid |
+| 429 | Too Many Requests | Your rate limit is exceed |
+
+---------------------------------------------------------------------------------------------------------------
+
+### Replay a product request
+#### HTTP Request ####
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/tracking/{track_id}/replay</h6>
+	</div>
+</div>
+
+Replay process of a product request from the beginning
+
+> Response body: 
+
+```json
+{
+  "track_id": "4cd90cf9294047c9984c1a7f6a1c67de",
+  "state": "queuing"
+}
+```
+
+#### **Request**
+
+| Headers | Content-type | application/json |  |  |  |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  | tiki-api | seller token key \( contact Tiki supporter \) |  |  |  |
+| Path Parameters | Name | Type | Mandatory | Example | Description |
+| |version | String | Y | v1 | version of API |  |
+| |track\_id | String | Y | `4cd90cf9294047c9984c1a7f6a1c67de` | track_id of request get from product API |  |
+
+#### **Response**
+
+| Field | Type | Example | Description | Note |
+| :--- | :--- | :--- | :--- | :--- |
+| track\_id | String | `4cd90cf9294047c9984c1a7f6a1c67de` | track\_id to tracking this request |  |
+| state | String | queuing | current state of your request |  |
 
 #### **Exception Case**
 

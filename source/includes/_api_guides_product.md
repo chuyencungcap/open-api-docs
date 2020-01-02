@@ -412,6 +412,38 @@ Once your product request is created we will provide its `request_id` for you
 `track_id` will expire after 30 days. The tracking method is used to track the current state of the request in each campaign.
 If you want to manage requests made in the past, take a look at the [manage product request](#manage-product-request) method below
 
+## Replay product request
+
+> Replay product request example
+
+```http
+POST https://api.tiki.vn/integration/v1/tracking/4cd90cf9294047c9984c1a7f6a1c67de/replay
+```
+
+> Replay product request response
+
+```json
+{
+  "track_id": "4cd90cf9294047c9984c1a7f6a1c67de",
+  "state": "queuing"
+}
+```
+
+Your request has been rejected because of some unexpected reason like this :
+
+![](https://salt.tikicdn.com/ts/docs/d8/51/45/f3f2936a0677eab338fb0b3830a1a1a7.jpeg)
+
+maybe the network is unstable, the transform method doesn't work properly, ... you can try [replay it once again](#replay-a-product-request)
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>https://api.tiki.vn/integration/v1/tracking/{track_id}/replay</h6>
+	</div>
+</div>
+
+The state will return to `queuing` exactly like creating a product request but keep the `track_id`
+
 ## Manage product request
 
 ### 1. [Query the latest request info](#get-latest-product-request-info) (created successfully request only)
