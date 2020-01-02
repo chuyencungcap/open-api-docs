@@ -1,4 +1,4 @@
-FROM ruby:2.5.0-onbuild
+FROM ruby:2.7.0
 VOLUME /usr/src/app/source
 
 EXPOSE 4567
