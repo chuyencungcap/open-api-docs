@@ -612,7 +612,7 @@ Replay process of a product request from the beginning
 | Field | Type | Example | Description | Note |
 | :--- | :--- | :--- | :--- | :--- |
 | track\_id | String | `4cd90cf9294047c9984c1a7f6a1c67de` | track\_id to tracking this request |  |
-| state | String | processing | current state of your request |  |
+| state | String | queuing | current state of your request |  |
 
 #### **Exception Case**
 

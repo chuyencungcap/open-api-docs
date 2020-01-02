@@ -429,18 +429,18 @@ POST https://api.tiki.vn/integration/v1/tracking/4cd90cf9294047c9984c1a7f6a1c67d
 }
 ```
 
+Your request has been rejected because of some unexpected reason like this :
+
+![](https://salt.tikicdn.com/ts/docs/d8/51/45/f3f2936a0677eab338fb0b3830a1a1a7.jpeg)
+
+maybe the network is unstable, the transform method doesn't work properly, ... you can try [replay it once again](#replay-a-product-request)
+
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
 		<h6>https://api.tiki.vn/integration/v1/tracking/{track_id}/replay</h6>
 	</div>
 </div>
-
-Your request has been rejected because of some unexpected reason like this :
-
-![](https://salt.tikicdn.com/ts/docs/d8/51/45/f3f2936a0677eab338fb0b3830a1a1a7.jpeg)
-
-maybe the network is unstable, the transform method doesn't work properly, ... you can try [replay it once again](#replay-a-product-request)
 
 The state will return to `queuing` exactly like creating a product request but keep the `track_id`
 
