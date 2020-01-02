@@ -1,4 +1,4 @@
-FROM ruby:2.7.0 AS builder
+FROM ruby:2.4.1-onbuild
 
 WORKDIR /src/open-api-docs
 
