@@ -11,7 +11,7 @@ If you have any questions or suggestions please [create issues](https://github.c
 
 # Contributors
 
-This project is currently contributors by @hoa.nguyen2 and @ducanhnguyen19
+This project is currently contributors by [@hoa.nguyen2](https://github.com/hoank92) and [@ducanhnguyen19](https://github.com/ducanhnguyen19)
 
 # License
 This library is distributed under MIT license, see [LICENSE](LICENSE)
