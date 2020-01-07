@@ -362,3 +362,16 @@ In this example orders label you need note:
 * **2)**: the mode of payment that the user has used
 * **3)**: the address, phone of customer for delivery
 * **4)**: total amount shipper to be collected from customer
+
+## Test orders
+Currently we support you to test orders on the [sandbox environment](#making-your-first-request).
+
+![](https://salt.tikicdn.com/ts/files/fa/09/ef/2eaa89d563dfd406721968396ccde67e.png)
+
+**(1)** Seller get warehouses using api [get warehouses](#api-get-warehouses)
+
+**(2)** Seller pull order, using api [get list orders](#api-get-list-orders)
+
+**(3)** After pull order, seller will confirm each item in the list, using api [confirm order items](#api-confirm-order-items)
+
+**(4)** After seller delivery, seller will update delivery status using api [update delivery status](#api-update-delivery-status)
