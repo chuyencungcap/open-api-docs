@@ -29,11 +29,13 @@ GET https://api.tiki.vn/integration/v1/orders
             "updated_at": "2019-10-30 17:27:24",
             "purchased_at": "2019-10-30 17:27:17",
             "fulfillment_type": "seller_delivery",
+            "delivery_confirmed_at": "2019-10-30 18:57:40",
             "note": "",
             "is_rma": null,
             "discount": {
                 "discount_amount": 10000,
-                "discount_coupon": 1000
+                "discount_coupon": 1000,
+                "discount_tiki_point": 9000
             },
             "tax": {
                 "code": "123",
@@ -168,9 +170,14 @@ Example:
 | collectable_total_price     | total amount the shipper needs to collect from the customer      |
 | total_price_before_discount | Total order amount before discounts        |
 | total_price_after_discount  | Total order amount after applied discounts |
-| discount.discount_amount  | Total amount discount on the order |
+| discount.discount_amount  | Total amount discount on the order, _discount_amount_ =  _discount_coupon_ + _discount_tiki_point_|
+| discount.discount_coupon  | Total amount discount on the coupon |
+| discount.discount_tiki_point  | Total amount discount on the **TIKI point (*)**  |
 
-We have the recipe: _total_price_after_discount = total_price_before_discount + shipping_fee + handling_fee - discount_amount_
+
+* **TIKI point** is a currency unit that can be used for payment when buying goods online at TIKI.
+
+* We have the recipe: _total_price_after_discount = total_price_before_discount + shipping_fee + handling_fee - discount_amount_
 
 
 Example:
@@ -355,3 +362,16 @@ In this example orders label you need note:
 * **2)**: the mode of payment that the user has used
 * **3)**: the address, phone of customer for delivery
 * **4)**: total amount shipper to be collected from customer
+
+## Test orders
+Currently we support you to test orders on the [sandbox environment](#making-your-first-request).
+
+![](https://salt.tikicdn.com/ts/files/fa/09/ef/2eaa89d563dfd406721968396ccde67e.png)
+
+**(1)** Seller get warehouses using api [get warehouses](#api-get-warehouses)
+
+**(2)** Seller pull order, using api [get list orders](#api-get-list-orders)
+
+**(3)** After pull order, seller will confirm each item in the list, using api [confirm order items](#api-confirm-order-items)
+
+**(4)** After seller delivery, seller will update delivery status using api [update delivery status](#api-update-delivery-status)

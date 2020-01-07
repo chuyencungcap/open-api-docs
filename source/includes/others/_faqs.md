@@ -17,3 +17,11 @@ We have compiled some frequently encountered mangrove errors below for your refe
 
 ### Q: If there are 2 items in an order in 2 different stores then how to do it?
 Do not worry, TIKI has supported all products in one order always in one warehouse
+
+### Q: I want to test the order, how to do?
+In step [test orders](#test-orders) we described, please follow the steps that we have instructed.
+
+### Q: If I have other technical questions about API, whom shall I contact for technical support?
+If you have any questions or suggestions please [create issues](https://github.com/tikivn/open-api-docs/issues), we will review and support you.
+
+

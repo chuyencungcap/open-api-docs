@@ -313,6 +313,12 @@ Via API, we provide some solution to confirm order & update delivery status step
       <td style="text-align:left">&quot;2019-07-02 18:56:29&quot;</td>
       <td style="text-align:left">Date-time when the order was placed</td>
     </tr>
+     <tr>
+          <td style="text-align:left">delivery_confirmed_at</td>
+          <td style="text-align:left">String</td>
+          <td style="text-align:left">&quot;2019-07-02 18:56:29&quot;</td>
+          <td style="text-align:left">Date-time when the order was success delivery</td>
+     </tr>
     <tr>
       <td style="text-align:left">fulfillment_type</td>
       <td style="text-align:left">String</td>
@@ -390,6 +396,12 @@ Via API, we provide some solution to confirm order & update delivery status step
 | :--- | :--- | :--- | :--- |
 | discount_amount | Long | 10000 | total amount discount |
 | discount_coupon | Long | 10000 | amount discount of coupon |
+| discount_tiki_point | Long | 0 | amount discount of tiki point |
+
+-> TIKI point is a currency unit that can be used for payment when buying goods online at TIKI.
+
+
+
 
 ### Tax
 
