@@ -440,7 +440,7 @@ Via API, we provide some solution to confirm order & update delivery status step
 | confirmed_at | String | "2019-07-03 09:18:08" | The time when the order item was confirmed |
 | must_confirmed_before_at | String | "2019-07-03 09:18:08" | Order must confirm before at that time |
 | **inventory_type**(*) | String | instock | is product inventory type |
-| discount | Object |  | discount info of item |
+| **discount**(*) | Object |  | discount info of item |
 
 ### Payment
 
