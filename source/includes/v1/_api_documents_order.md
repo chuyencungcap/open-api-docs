@@ -79,7 +79,12 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
           "confirmation_status": "waiting",
           "confirmed_at": "",
           "must_confirmed_before_at": "2019-10-31 12:00:00",
-          "inventory_type": "instock"
+          "inventory_type": "instock",
+          "discount": {
+            "discount_amount": 10,
+            "discount_coupon": 10,
+            "discount_tiki_point": 0
+          }
         }
       ],
       "payment": {
@@ -253,7 +258,12 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
             "confirmation_status": "seller_confirmed",
             "confirmed_at": "2019-11-01 10:07:58",
             "must_confirmed_before_at": "2019-11-01 23:59:59",
-            "inventory_type": "seller_backorder"
+            "inventory_type": "seller_backorder",
+            "discount": {
+                "discount_amount": 0,
+                "discount_coupon": 0,
+                "discount_tiki_point": 0
+            }
         }
     ],
     "payment": {

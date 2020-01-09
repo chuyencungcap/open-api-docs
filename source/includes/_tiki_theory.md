@@ -361,7 +361,7 @@ Via API, we provide some solution to confirm order & update delivery status step
       <td style="text-align:left"><b>discount</b>(*)</td>
       <td style="text-align:left">Object</td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">discount info</td>
+      <td style="text-align:left">discount info of order</td>
     </tr>
     <tr>
       <td style="text-align:left"><b>tax</b>(*)</td>
@@ -440,6 +440,7 @@ Via API, we provide some solution to confirm order & update delivery status step
 | confirmed_at | String | "2019-07-03 09:18:08" | The time when the order item was confirmed |
 | must_confirmed_before_at | String | "2019-07-03 09:18:08" | Order must confirm before at that time |
 | **inventory_type**(*) | String | instock | is product inventory type |
+| discount | Object |  | discount info of item |
 
 ### Payment
 

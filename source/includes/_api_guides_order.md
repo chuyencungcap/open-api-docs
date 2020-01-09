@@ -65,7 +65,12 @@ GET https://api.tiki.vn/integration/v1/orders
                     "confirmation_status": "seller_confirmed",
                     "confirmed_at": "2019-11-01 10:07:58",
                     "must_confirmed_before_at": "2019-11-01 23:59:59",
-                    "inventory_type": "seller_backorder"
+                    "inventory_type": "seller_backorder",
+                    "discount": {
+                        "discount_amount": 10000,
+                        "discount_coupon": 1000,
+                        "discount_tiki_point": 9000
+                    }
                 }
             ],
             "payment": {
@@ -106,9 +111,9 @@ In the informative [order](#order), we describe some important fields that you n
 
 |Field                        | Description                                |
 | --------------------------- | ------------------------------------------ |
-| tax.code                    | tax code of customer                       |
-| tax.name                    | tax name of customer                       |
-| tax.address                 | tax address of customer                    |
+| tax.code                    | tax code of customer add                       |
+| tax.name                    | tax name of customer add                     |
+| tax.address                 | tax address of customer add                  |
 
 Example:
 
@@ -194,6 +199,9 @@ Example:
 | --------------------------- | ------------------------------------------ |
 | item.original_sku           | the seller product code of item            |
 | item.must_confirmed_before_at | Orders item need to be confirmed before this time |
+| item.discount.discount_amount  | Total amount discount on the item, _discount_amount_ =  _discount_coupon_ + _discount_tiki_point_|
+| item.discount.discount_coupon  | Total amount discount on the item coupon |
+| item.discount.discount_tiki_point  | Total amount discount on the **TIKI point (*)**  |
 
 Example:
 
