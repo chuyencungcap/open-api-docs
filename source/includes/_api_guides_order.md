@@ -211,6 +211,11 @@ Example:
 
 ## Confirm an order
 
+When customer buy your product, TIKI have to make sure this product is still available in your warehouse. That's why confirm order is necessary
+
+### Confirm order flow
+![](https://salt.tikicdn.com/ts/docs/85/1f/19/58a018ffe15e9919d9c3e8fb67c41e8c.jpg)
+
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
