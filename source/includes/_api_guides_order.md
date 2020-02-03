@@ -372,7 +372,10 @@ In this example orders label you need note:
 * **4)**: total amount shipper to be collected from customer
 
 ## Test orders
-Currently we support you to test orders on the [sandbox environment](#making-your-first-request).
+
+Currently we support you to test orders on the [sandbox environment](#making-your-first-request)...
+In the sandbox environment, we have already created orders, with the scenarios we defined before, you follow the following steps to test orders.
+
 
 ![](https://salt.tikicdn.com/ts/files/fa/09/ef/2eaa89d563dfd406721968396ccde67e.png)
 
@@ -383,3 +386,13 @@ Currently we support you to test orders on the [sandbox environment](#making-you
 **(3)** After pull order, seller will confirm each item in the list, using api [confirm order items](#api-confirm-order-items)
 
 **(4)** After seller delivery, seller will update delivery status using api [update delivery status](#api-update-delivery-status)
+
+
+_Example get list orders:_
+![](https://salt.tikicdn.com/ts/files/8c/ae/f1/a099dac2cde5ff46dc274be9899eaae6.png)
+
+_Example confirm order items:_
+![](https://salt.tikicdn.com/ts/files/9c/7f/00/0b672565d1cfea852d2f84c1abc24cb2.png)
+
+_Example update delivery status:_
+![](https://salt.tikicdn.com/ts/files/02/a3/35/7b749250f7527a1ce9b365db054852b8.png)
