@@ -21,6 +21,9 @@ Once the status become approved , your product will be displayed in TIKI website
 ### Alright, you can create products on TIKI easily by following these steps:
 ![](https://salt.tikicdn.com/ts/docs/55/46/b0/63787d50bb047afeec1be984be0da3a7.png)
 
+### Create product request flow
+![](https://salt.tikicdn.com/ts/docs/a5/40/83/5d84ed60bd9e4250f09aca83431f453b.jpeg)
+
 ### 1. [Search TIKI categories using this endpoint](#get-categories) → map with your original category
 
 <div class="api-endpoint">
