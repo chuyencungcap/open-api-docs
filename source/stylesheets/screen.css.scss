@@ -103,6 +103,11 @@ html, body {
 
   .logo {
     margin-bottom: $logo-margin;
+    width: 100%;
+
+    > img {
+      max-width: 100%;
+    }
   }
 
   .search-results {
@@ -628,6 +633,12 @@ html, body {
   background-color: $code-bg;
 }
 
+.highlight {
+  .err {
+    color: #00ff22;
+  }
+}
+
 // Force code (<pre>) into the center column
 .center-column {
     float: left !important;
@@ -647,6 +658,36 @@ html, body {
     margin: 0 28px;
     left: 0;
   }
+
+  .api-endpoint {
+    float: left;
+    width: 70%;
+    margin-right: 0;
+
+    .endpoint-data {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    float: left;
+    width: 70%;
+    margin-right: 0;
+  }
+
+  blockquote {
+    > p {
+      padding: 9px 2em;
+    }
+  }
+}
+
+.medium-zoom-overlay {
+  z-index: 99;
+}
+
+.medium-zoom-image--opened {
+  z-index: 99;
 }
 
 @import 'api-endpoint';

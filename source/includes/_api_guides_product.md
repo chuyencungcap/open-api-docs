@@ -13,10 +13,10 @@ TIKI will update your request status step by step. Once the status become 'appro
 Maybe it can be rejected by some reason such as image invalid,attribute not found,... please check via [tracking method](#tracking-created-product-request),
 fix it then create a new one because product request was rejected can't be updated anymore
 
-![](https://salt.tikicdn.com/ts/docs/d4/00/06/b0a89796eb11796a3d38194dde902214.png) 
+![](https://salt.tikicdn.com/ts/docs/d4/00/06/b0a89796eb11796a3d38194dde902214.png)
 
 TIKI will update your product request status step by step.
-Once the status become approved , your product will be displayed in TIKI website immediately. 
+Once the status become approved , your product will be displayed in TIKI website immediately.
 
 ### Alright, you can create products on TIKI easily by following these steps:
 ![](https://salt.tikicdn.com/ts/docs/55/46/b0/63787d50bb047afeec1be984be0da3a7.png)
@@ -39,7 +39,7 @@ Once the status become approved , your product will be displayed in TIKI website
 GET https://api.tiki.vn/integration/v1/categories
 ```
 
-> sample categories 
+> sample categories
 
 ```json
 [
@@ -69,9 +69,9 @@ GET https://api.tiki.vn/integration/v1/categories
     - travel over categories tree : [https://api.tiki.vn/integration/v1/categories?parent=17166](https://api.tiki.vn/integration/v1/categories?parent=17166)
 
 - Until you got a primary category have `"primary": 1` in response.
-It's the smallest unit used to classify products at TIKI, one product belong to exactly one primary category. 
+It's the smallest unit used to classify products at TIKI, one product belong to exactly one primary category.
 - Save the **category_id** to use it later
-   
+
 ### 2. Get attribute from primary category you chosen → map with your original attribute
 
 <div class="api-endpoint">
@@ -118,7 +118,7 @@ GET https://api.tiki.vn/integration/v1/categories/20768
 * Note that only the primary category has the attribute to make the product request
 * Each category have some required attribute like `origin` have `"is_required": 1`. You have to complete this field base on our example.
 * But your side don't have anything to map to these or you still don't have any idea about this then I can give you a small tips.
-It is you can complete required attribute with a dummy data like `updating` maybe it can bypass our automate review but I have to warn you if you abuse this TIKI content reviewer may reject your product request.  
+It is you can complete required attribute with a dummy data like `updating` maybe it can bypass our automate review but I have to warn you if you abuse this TIKI content reviewer may reject your product request.
 
 ### 3. Ask Tiki supporter for your inventory_type and supplier
 
@@ -129,7 +129,7 @@ You don't even need to know what is your inventory type because we will use the 
 
 And if you still want to learn more about TIKI system , you can refer to the following definition :
 
-* [inventory_type](#inventory-type) is a selected value answer some question 
+* [inventory_type](#inventory-type) is a selected value answer some question
     * "Where are you from?"
     * "Tiki or seller have to bring product to the customer"
     * "TIKI come seller 's warehouse to take product or seller bring product to TIKI 's warehouse?"
@@ -138,7 +138,7 @@ And if you still want to learn more about TIKI system , you can refer to the fol
 
 Note : In the case you have only one inventory type, TIKI will choose it as default value so you can ignore this field
 
-### 4. Let's [create product request](#create-product-request).  
+### 4. Let's [create product request](#create-product-request).
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -190,11 +190,11 @@ POST https://api.tiki.vn/integration/v1/requests
  }
 ```
 
-Do you still remember these values I said you need to save before? 
+Do you still remember these values I said you need to save before?
 
 They are `category_id` , `attributes`, `inventory_type` , `supplier`
 
-You also have to provide some more field : 
+You also have to provide some more field :
 
 * Name: the name of product that is displayed on TIKI
 * Price: the sell price of a product
@@ -205,17 +205,17 @@ You also have to provide some more field :
 * Images: the image gallery of product on TIKI
 * The other attributes are based on the category of products, like RAM/CPU/Screen. That's why you need to choose category carefully at first
 
-There are two kinds of product at TIKI: simple product and configurable products. 
+There are two kinds of product at TIKI: simple product and configurable products.
 
 * **Simple products** are the products that has attributes and only one instance/variant
 * **Configurable products** are the products that has many variants.
 
 Configurable products has many variants. Example: an iPhone has many variants differ by colors.
-They are called **option_attributes**. 
+They are called **option_attributes**.
 
 ![](https://i.imgur.com/EaZ1z0c.png)
 
-### 5. If you want to create a configurable product 
+### 5. If you want to create a configurable product
 
 > configurable product request body ( configurable product - 2 or more sku )
 
@@ -272,7 +272,7 @@ They are called **option_attributes**.
 
 With configurable products:
 
-* A configurable product has many **variants** and each variant maybe has its own attribute (examples : name, color...) 
+* A configurable product has many **variants** and each variant maybe has its own attribute (examples : name, color...)
 * The attributes that are used to differentiate two variants, are named **option attributes**. Example a T Shirt differ two variants by color and size but a phone differ by RAM & screen size.
 
 Please fill data in option_attributes and option1,option2 field.
@@ -280,7 +280,7 @@ Tiki support up to 2 option attributes ( size, color , capacity , ... )
 so if you have products with more than 2, combine them or create separate products before making a product request.
 
 Example : you are selling iPhone by
- 
+
 - Model : 7, 8, XS, XS max, ..
 - Color : Black , White , Gold , ...
 - Storage : 32GB , 64GB , 128GB
@@ -319,13 +319,13 @@ Example : Product is iPhone have `"option_attributes":["color","storage"]` so yo
 
 + **option1**, **option2** is required corresponding with the number of option attributes start from 1.
 
-    The unused option value maybe null or empty or even don't need to appear.That's why it's mandatory still equal "no"  
+    The unused option value maybe null or empty or even don't need to appear.That's why it's mandatory still equal "no"
 
 + **Override rule** describe how transform system will treat your product request if any field is conflict between variant and parent product.
 
     By default child product will inherit all of member from its parent.
 
-* No : Field can't not override 
+* No : Field can't not override
 * Replace : Field of variant will replace the parent one.
 * Merge : **attributes** will merged from both side.
 
@@ -339,7 +339,7 @@ This response means that your product request has been queued for processing.
 If there are not too many requests then it will probably be done right away
 
 Then use tracking_id to track the next state of the request. Maybe you can be received an error like this
-,just fix your payload based on the reason, after that send a new product request. Everything will be fine 
+,just fix your payload based on the reason, after that send a new product request. Everything will be fine
 
 ![](https://salt.tikicdn.com/ts/docs/a6/b4/bd/b3cc323014a3d2f4eb1a28b6c3b8898a.png)
 
@@ -358,7 +358,7 @@ After both TIKI and seller confirm testing completed we will set the state to au
 ![](https://salt.tikicdn.com/ts/docs/b0/ce/15/3ba9f951e6dcca74fcdcf6c1b3f2e0b2.png)
 
 Your job is done, normally you will receive results after 2 to 3 hours of work.
-By the time the status of the product request becomes approved, your product is ready on the TIKI website 
+By the time the status of the product request becomes approved, your product is ready on the TIKI website
 
 ### 7. Some common error while create product request
 
@@ -382,7 +382,7 @@ After TIKI received your product request then you can track its current status b
 
 When your product request state is queuing , it means your request just received . You can refer [product request status flow](#tiki-product-request-status-flow) here.
 
-![](https://salt.tikicdn.com/ts/docs/b4/63/37/1a065637ded38bbd3373eee0c4832961.png) 
+![](https://salt.tikicdn.com/ts/docs/b4/63/37/1a065637ded38bbd3373eee0c4832961.png)
 
 - note that **drafted** is a temporary state only appear in test environment . In production your product request will be redirected directly into **awaiting_approve** . Your task finish once request 's state become drafted/awaiting_approve
 - while your request is on flow , it maybe become **rejected** by some reason , please check it
@@ -457,7 +457,7 @@ The state will return to `queuing` exactly like creating a product request but k
 GET https://api.tiki.vn/integration/v1/requests
 ```
 
-> sample product request  
+> sample product request
 
 ```json
 {
@@ -668,7 +668,7 @@ GET https://api.tiki.vn/integration/v1/requests/1121456196340384958
 		<h6>https://api.tiki.vn/integration/v1/requests?state=approved</h6>
 	</div>
 </div>
- 
+
 ### 2. [Query a product request by request_id](#get-a-product-request-info) from TIKI system
 
 You can get `request_id` through TIKI seller center or our latest product request method
@@ -691,8 +691,8 @@ You can get `request_id` through TIKI seller center or our latest product reques
 
 ## Delete a request
 
-If you want to reject your request by yourself because you pushed wrong data 
-or you want to delete old request before to create a new one 
+If you want to reject your request by yourself because you pushed wrong data
+or you want to delete old request before to create a new one
 or maybe you don't want to see it in the query list anymore. So we provide you 2 method to do it.
 
 - Delete by request_id
@@ -793,7 +793,7 @@ GET https://api.tiki.vn/integration/v1/products
 
 After all , your requests are approved , they become TIKI product :D And now you want to manage them ? "How many product do I have? Where are they ?" So we have some method for you :
 
-### 1. [Get all of your product](#get-latest-products) : 
+### 1. [Get all of your product](#get-latest-products) :
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -811,7 +811,7 @@ After all , your requests are approved , they become TIKI product :D And now you
 	</div>
 </div>
 
-### 3. [Get your product by your original_sku](#get-a-product-by-original-sku) : 
+### 3. [Get your product by your original_sku](#get-a-product-by-original-sku) :
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -840,7 +840,7 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
 ```
 
 Unfortunately, we only can provide method to [update price, quantity, active](#update-variant-price-quantity-active) but we have a good new for you that your request will be approved automatically.
-Note that in this API you have to use your original sku from your system to update this product. You can update price only , active only or mix them up depend on your choice, ... 
+Note that in this API you have to use your original sku from your system to update this product. You can update price only , active only or mix them up depend on your choice, ...
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
