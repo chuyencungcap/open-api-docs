@@ -356,9 +356,9 @@ html, body {
   }
 
   // the div is the tocify hidden div for placeholding stuff
-  &>h1, &>h2, &>h3, &>div {
-    clear:both;
-  }
+  // &>h1, &>h2, &>h3, &>div {
+  //   clear:both;
+  // }
 
   h1 {
     @extend %header-font;
@@ -385,7 +385,8 @@ html, body {
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    // background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    clear: both;
   }
 
   h3 {
@@ -395,7 +396,7 @@ html, body {
     margin-bottom: 0;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    // background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -660,7 +661,7 @@ html, body {
   }
 
   .api-endpoint {
-    float: left;
+    // float: left;
     width: 70%;
     margin-right: 0;
 
@@ -670,8 +671,8 @@ html, body {
   }
 
   h3 {
-    float: left;
-    width: 70%;
+    // float: left;
+    // width: 70%;
     margin-right: 0;
   }
 
