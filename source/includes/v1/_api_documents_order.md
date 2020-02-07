@@ -175,10 +175,26 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       <td style="text-align:left">20</td>
       <td style="text-align:left">Number of records per page</td>
     </tr>
+     <tr>
+          <td style="text-align:left"></td>
+          <td style="text-align:left">created_from_date</td>
+          <td style="text-align:left">String</td>
+          <td style="text-align:left">N</td>
+          <td style="text-align:left">2019-07-22 15:00:00</td>
+          <td style="text-align:left"></td>
+          <td style="text-align:left">query order created from date</td>
+     </tr>
+      <tr>
+               <td style="text-align:left"></td>
+               <td style="text-align:left">created_to_date</td>
+               <td style="text-align:left">String</td>
+               <td style="text-align:left">N</td>
+               <td style="text-align:left">2019-08-22 15:00:00</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left">query order created to date</td>
+          </tr>
   </tbody>
 </table>
-
-_**Note**_: We support query data 30 days latest at most.
 
 #### **Response:** 
 

@@ -1,6 +1,6 @@
 ## Get list orders
 
-The API used when you want to get the order list from TIKI.
+The API used when you want to get the [list orders](#api-get-list-orders) from TIKI.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -93,8 +93,6 @@ GET https://api.tiki.vn/integration/v1/orders
 }
 ```
 
-We only support [get list orders](#api-get-list-orders) of the last 30 days.
-
 By default, you will get orders in the queueing state, queueing is state order waiting for confirmation
 
 In addition to status queueing, we support you to query according to some of the status below:
@@ -105,6 +103,13 @@ In addition to status queueing, we support you to query according to some of the
 | seller_canceled             | Seller has canceled this order before      | Get list order canceled |
 | complete                    | The order has been delivered successfully  | Get list order complete |
 
+
+You can query orders by the time created:
+
+* _created_from_date_: format _yyyy-MM-dd HH:mm:ss_, example: 2019-07-25 17:21:17
+    
+* _created_to_date_: format _yyyy-MM-dd HH:mm:ss_, example: 2019-07-25 17:21:17
+ 
 In the informative [order](#order), we describe some important fields that you need to pay attention to:
 
 #### tax
