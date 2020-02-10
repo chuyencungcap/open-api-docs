@@ -99,8 +99,8 @@ In addition to status queueing, we support you to query according to some of the
 
 | Status                      | Description                                | User for |
 | --------------------------- | ------------------------------------------ | -------- |
-| seller_confirmed            | Seller has confirmed this order before     | Get list order confirmed |
-| seller_canceled             | Seller has canceled this order before      | Get list order canceled |
+| seller_confirmed            | Seller has confirmed this order before     | Get list order seller has confirmed |
+| seller_canceled             | Seller has canceled this order before      | Get list order seller has canceled |
 | complete                    | The order has been delivered successfully  | Get list order complete |
 
 
