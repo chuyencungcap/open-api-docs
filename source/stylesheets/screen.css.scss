@@ -559,6 +559,8 @@ html, body {
     padding-top: 2em;
     padding-bottom: 2em;
     padding: 2em $main-padding;
+    max-height: 500px;
+    overflow: auto;
   }
 
   blockquote {
