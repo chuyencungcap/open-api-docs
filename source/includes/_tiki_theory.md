@@ -472,3 +472,4 @@ Via API, we provide some solution to confirm order & update delivery status step
 | ready_to_ship | len_ke| ready to ship | đơn hàng sẵn sàng được giao |
 | payment_review | payment_review | payment review |  |
 | returned | returned |  | đơn hàng đã được trả |
+| finished_packing | dong_goi_xong | finished packing | đơn hàng đã đóng gói xong |
