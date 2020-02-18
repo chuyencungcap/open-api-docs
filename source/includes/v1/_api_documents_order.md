@@ -154,6 +154,8 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
           <li>seller_confirmed</li>
           <li>seller_canceled</li>
           <li>complete</li>
+          <li>successful_delivery</li>
+          <li>all</li>
         </ul>
       </td>
     </tr>

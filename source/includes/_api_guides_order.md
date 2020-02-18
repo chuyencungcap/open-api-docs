@@ -101,7 +101,10 @@ In addition to status queueing, we support you to query according to some of the
 | --------------------------- | ------------------------------------------ | -------- |
 | seller_confirmed            | Seller has confirmed this order before     | Get list order seller has confirmed |
 | seller_canceled             | Seller has canceled this order before      | Get list order seller has canceled |
-| complete                    | The order has been delivered successfully  | Get list order complete |
+| successful_delivery         | The order has been delivered successfully  | Get list order delivery successfully |
+| complete                    | The order has been complete                | Get list order complete |
+| all                         | Get all order                              | Get all order  |
+
 
 
 You can query orders by the time created:
