@@ -820,6 +820,15 @@ After all , your requests are approved , they become TIKI product :D And now you
 	</div>
 </div>
 
+### 4. [Get your product by active status](#get-product-by-active-status) :
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/products?active={active}</h6>
+	</div>
+</div>
+
 ## Update product information
 
 > Update price, quantity, active example
