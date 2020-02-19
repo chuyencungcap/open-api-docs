@@ -18,7 +18,6 @@ The table below lists APIs that can be used for product management.
 | [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)|
 | [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
 | [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
-| [Get a product by active status](#get-a-product-by-active-status)| Get a product by active status|
 | [Get latest product request 's info](#get-latest-product-request-info)| Get all of product requests order by created_at desc (latest request)|
 | [Get a product request info](#get-a-product-request-info)| Get a request with request_id from TIKI system|
 | [Get a product request info by track id](#get-a-product-request-by-track-id)| Get a product match with seller original sku|
@@ -782,6 +781,8 @@ GET https://api.tiki.vn/integration/v1/products
 | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Body Parameters | Name | Type | Mandatory | Description |
+|  | active | Integer | N | current active of products that you want to filter ( 1 = active , 0 = inactive ) |
+|  | category_id | Integer | N | id of the primary category you want to filter |
 |  | page | Integer | N | move to the page you choose in the data set, default 1|
 |  | limit | Integer | N | number result per page, default 20 |
 
@@ -983,107 +984,6 @@ GET https://api.tiki.vn/integration/v1/products/findBy?original_sku=YOUR_ORIGINA
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Request Parameters | Name | Type | Mandatory | Description |
 |  | original_sku | Integer | Y | The original sku from seller side |
-
-#### **Response**
-
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| data | List<**Product**> | see more detail below | list query result |
-| paging | Paging | see more detail below | page information of this query |
-
-#### **Exception Case**
-
-| HTTP Code | message | Description |
-| :--- | :--- | :--- |
-| 500 | Internal server error | having error in server, can't serving |
-| 400 | Bad request | your request is invalid |
-| 429 | Too Many Requests | Your rate limit is exceed |
-
-### Get product by active status
-#### HTTP Request ####
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/{version}/products?active={active}</h6>
-	</div>
-</div>
-
-Get all of product filtered by active order by created_at desc
-
-> Example
-
-```http
-GET https://api.tiki.vn/integration/v1/products?active=0
-```
-
-> Response body
-
-```json
-{
-  "data": [
-    {
-      "sku": "4833677185901",
-      "master_sku": "2629421073875",
-      "master_id": 2088335,
-      "super_sku": "",
-      "super_id": 0,
-      "name": "test product name",
-      "entity_type": "seller_simple",
-      "type": "simple",
-      "active": 0,
-      "price": 20000,
-      "created_at": "2019-12-09 15:25:36",
-      "created_by": "admin@tiki.vn",
-      "product_id": 2088336,
-      "original_sku": "YOUR_ORIGINAL_SKU_123",
-      "market_price": 20000,
-      "version": 5,
-      "thumbnail": "https://uat.tikicdn.com/ts/product/83/f7/55/81986fa898d5b864f08de0186ad0f4e1.jpg",
-      "images": [
-        {
-          "id": 47932612,
-          "url": "https://uat.tikicdn.com/ts/product/83/f7/55/81986fa898d5b864f08de0186ad0f4e1.jpg",
-          "path": "product/83/f7/55/81986fa898d5b864f08de0186ad0f4e1.jpg",
-          "position": 0,
-          "width": 1200,
-          "height": 1200
-        }
-      ],
-      "categories": [
-        {
-          "id": 1789,
-          "name": "Điện Thoại - Máy Tính Bảng",
-          "url_key": "dien-thoai-may-tinh-bang",
-          "is_primary": false
-        },
-        {
-          "id": 1795,
-          "name": "Điện thoại smartphone",
-          "url_key": "dien-thoai-smartphone",
-          "is_primary": true
-        }
-      ]
-    }
-  ],
-  "paging": {
-    "total": 1,
-    "current_page": 1,
-    "from": 0,
-    "to": 20,
-    "per_page": 20,
-    "last_page": 1
-  }
-}
-```
-#### **Request**
-
-| Headers | Content-type | application/json |  |  |
-| :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
-| Body Parameters | Name | Type | Mandatory | Description |
-|  | active | Integer | N | the active status you want to filter , accept 0 or 1 |
-|  | page | Integer | N | move to the page you choose in the data set, default 1|
-|  | limit | Integer | N | number result per page, default 20 |
 
 #### **Response**
 
