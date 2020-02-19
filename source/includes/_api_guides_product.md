@@ -802,6 +802,22 @@ After all , your requests are approved , they become TIKI product :D And now you
 	</div>
 </div>
 
+you can filter those request by `category_id` or `active` or combine them base on your purpose
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/products?active={active}</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/products?category_id={category_id}</h6>
+	</div>
+</div>
+
 ### 2. [Get your product by TIKI product_id](#get-a-product)  :
 
 <div class="api-endpoint">
@@ -817,15 +833,6 @@ After all , your requests are approved , they become TIKI product :D And now you
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
 		<h6>https://api.tiki.vn/integration/v1/products/findBy?original_sku={original_sku}</h6>
-	</div>
-</div>
-
-### 4. [Get your product by active status](#get-product-by-active-status) :
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/products?active={active}</h6>
 	</div>
 </div>
 
