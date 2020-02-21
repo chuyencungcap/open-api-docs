@@ -15,6 +15,7 @@ The table below lists APIs that can be used for product management.
 | [Tracking a product request](#tracking-a-product-request)| Retrieve detail of a single request|
 | [Replay a product request](#replay-a-product-request)| Replay process of a single request from the beginning |
 | [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately|
+| [Update product market_price/image/images](#update-market-price-images)| Update market_price/image/images via update product request|
 | [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)|
 | [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
 | [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
@@ -1100,7 +1101,57 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 | 400 | Bad request | your request is invalid |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
+-----
 
+### Update market price / images
+
+#### HTTP Request ####
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/products/updateProductInfo</h6>
+	</div>
+</div>
+
+Update market_price , image ( thumbnail ) , images ( product media ) of product
+
+> Example
+
+```http
+POST https://api.tiki.vn/integration/v1/products/updateProductInfo
+```
+
+> Response body
+
+```json
+{
+    "track_id": "650bc7a64bf7473cbb4bc322c554f754",
+    "state": "queuing"
+}
+```
+#### **Request**
+
+| Headers | Content-type | application/json |  |  |
+| :--- | :--- | :--- | :--- | :--- |
+|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
+| Path Parameters | Name | Type | Mandatory | Description |
+|  | version | String | Y | version of API|
+
+#### **Response**
+
+| Field | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| track_id | String | `c3587ec50976497f837461e0c2ea3da5` | track_id to tracking this request |
+| state | String | queuing | current state of your request |
+
+#### **Exception Case**
+
+| HTTP Code | message | Description |
+| :--- | :--- | :--- |
+| 500 | Internal server error | having error in server, can't serving |
+| 400 | Bad request | your request is invalid |
+| 404 | Not found | product_id not found |
+| 429 | Too Many Requests | Your rate limit is exceed |
 
 ### Get a product request info
 #### HTTP Request ####
