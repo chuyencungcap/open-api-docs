@@ -900,7 +900,17 @@ POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
 
 This API use to [update market_price , image thumbnal or list images media](#update-market-price-images).
 base on TIKI policy , those is shared value among all seller that seller this product so we need to review it
-your request will be created as update product request. You can tracking it via [tracking endpoint](#tracking-product-request)
+your request will be created as update product request.
+
+- You can tracking update product request via [tracking endpoint](#tracking-product-request)
+- You can [get request detail](#get-a-product-request-info) as normal product request 
+
+The good news for you is the flow of updating product is simpler and faster than the flow of creating new product.
+The flow of state is almost like creating new product, but different from the last two.
+Just by the time you drink a cup of coffee, your product has been updated
+
+* `update_product_awaiting_approve` instead of `awaiting_approve`
+* `update_product_approved` instead of `approved`
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
