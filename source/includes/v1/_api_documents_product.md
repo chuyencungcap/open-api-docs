@@ -1109,7 +1109,7 @@ GET https://api.tiki.vn/integration/v1/requests?state=approved
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>https://api.tiki.vn/integration/{version}/products/updateProductInfo</h6>
+		<h6>https://api.tiki.vn/integration/{version}/requests/updateProductInfo</h6>
 	</div>
 </div>
 
@@ -1118,7 +1118,7 @@ Update market_price , image ( thumbnail ) , images ( product media ) of product
 > Example
 
 ```http
-POST https://api.tiki.vn/integration/v1/products/updateProductInfo
+POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
 ```
 
 > Response body
