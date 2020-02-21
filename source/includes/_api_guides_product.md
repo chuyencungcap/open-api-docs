@@ -879,7 +879,7 @@ You can update price only , active only or mix them up depend on your choice, ..
 > Update market_price , image , images example
 
 ```http
-POST https://api.tiki.vn/integration/v1/products/updateProductInfo
+POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
 ```
 
 > Update market_price , image , images request body
@@ -905,14 +905,14 @@ your request will be created as update product request. You can tracking it via 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>https://api.tiki.vn/integration/v1/products/updateProductInfo</h6>
+		<h6>https://api.tiki.vn/integration/v1/requests/updateProductInfo</h6>
 	</div>
 </div>
 
 > Update market_price , image , images example
 
 ```http
-POST https://api.tiki.vn/integration/v1/products/updateProductInfo
+POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
 ```
 
 > Update market_price , image , images request body
