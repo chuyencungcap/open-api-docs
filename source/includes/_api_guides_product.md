@@ -10,7 +10,7 @@ Because Tiki need to review your product data, document... both automatically an
 TIKI product data is different from your original data so we need to transform it a bit. Base on [TIKI 's product structure](#tiki-product-structure) each variant will be become a brand new Tiki product. It means 1 product request made from 1 product from your side can create one or more product in Tiki side.
 
 TIKI will update your request status step by step. Once the status become 'approved', your products will be displayed in TIKI website immediately.
-Maybe it can be rejected by some reason such as image invalid,attribute not found,... please check via [tracking method](#tracking-created-product-request),
+Maybe it can be rejected by some reason such as image invalid,attribute not found,... please check via [tracking method](#tracking-product-request),
 fix it then create a new one because product request was rejected can't be updated anymore
 
 ![](https://salt.tikicdn.com/ts/docs/d4/00/06/b0a89796eb11796a3d38194dde902214.png)
@@ -838,6 +838,13 @@ you can filter those request by `category_id` or `active` or combine them base o
 
 ## Update product information
 
+At the present time we provide several solutions to update product information.
+Based on the product structure and TIKI policy related to product management, attributes, categories, legal, etc. 
+Depending on the field you want to update, you need to use the corresponding API, to avoid unnecessary confusion.
+Please read carefully and use the correct API endpoint you need
+
+----------------------
+
 > Update price, quantity, active example
 
 ```http
@@ -855,8 +862,10 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
 }
 ```
 
-Unfortunately, we only can provide method to [update price, quantity, active](#update-variant-price-quantity-active) but we have a good new for you that your request will be approved automatically.
-Note that in this API you have to use your original sku from your system to update this product. You can update price only , active only or mix them up depend on your choice, ...
+This API use to [update price, quantity, active](#update-variant-price-quantity-active).
+Your request will be approved automatically.
+Note that in this API you have to use your original sku from your system to update this product.
+You can update price only , active only or mix them up depend on your choice, ...
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -865,4 +874,59 @@ Note that in this API you have to use your original sku from your system to upda
 	</div>
 </div>
 
-We will continue supporting some other method in the near future , please contribute us for the best user experience
+----------------------
+
+> Update market_price , image , images example
+
+```http
+POST https://api.tiki.vn/integration/v1/products/updateProductInfo
+```
+
+> Update market_price , image , images request body
+
+```json
+{
+    "product_id": 2138351,
+    "market_price": 7000000,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71rBcMwMq4L._SS500_.jpg",
+    "images": [
+        "https://images-na.ssl-images-amazon.com/images/I/31%2BtDPe1XfL._SS500_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/61vGd9wTrxL._SS500_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/61sTz%2BhRd4L._SS500_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/41gOwCRsQ7L._SS500_.jpg"
+    ]
+}
+```
+
+This API use to [update market_price , image thumbnal or list images media](#update-market-price-images).
+base on TIKI policy , those is shared value among all seller that seller this product so we need to review it
+your request will be created as update product request. You can tracking it via [tracking endpoint](#tracking-product-request)
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>https://api.tiki.vn/integration/v1/products/updateProductInfo</h6>
+	</div>
+</div>
+
+> Update market_price , image , images example
+
+```http
+POST https://api.tiki.vn/integration/v1/products/updateProductInfo
+```
+
+> Update market_price , image , images request body
+
+```json
+{
+    "product_id": 2138351,
+    "market_price": 7000000,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71rBcMwMq4L._SS500_.jpg",
+    "images": [
+        "https://images-na.ssl-images-amazon.com/images/I/31%2BtDPe1XfL._SS500_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/61vGd9wTrxL._SS500_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/61sTz%2BhRd4L._SS500_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/41gOwCRsQ7L._SS500_.jpg"
+    ]
+}
+```
