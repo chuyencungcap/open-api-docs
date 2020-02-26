@@ -144,7 +144,8 @@ Example:
 
 #### shipping
 info of customer such as address, email, phone,
-Based on TIKI's commitment to confidentiality with customers, we can only publish personal information such as email and phone numbers if you register as seller delivery
+Based on TIKI's commitment to confidentiality with customers,
+we can only publish personal information if you register as `seller_delivery` or `cross_border`
 
 |Field                        | Description                                |
 | --------------------------- | ------------------------------------------ |
