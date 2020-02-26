@@ -144,7 +144,8 @@ Example:
 
 #### shipping
 info of customer such as address, email, phone,
-Based on TIKI's commitment to confidentiality with customers, we can only publish personal information such as email and phone numbers if you register as seller delivery
+Based on TIKI's commitment to confidentiality with customers,
+we can only publish personal information if you register as `seller_delivery` or `cross_border`
 
 |Field                        | Description                                |
 | --------------------------- | ------------------------------------------ |
@@ -359,7 +360,8 @@ _**Note**_: If you want to cancel your order, please contact seller support for 
 	</div>
 </div>
 
-[This API](#print-order-labels) is used when you are **seller delivery**, it is used to print order label for shipping.
+[This API](#print-order-labels) is used when your order are **seller delivery** or **cross_border**, it is used to print order label for shipping.
+This contains shipping information only so if your order does not fall into these two type you can simply ignore this endpoint
 
 ```shell
 curl --location --request GET 'https://api-sandbox.tiki.vn/integration/v1/orders/905205190/print' \
