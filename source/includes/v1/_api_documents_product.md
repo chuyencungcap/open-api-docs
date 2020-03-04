@@ -824,57 +824,110 @@ GET https://api.tiki.vn/integration/v1/products/2088336
 
 ```json
 {
-  "data": [
+  "product_id": 2161924,
+  "sku": "9681994505422",
+  "name": "this is name of product",
+  "master_id": 2161922,
+  "master_sku": "6517788457451",
+  "super_id": 0,
+  "super_sku": "",
+  "active": 1,
+  "original_sku": "RANDOMSKU22234",
+  "type": "simple",
+  "entity_type": "seller_simple",
+  "price": 188888,
+  "market_price": 188888,
+  "created_at": "1582283329",
+  "thumbnail": "https://uat.tikicdn.com/ts/product/01/36/1a/74a7bdb5ce15eea063676827c0a47e64.jpg",
+  "attributes": {
+    "brand_country": {
+      "id": 630911,
+      "value": "vn"
+    },
+    "small_image": "product/01/36/1a/74a7bdb5ce15eea063676827c0a47e64.jpg",
+    "description": "this is description",
+    "giftwrap": 1,
+    "included_accessories": "nothing",
+    "support_subscriptions": 1,
+    "warranty_and_service": "mô tả bảo hành",
+    "option1": "xxx",
+    "brand": {
+      "exclusive_seller_id": 0,
+      "id": 609313,
+      "is_document_required": 0,
+      "listdata_id": 609313,
+      "status": 1,
+      "thumbnail": "",
+      "url_key": "thuong-hieu/abc.html",
+      "value": "abc"
+    },
+    "url_path": "san-pham-de-test-update-attribute-qua-integration-p2161922.html",
+    "image": "product/01/36/1a/74a7bdb5ce15eea063676827c0a47e64.jpg",
+    "support_p2h_delivery": 1,
+    "thumbnail": "product/01/36/1a/74a7bdb5ce15eea063676827c0a47e64.jpg",
+    "product_volume_metric": "111",
+    "cost": 20000,
+    "support_cod": 1,
+    "visibility": 4,
+    "is_advertisable_gg": 1,
+    "rma_status": 1,
+    "dropship": 1,
+    "url_key": "san-pham-de-test-update-attribute-qua-integration-p2161922",
+    "po_type": {
+      "id": 111134,
+      "value": "marketplace"
+    },
+    "is_free_gift": {
+      "id": 31828,
+      "value": "Không"
+    },
+    "unit": {
+      "id": 28014,
+      "value": "Cái"
+    },
+    "name": "sản phẩm để test update attribute qua integration",
+    "product_weight_kg": "0.2",
+    "product_length": "10",
+    "product_top_features": "đồng hồ đẹp-10",
+    "status": 1
+  },
+  "images": [
     {
-      "sku": "4833677185901",
-      "master_sku": "2629421073875",
-      "master_id": 2088335,
-      "super_sku": "",
-      "super_id": 0,
-      "name": "test product name",
-      "entity_type": "seller_simple",
-      "type": "simple",
-      "price": 20000,
-      "created_at": "2019-12-09 15:25:36",
-      "created_by": "admin@tiki.vn",
-      "product_id": 2088336,
-      "original_sku": "YOUR_ORIGINAL_SKU_123",
-      "market_price": 20000,
-      "version": 5,
-      "thumbnail": "https://uat.tikicdn.com/ts/product/83/f7/55/81986fa898d5b864f08de0186ad0f4e1.jpg",
-      "images": [
-        {
-          "id": 47932612,
-          "url": "https://uat.tikicdn.com/ts/product/83/f7/55/81986fa898d5b864f08de0186ad0f4e1.jpg",
-          "path": "product/83/f7/55/81986fa898d5b864f08de0186ad0f4e1.jpg",
-          "position": 0,
-          "width": 1200,
-          "height": 1200
-        }
-      ],
-      "categories": [
-        {
-          "id": 1789,
-          "name": "Điện Thoại - Máy Tính Bảng",
-          "url_key": "dien-thoai-may-tinh-bang",
-          "is_primary": false
-        },
-        {
-          "id": 1795,
-          "name": "Điện thoại smartphone",
-          "url_key": "dien-thoai-smartphone",
-          "is_primary": true
-        }
-      ]
+      "url": "https://uat.tikicdn.com/ts/product/01/36/1a/74a7bdb5ce15eea063676827c0a47e64.jpg",
+      "path": "product/01/36/1a/74a7bdb5ce15eea063676827c0a47e64.jpg",
+      "position": 0
     }
   ],
-  "paging": {
-    "total": 1,
-    "current_page": 1,
-    "from": 0,
-    "to": 20,
-    "per_page": 20,
-    "last_page": 1
+  "categories": [
+    {
+      "id": 2,
+      "name": "Root yyy",
+      "url_key": "default-category",
+      "is_primary": false
+    },
+    {
+      "id": 1882,
+      "name": "Điện Gia Dụng",
+      "url_key": "dien-gia-dung",
+      "is_primary": false
+    },
+    {
+      "id": 601223,
+      "name": "Danh mục hàng JD",
+      "url_key": "danh-muc-hang-jd",
+      "is_primary": false
+    },
+    {
+      "id": 601225,
+      "name": "Laptop of JD",
+      "url_key": "laptop-of-jd",
+      "is_primary": true
+    }
+  ],
+  "inventory": {
+    "inventory_type": "backorder",
+    "fulfillment_type": "cross_border",
+    "quantity": 200
   }
 }
 ```
