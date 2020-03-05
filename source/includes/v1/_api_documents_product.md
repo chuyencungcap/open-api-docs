@@ -1174,6 +1174,22 @@ Update market_price , image ( thumbnail ) , images ( product media ) of product
 POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
 ```
 
+> Request body
+
+```json
+{
+     "product_id": 2138351,
+     "market_price": 7000000,
+     "image": "https://images-na.ssl-images-amazon.com/images/I/71rBcMwMq4L._SS500_.jpg",
+     "images": [
+         "https://images-na.ssl-images-amazon.com/images/I/31%2BtDPe1XfL._SS500_.jpg",
+         "https://images-na.ssl-images-amazon.com/images/I/61vGd9wTrxL._SS500_.jpg",
+         "https://images-na.ssl-images-amazon.com/images/I/61sTz%2BhRd4L._SS500_.jpg",
+         "https://images-na.ssl-images-amazon.com/images/I/41gOwCRsQ7L._SS500_.jpg"
+     ]
+ }
+```
+
 > Response body
 
 ```json
@@ -1182,6 +1198,7 @@ POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
     "state": "queuing"
 }
 ```
+
 #### **Request**
 
 | Headers | Content-type | application/json |  |  |
