@@ -16,6 +16,7 @@ includes:
   - api_guides_order
   - v1/api_documents_product
   - v1/api_documents_order
+  - v1/api_documents_seller
   - others/errors
   - tiki_theory
   - others/api_versioning
