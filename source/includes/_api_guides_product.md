@@ -802,7 +802,14 @@ After all , your requests are approved , they become TIKI product :D And now you
 	</div>
 </div>
 
-you can filter those request by `category_id` or `active` or combine them base on your purpose
+for the best performance we provide summary of product only, we also provide some filter method by 
+- `category_id` -> category of product
+- `active` -> current active status of product ( 1 = active | 0 = inactive)
+- `created_at_from` -> products `created_at` will be >= this time
+- `created_at_to` -> products `created_at` will be <= this time
+
+*Note : API use yyyy-MM-dd HH:mm:ss datetime format 
+Example : `2020-03-05 11:27:24` ~ 11:27:24 am , 5th March 2020 
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -826,6 +833,8 @@ you can filter those request by `category_id` or `active` or combine them base o
 		<h6>https://api.tiki.vn/integration/v1/products/{product_id}</h6>
 	</div>
 </div>
+
+this API will show you product detail contain its attribute and inventory
 
 ### 3. [Get your product by your original_sku](#get-a-product-by-original-sku) :
 
