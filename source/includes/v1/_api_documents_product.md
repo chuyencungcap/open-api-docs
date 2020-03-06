@@ -786,6 +786,8 @@ GET https://api.tiki.vn/integration/v1/products
 |  | category_id | Integer | N | id of the primary category you want to filter |
 |  | page | Integer | N | move to the page you choose in the data set, default 1|
 |  | limit | Integer | N | number result per page, default 20 |
+|  | created_at_from | String | N | products created_at >= this time |
+|  | created_at_to | String | N | products created_at <= this time |
 
 #### **Response**
 

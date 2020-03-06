@@ -803,6 +803,7 @@ After all , your requests are approved , they become TIKI product :D And now you
 </div>
 
 for the best performance we provide summary of product only, we also provide some filter method by 
+
 - `category_id` -> category of product
 - `active` -> current active status of product ( 1 = active | 0 = inactive)
 - `created_at_from` -> products `created_at` will be >= this time
