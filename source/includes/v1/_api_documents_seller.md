@@ -27,7 +27,7 @@ GET https://api.tiki.vn/integration/v1/sellers/me
 
 ```json
 {
-    "id": "11047E39EC3D534013C587D207584D454B01C65",
+    "sid": "11047E39EC3D534013C587D207584D454B01C65",
     "name": "Sushi shop",
     "logo": "http://uat.tikicdn.com/ts/seller/8e/25/1b/ac9d0bd1f30f721d198ad37a519ffb9a.png",
     "active": 1,
@@ -46,7 +46,7 @@ GET https://api.tiki.vn/integration/v1/sellers/me
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
-| id    | String    | 11047E39EC3D534013C587D207584D454B01C65 | The seller id
+| sid    | String    | 11047E39EC3D534013C587D207584D454B01C65 | The unique id of a seller
 | name  | String    | Sushi shop | The name of seller
 | logo  | String    | [logo URL](http://uat.tikicdn.com/ts/seller/8e/25/1b/ac9d0bd1f30f721d198ad37a519ffb9a.png)    | The seller logo URL
 | active    | Integer   | 1/0   | Your account is active/not active on TIKI
