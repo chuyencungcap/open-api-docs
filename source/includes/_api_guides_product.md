@@ -806,8 +806,8 @@ for the best performance we provide summary of product only, we also provide som
 
 - `category_id` -> category of product
 - `active` -> current active status of product ( 1 = active | 0 = inactive)
-- `created_at_from` -> products `created_at` will be >= this time
-- `created_at_to` -> products `created_at` will be <= this time
+- `created_from_date` -> products `created_at` will be >= this time
+- `created_to_date` -> products `created_at` will be <= this time
 
 *Note : API use yyyy-MM-dd HH:mm:ss datetime format 
 Example : `2020-03-05 11:27:24` ~ 11:27:24 am , 5th March 2020 
