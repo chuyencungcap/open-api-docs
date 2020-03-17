@@ -51,6 +51,22 @@ GET https://api.tiki.vn/integration/v1/sellers/me
 | logo  | String    | [logo URL](http://uat.tikicdn.com/ts/seller/8e/25/1b/ac9d0bd1f30f721d198ad37a519ffb9a.png)    | The seller logo URL
 | active    | Integer   | 1/0   | Your account is active/not active on TIKI
 | can_update_product    | Integer   | 1/0   | Your account can/cannot update products via API   
+| registration_status   | String    | completed | State of registration process
+
+
+**Registration status:**
+
+* draft
+* waiting
+* seller_supplementing
+* kam_approved
+* kam_rejected
+* kam_supplementing
+* legal_approved
+* legal_rejected
+* legal_supplementing
+* completed
+* pending
 
 
 #### **Exception Case**
