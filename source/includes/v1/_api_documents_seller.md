@@ -31,7 +31,8 @@ GET https://api.tiki.vn/integration/v1/sellers/me
     "name": "Sushi shop",
     "logo": "http://uat.tikicdn.com/ts/seller/8e/25/1b/ac9d0bd1f30f721d198ad37a519ffb9a.png",
     "active": 1,
-    "can_update_product": 1
+    "can_update_product": 1,
+    "registration_status": "completed"
 }
 ```
 
@@ -49,24 +50,23 @@ GET https://api.tiki.vn/integration/v1/sellers/me
 | sid    | String    | 11047E39EC3D534013C587D207584D454B01C65 | The unique id of a seller
 | name  | String    | Sushi shop | The name of seller
 | logo  | String    | [logo URL](http://uat.tikicdn.com/ts/seller/8e/25/1b/ac9d0bd1f30f721d198ad37a519ffb9a.png)    | The seller logo URL
-| active    | Integer   | 1/0   | Your account is active/not active on TIKI
+| active    | Integer   | 1/0   | Your store is active/not active on TIKI
 | can_update_product    | Integer   | 1/0   | Your account can/cannot update products via API   
 | registration_status   | String    | completed | State of registration process
 
 
 **Registration status:**
 
-* draft
-* waiting
-* seller_supplementing
-* kam_approved
-* kam_rejected
-* kam_supplementing
-* legal_approved
-* legal_rejected
-* legal_supplementing
-* completed
-* pending
+* draft - Finish created account
+* waiting - Submitted contract. Waiting for KAM (Key Account Manager) confirm the contract
+* seller_supplementing - Waiting for seller update contract
+* kam_rejected - KAM rejected the contract. 
+* completed - The contract get approved.
+
+Currently, after the contract gets approved. Seller will receive an e-contract to sign and send it back to Tiki.
+KAM will review if everything is good, then KAM will turn on your store. Then you ready to sell on Tiki.
+
+![registration_flow](https://salt.tikicdn.com/ts/files/6a/60/9c/6b2f8b18f98a02c32279094a3fb45d92.png)
 
 
 #### **Exception Case**
