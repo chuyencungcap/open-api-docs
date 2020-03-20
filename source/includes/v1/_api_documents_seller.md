@@ -57,6 +57,7 @@ GET https://api.tiki.vn/integration/v1/sellers/me
 
 **Registration status:**
 
+* null - Direct created seller account. Doesn't have registration data.
 * draft - Finish created account
 * waiting - Submitted contract. Waiting for KAM (Key Account Manager) confirm the contract
 * seller_supplementing - Waiting for seller update contract
