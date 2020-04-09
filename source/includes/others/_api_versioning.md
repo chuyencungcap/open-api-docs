@@ -1,4 +1,5 @@
 # API Changelog
+*  10/04/2020: Add support to create mock order for testing on sandbox.
 *  05/03/2020: Add filter create_from_date & create_to_date filter for product API
 *  04/03/2020: Add get seller information API
 *  04/03/2020: Add quantity to get product detail API
