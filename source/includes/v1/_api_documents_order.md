@@ -14,6 +14,7 @@ The table below lists APIs that can be used for product management.
 | [Confirm order items](#api-confirm-order-items)| Seller confirm available status and location of each item in the list|
 | [Update delivery status](#api-update-delivery-status)| Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.|
 | [Print order labels](#api-print-order-labels)| Return shipping label url of sale orders, base on order codes.|
+| [Created mock order](#api-create-mock-order) | Create a mock order on sandbox for testing order management flow.
 
 
 ### API get list orders
@@ -538,7 +539,7 @@ Update delivery status, base on order codes. When order delivery, we need know o
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
 
-### API print order labels
+### API print order label
 #### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -546,6 +547,9 @@ Update delivery status, base on order codes. When order delivery, we need know o
 		<h6>https://api.tiki.vn/integration/{version}/orders/{order_code}/print</h6>
 	</div>
 </div>
+
+Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
+implement on your end.
 
 ```http
 GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
@@ -622,3 +626,197 @@ Return shipping label url of sale orders, base on order codes.
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
+
+
+### API create mock order
+#### HTTP Request ####
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">POST</i>
+        <h6>https://api.tiki.vn/integration/{version}/orders</h6>
+    </div>
+</div>
+
+This endpoint allow you to create mock order to test on sandbox environment. You can create order with your products
+as items. You can use *request_id* when you create product request instead of *product_id*, we will mapping for you.
+You also need to specify *fulfillment_type* and *payment_method* of the order. More than that, you can add addition 
+information like shipping, discount, coupon, note to testing with your UI.
+
+After created mock order. You can use the *order_code* return in response to testing order management flow like 
+confirm items, update delivery status ...
+
+```http
+POST https://api.tiki.vn/integration/{version}/orders
+```
+
+> Request body
+
+```json
+{
+	"fulfillment_type": "cross_border",
+	"payment_method": "visa",
+	"items": [
+		{
+			"request_id": "1158779032041914938",
+			"qty": 1
+		},
+		{
+			"request_id": "1155456416803684819",
+			"qty":2
+		}
+	],
+	"coupon_code": "DISCOUNTXX",
+	"discount_coupon": 13,
+	"discount_tiki_point": 23,
+	"shipping": {
+		"name": "Nguyen Van A",
+    	"street": "Số 52 Út Tich",
+    	"ward": "Phường Tân Chánh Hiệp",
+    	"city": "Quận 12",
+    	"region": "Hồ Chí Minh",
+    	"country": "VN",
+    	"phone": "098XXXXXXX",
+    	"email": "xxxx@yyy.com",
+    	"estimate_description": "Dự kiến giao hàng vào Thứ ba, 19/11/2019",
+    	"shipping_fee": 0
+	},
+	"tax": {
+		"code": "XXX",
+		"name": "tax_name",
+		"address": "Ha noi"
+	},
+	"note": "note message"
+}
+```
+
+> Response body
+
+```json
+{
+  "order_code": "9918",
+  "coupon_code": "DISCOUNTXX",
+  "status": "queueing",
+  "total_price_before_discount": 1384000,
+  "total_price_after_discount": 1383964,
+  "created_at": "2020-04-08 17:27:40",
+  "updated_at": "2020-04-08 17:27:40",
+  "purchased_at": null,
+  "fulfillment_type": "cross_border",
+  "note": "note message",
+  "deliveryConfirmed": null,
+  "delivery_confirmed_at": null,
+  "is_rma": null,
+  "tax": {
+    "code": "XXX",
+    "name": "tax_name",
+    "address": "Ha noi"
+  },
+  "discount": {
+    "discount_amount": 36,
+    "discount_coupon": 13,
+    "discount_tiki_point": 23
+  },
+  "shipping": {
+    "name": "Nguyen Van A",
+    "street": "Số 52 Út Tich",
+    "ward": "Phường Tân Chánh Hiệp",
+    "city": "Quận 12",
+    "region": "Hồ Chí Minh",
+    "country": "VN",
+    "phone": "098XXXXXXX",
+    "email": "xxxx@yyy.com",
+    "estimate_description": "Dự kiến giao hàng vào Thứ ba, 19/11/2019",
+    "shipping_fee": 0
+  },
+  "items": [
+    {
+      "id": 25242,
+      "product_id": 2164840,
+      "product_name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
+      "sku": "9559908768662",
+      "original_sku": null,
+      "qty": 1,
+      "price": 984000,
+      "confirmation_status": "waiting",
+      "confirmed_at": null,
+      "must_confirmed_before_at": "2020-04-08 17:29:06",
+      "warehouse_code": null,
+      "inventory_type": null,
+      "serial_number": null,
+      "imei": null,
+      "discount": null,
+      "fees": null,
+      "fee_total": 0,
+      "seller_id": 0
+    },
+    {
+      "id": 97292,
+      "product_id": 2164444,
+      "product_name": "Test bot check state",
+      "sku": "9462089886981",
+      "original_sku": null,
+      "qty": 2,
+      "price": 200000,
+      "confirmation_status": "waiting",
+      "confirmed_at": null,
+      "must_confirmed_before_at": "2020-04-08 17:29:06",
+      "warehouse_code": null,
+      "inventory_type": null,
+      "serial_number": null,
+      "imei": null,
+      "discount": null,
+      "fees": null,
+      "fee_total": 0,
+      "seller_id": 0
+    }
+  ],
+  "payment": {
+    "payment_method": "visa",
+    "updated_at": "2020-04-08 17:27:40",
+    "description": "Đã thanh toán qua VISA"
+  },
+  "handling_fee": null,
+  "collectable_total_price": null
+}
+```
+
+#### Header
+
+| Key   | Description
+| -------------- | --------------
+| tiki-api | seller token key (contact Tiki supporter)
+
+#### Request body
+
+Name | Type | Mandatory | Example | Description
+| -- | ---- | --------- | ------- | -----------
+items | List (Item) | Y | See in example | The items list in order.
+fulfillment_type | String | Y | cross_border | The fulfillment type of order
+payment_method | String | Y | visa/cod | The payment type of order
+coupon_code | String | N | DISCOUNT_10 | The discount coupon applied for the order
+discount_coupon | Integer | N | 10 | The discount coupon in VND applied for the order
+discount_tiki_point | Integer | N | 10 | The discount tiki xu in VND applied for the order
+shipping | Object | N | See in example | The shipping information of customer
+tax | Object | N | See in example | The tax information
+note | String | N | note message | The order's note message
+
+
+#### Response body
+
+| Field | Type | Example | Description
+| ----- | ---- | ------- | -----------
+root | Order | Returns detail information the created order.
+
+
+#### **Exception Case**
+
+| HTTP Code | Message | Description 
+| --------- | ------- | -----------
+| 500 | Internal server error | Having error in server, can't serving
+| 400 | Bad request | Request not valid, check error message
+| 403 | Forbidden | Only available on sandbox environment
+| 401 | Unauthorized | Your tiki-api token is not valid
+| 429 | Too Many Requests | Your rate limit is exceed
+
+
+

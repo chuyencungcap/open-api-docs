@@ -1,3 +1,12 @@
+## Overview of order system
+
+This section will help you integration step by step to manage orders like
+get orders, confirm order, update order delivery status.
+
+Below diagram is overview of order management flow.
+
+![](https://salt.tikicdn.com/ts/files/fa/09/ef/2eaa89d563dfd406721968396ccde67e.png)
+
 ## Get list orders
 
 The API used when you want to get the [list orders](#api-get-list-orders) from TIKI.
@@ -360,8 +369,9 @@ _**Note**_: If you want to cancel your order, please contact seller support for 
 	</div>
 </div>
 
-[This API](#print-order-labels) is used when your order are **seller delivery** or **cross_border**, it is used to print order label for shipping.
-This contains shipping information only so if your order does not fall into these two type you can simply ignore this endpoint
+This endpoint is used when your order are **seller delivery** or **cross_border**, it is used to print order label for shipping.
+This contains shipping information only so if your order does not fall into these two type you can simply ignore this endpoint.
+Go here for more details [print order label endpoint](#api-print-order-label)
 
 ```shell
 curl --location --request GET 'https://api-sandbox.tiki.vn/integration/v1/orders/905205190/print' \
@@ -386,28 +396,11 @@ In this example orders label you need note:
 * **3)**: the address, phone of customer for delivery
 * **4)**: total amount shipper to be collected from customer
 
-## Test orders
 
-Currently we support you to test orders on the [sandbox environment](#making-your-first-request)...
-In the sandbox environment, we have already created orders, with the scenarios we defined before, you follow the following steps to test orders.
+## Test orders on sandbox
 
+In sandbox we provide an endpoint for you to create mock orders. So you can test order management flow as it is on production.
+Go here for the details of using [create mock order endpoint](#api-create-mock-order) to create mock orders for testing.
 
-![](https://salt.tikicdn.com/ts/files/fa/09/ef/2eaa89d563dfd406721968396ccde67e.png)
-
-**(1)** Seller get warehouses using api [get warehouses](#api-get-warehouses)
-
-**(2)** Seller pull order, using api [get list orders](#api-get-list-orders)
-
-**(3)** After pull order, seller will confirm each item in the list, using api [confirm order items](#api-confirm-order-items)
-
-**(4)** After seller delivery, seller will update delivery status using api [update delivery status](#api-update-delivery-status)
-
-
-_Example get list orders:_
-![](https://salt.tikicdn.com/ts/files/8c/ae/f1/a099dac2cde5ff46dc274be9899eaae6.png)
-
-_Example confirm order items:_
-![](https://salt.tikicdn.com/ts/files/9c/7f/00/0b672565d1cfea852d2f84c1abc24cb2.png)
-
-_Example update delivery status:_
-![](https://salt.tikicdn.com/ts/files/02/a3/35/7b749250f7527a1ce9b365db054852b8.png)
+After created mock orders you can follow the same steps as described above for production environment test to order 
+management flow in sandbox environment.
