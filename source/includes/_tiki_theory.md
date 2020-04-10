@@ -478,8 +478,10 @@ Below is basic order status flows (not all status will be appear, only important
 
 - For tiki-delivery, dropship, cross-border:
 
-![](https://salt.tikicdn.com/ts/files/1a/68/45/fc2ea3c0f6370adb06d5991f9a5723e6.png)
+![](https://salt.tikicdn.com/ts/files/76/2b/b8/2bbd5e670ec20761466ee75be0dca909.png)
 
-- For seller-delivery
+- For seller-delivery:
 
-![](https://salt.tikicdn.com/ts/files/70/a1/46/b4cea424ca1b085b42ea5424dee3d430.png)
+![](https://salt.tikicdn.com/ts/files/fe/6e/ba/276223e3d9480e8a3447bd94d53f5c82.png)
+
+
