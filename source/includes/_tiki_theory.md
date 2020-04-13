@@ -473,3 +473,15 @@ Via API, we provide some solution to confirm order & update delivery status step
 | payment_review | payment_review | payment review |  |
 | returned | returned |  | đơn hàng đã được trả |
 | finished_packing | dong_goi_xong | finished packing | đơn hàng đã đóng gói xong |
+
+Below is basic order status flows (not all status will be appear, only important ones):
+
+- For tiki-delivery, dropship, cross-border:
+
+![](https://salt.tikicdn.com/ts/files/76/2b/b8/2bbd5e670ec20761466ee75be0dca909.png)
+
+- For seller-delivery:
+
+![](https://salt.tikicdn.com/ts/files/fe/6e/ba/276223e3d9480e8a3447bd94d53f5c82.png)
+
+
