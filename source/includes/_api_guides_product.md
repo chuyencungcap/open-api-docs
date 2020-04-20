@@ -1,5 +1,7 @@
 # API Integration step by step
 
+# Create and manage products
+
 ## Create new product request
 
 #### I need to create product , Why TIKI called it is a "product request" ?

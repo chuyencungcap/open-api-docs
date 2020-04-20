@@ -633,13 +633,12 @@ Return shipping label url of sale orders, base on order codes.
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">POST</i>
-        <h6>https://api.tiki.vn/integration/{version}/orders</h6>
+        <h6>https://api-sandbox.tiki.vn/integration/{version}/orders</h6>
     </div>
 </div>
 
-This endpoint allow you to create mock order to test on sandbox environment. You can create order with your products
-as items. You can use *request_id* when you create product request instead of *product_id*, we will mapping for you.
-You also need to specify *fulfillment_type* and *payment_method* of the order. More than that, you can add addition 
+This endpoint allow you to create mock order to test on sandbox environment. You need to specify 
+*fulfillment_type*, *payment_method* and *item list* of the order. More than that, you can add addition 
 information like shipping, discount, coupon, note to testing with your UI.
 
 After created mock order. You can use the *order_code* return in response to testing order management flow like 
@@ -657,12 +656,18 @@ POST https://api.tiki.vn/integration/{version}/orders
 	"payment_method": "visa",
 	"items": [
 		{
-			"request_id": "1158779032041914938",
-			"qty": 1
+			"product_name": "Bluetooth mouse",
+			"original_sku": "X33322",
+			"price": 1000,
+			"qty": 1,
+			"inventory_type": "instock"
 		},
 		{
-			"request_id": "1155456416803684819",
-			"qty":2
+			"product_name": "Highland coffee",
+			"original_sku": "Y33311",
+			"price": 2000,
+			"qty": 2,
+			"inventory_type": "instock"
 		}
 	],
 	"coupon_code": "DISCOUNTXX",
@@ -693,13 +698,13 @@ POST https://api.tiki.vn/integration/{version}/orders
 
 ```json
 {
-  "order_code": "9918",
+  "order_code": "1666",
   "coupon_code": "DISCOUNTXX",
   "status": "queueing",
-  "total_price_before_discount": 1384000,
-  "total_price_after_discount": 1383964,
-  "created_at": "2020-04-08 17:27:40",
-  "updated_at": "2020-04-08 17:27:40",
+  "total_price_before_discount": 5000,
+  "total_price_after_discount": 4964,
+  "created_at": "2020-04-20 16:33:17",
+  "updated_at": "2020-04-20 16:33:17",
   "purchased_at": null,
   "fulfillment_type": "cross_border",
   "note": "note message",
@@ -730,18 +735,18 @@ POST https://api.tiki.vn/integration/{version}/orders
   },
   "items": [
     {
-      "id": 25242,
-      "product_id": 2164840,
-      "product_name": "Disney Women's MK2106 Mickey Mouse White Bracelet Watch with Rhinestones",
-      "sku": "9559908768662",
-      "original_sku": null,
+      "id": 89575,
+      "product_id": 4181,
+      "product_name": "Bluetooth mouse",
+      "sku": "175565",
+      "original_sku": "X33322",
       "qty": 1,
-      "price": 984000,
+      "price": 1000,
       "confirmation_status": "waiting",
       "confirmed_at": null,
-      "must_confirmed_before_at": "2020-04-08 17:29:06",
+      "must_confirmed_before_at": "2020-04-20 16:34:44",
       "warehouse_code": null,
-      "inventory_type": null,
+      "inventory_type": "instock",
       "serial_number": null,
       "imei": null,
       "discount": null,
@@ -750,18 +755,18 @@ POST https://api.tiki.vn/integration/{version}/orders
       "seller_id": 0
     },
     {
-      "id": 97292,
-      "product_id": 2164444,
-      "product_name": "Test bot check state",
-      "sku": "9462089886981",
-      "original_sku": null,
+      "id": 46482,
+      "product_id": 10765,
+      "product_name": "Highland coffee",
+      "sku": "113875",
+      "original_sku": "Y33311",
       "qty": 2,
-      "price": 200000,
+      "price": 2000,
       "confirmation_status": "waiting",
       "confirmed_at": null,
-      "must_confirmed_before_at": "2020-04-08 17:29:06",
+      "must_confirmed_before_at": "2020-04-20 16:34:44",
       "warehouse_code": null,
-      "inventory_type": null,
+      "inventory_type": "instock",
       "serial_number": null,
       "imei": null,
       "discount": null,
@@ -772,7 +777,7 @@ POST https://api.tiki.vn/integration/{version}/orders
   ],
   "payment": {
     "payment_method": "visa",
-    "updated_at": "2020-04-08 17:27:40",
+    "updated_at": "2020-04-20 16:33:17",
     "description": "Đã thanh toán qua VISA"
   },
   "handling_fee": null,
@@ -790,9 +795,14 @@ POST https://api.tiki.vn/integration/{version}/orders
 
 Name | Type | Mandatory | Example | Description
 | -- | ---- | --------- | ------- | -----------
-items | List (Item) | Y | See in example | The items list in order.
 fulfillment_type | String | Y | cross_border | The fulfillment type of order
 payment_method | String | Y | visa/cod | The payment type of order
+items | List (Mock Item) | Y | See in bellow for each item fields | The items list in order.
+_product_name | String | Y | Bluetooth mouse | The name of item product
+_original_sku | String | Y | X33322 | Your original sku
+_price | Integer | Y | 1000 | The item price
+_qty | Integer | Y | 1 | Quantity of item.
+_inventory_type | String | Y | instock | Inventory type of item. See [Inventory type](#inventory-type) for more types.
 coupon_code | String | N | DISCOUNT_10 | The discount coupon applied for the order
 discount_coupon | Integer | N | 10 | The discount coupon in VND applied for the order
 discount_tiki_point | Integer | N | 10 | The discount tiki xu in VND applied for the order
