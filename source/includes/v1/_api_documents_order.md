@@ -803,6 +803,8 @@ _original_sku | String | Y | X33322 | Your original sku
 _price | Integer | Y | 1000 | The item price
 _qty | Integer | Y | 1 | Quantity of item.
 _inventory_type | String | Y | instock | Inventory type of item. See [Inventory type](#inventory-type) for more types.
+_product_id | String | N | 123123 | The product id of item.
+_sku | String | N | 232XX | The sku code of item.  
 coupon_code | String | N | DISCOUNT_10 | The discount coupon applied for the order
 discount_coupon | Integer | N | 10 | The discount coupon in VND applied for the order
 discount_tiki_point | Integer | N | 10 | The discount tiki xu in VND applied for the order
