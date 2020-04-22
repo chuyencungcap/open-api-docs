@@ -14,6 +14,8 @@ includes:
   - getting_started/making_your_first_request
   - api_guides_product
   - api_guides_order
+  - api_guides_seller_registration
+  - api_guides_oauth2
   - v1/api_documents_product
   - v1/api_documents_order
   - v1/api_documents_seller
