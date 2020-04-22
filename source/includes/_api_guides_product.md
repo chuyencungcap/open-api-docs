@@ -876,8 +876,8 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
 
 This API use to [update price, quantity, active](#update-variant-price-quantity-active).
 Your request will be approved automatically.
-Note that in this API you have to use your original sku from your system to update this product.
-You can update price only , active only or mix them up depend on your choice, ...
+Note that in this API you can use your original sku from your system or TIKI product id to update this product.
+You can update price only, active only or mix them up depend on your choice, ...
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
