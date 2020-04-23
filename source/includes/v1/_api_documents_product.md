@@ -636,7 +636,11 @@ Replay process of a product request from the beginning
 	</div>
 </div>
 
-Update non validate fields like price/quantity/active of a created product
+
+Update non validate fields like price/quantity/active of a created product.
+
+It can update by your original_sku OR product_id in TIKI system. See request body for more details.
+
 
 ```http
 POST https://api.tiki.vn/integration/v1/products/updateSku
@@ -644,7 +648,8 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
 
 ```json
 {
-  "original_sku" : "SELLER_SKU",
+  "original_sku" : "xxx-yyy-123",
+  "product_id": 2166152,
   "price": 100000,
   "quantity": 20,
   "active": 1
@@ -659,37 +664,32 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
 }
 ```
 
-#### **Request**
 
-| Headers | Content-type | application/json |  |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| tiki-api | seller token key (contact Tiki supporter) |  |  |  |  |  |
-| Path Parameters | Name | Type | Mandatory | Example | Description |  |
-| |version | String | Y | v1 | version of API |  |  |
-| |sku | String | Y | DANG19951995 | the original sku from your side system |  |  |
-| Body Parameters | Namespace | Field | Type | Mandatory | Example | Description |
-| |Variant | price | Integer | N | 10000 | product 's new price |  |
-|  | |quantity | String | N | 10 | product 's new quantity |  |
-|  | |active | Integer | N | 1 | product 's new status (1=active / 0=inactive) |  |
+#### Header
+
+Key   | Description
+--- | ---
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### **Request body**
+
+Name | Type | Mandatory | Example | Default value | Description
+---- | --- | ---- | ---- | ---- | ----
+Variant | 
+_original_sku | String | N | xxx-yyy-123 | N/A | The original sku from your side system
+_product_id | String | N | 2166152 | N/A | The product id in TIKI system
+_price | Integer | N | 10000 | N/A | product's new price
+_quantity | String | N | 10 | N/A | product's new quantity
+_active | Integer | N | 1 | N/A | product 's new status (1=active / 0=inactive)
 
 
 #### **Response**
 
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| state | String | approved | your product is updated successfully |
+Field | Type | Example | Description
+--- | ---- | ---- | ----
+state | String | approved | your product is updated successfully
 
-
-#### **Exception Case**
-
-| HTTP Code | message | Description |
-| :--- | :--- | :--- |
-| 500 | Internal server error | having error in server, can't serving |
-| 400 | Bad request | your request is invalid |
-| 401 | Unauthorized | your tiki-api token is not valid |
-| 403 | Forbidden | your tiki-api token do not have permission to perform |
-| 422 | Unprocessable Entity | your request body have invalid value |
-| 429 | Too Many Requests | Your rate limit is exceed |
 
 > Example:
 
@@ -700,6 +700,19 @@ POST https://api.tiki.vn/integration/v1/products/updateSku
     ]
 }
 ```
+
+
+#### **Exception Case**
+
+HTTP Code | message | Description 
+---- | ---- | ---- |
+500 | Internal server error | having error in server, can't serving
+400 | Bad request | your request is invalid
+401 | Unauthorized | your tiki-api token is not valid
+403 | Forbidden | your tiki-api token do not have permission to perform
+422 | Unprocessable Entity | your request body have invalid value
+429 | Too Many Requests | Your rate limit is exceed
+
 
 ### Get latest products 
 #### HTTP Request ####
