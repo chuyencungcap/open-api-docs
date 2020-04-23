@@ -321,7 +321,23 @@ In addition to the **warehouse_id** and **item_ids** parameters, you need to pay
 * _tracking_number_: tracking_number is code for tracking order via 3rd party system or anything like this. If you don't know what is it, then you should edit tracking_number equal order_code
 
 ## Update delivery status
- 
+
+
+```http
+POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
+```
+
+> Request body
+
+```json
+{
+    "order_code": "327965376-5vHl1b",
+    "update_time":"2019-11-23 23:59:59",
+    "status": "ready_for_delivery"
+}
+```
+
+
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
@@ -329,38 +345,15 @@ In addition to the **warehouse_id** and **item_ids** parameters, you need to pay
 	</div>
 </div>
 
-```shell
-curl --location --request POST 'https://api-sandbox.tiki.vn/integration/v1/orders/updateDeliveryStatus' \
---header 'Content-Type: application/json' \
---header 'tiki-api: 55f438d1-3438-409e-b5a4-9d16e764c5b8' \
---data-raw '{
-    "order_code": "401734337",
-    "update_time":"2020-11-23 23:59:59",
-    "status": "successful_delivery"
-}'
-```
+After confirm order, you might need to update delivery status of the order.
 
-If your order is **tiki_delivery** congratulation, TIKI will help you complete this order.
+* If your order fulfillment type is `tiki_delivery` or `dropship` congratulation, TIKI will help you complete this order.
 
-When you are seller delivery you need to update the status of the order, so that tiki updates to the system and sends information to customers.
+* If your order fulfillment type is `seller_delivery` `cross_border` you might need to update the status of the order, 
+so TIKI updates the system and sends information to customers.
 
-You have to [update delivery status](#api-update-delivery-status) step by step whenever you reach a new status in this list 
+Go here for more details about using the [update delivery status](#api-update-delivery-status) endpoint.
 
-You need map from your delivery status to _**tiki delivery status**_:
-
-* _transferring_to_foreign_warehouses_: Orders transferring to your foreign warehouses
-* _has_come_to_foreign_warehouses_: Orders has come to your foreign warehouses
-* _rotating_to_vietnam_: Orders rotating to vietnam
-* _customs_clearance_: Customs clearance processing
-* _customs_clearance_complete_: Customs clearance complete
-* _item_arrived_in_vietnam_: Orders arrived in vietnam
-* _ready_for_delivery_: Orders ready for delivery
-* _on_delivery_: Orders on delivery
-* _successful_delivery_: Orders successful delivery
-
-Finally, your order delivery status becomes **successful delivery**, everything is settled.
-
-_**Note**_: If you want to cancel your order, please contact seller support for assistance
 
 ## Print order label
 
