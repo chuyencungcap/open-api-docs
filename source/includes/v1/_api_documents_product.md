@@ -6,24 +6,26 @@ This is a [sample postman collection](https://documenter.getpostman.com/view/773
 
 The table below lists APIs that can be used for product management.
 
-| API name | Description |
-| -------- | -------- |
-| [Get categories](#get-categories)| Return the summary list of categories in integration system |
-| [Get category detail](#get-category-detail-include-attribute)| Retrieve detail of a single categories with its attributes|
-| [Create Product Request](#create-product-request)| Create new a product request|
-| [Tracking latest product request](#tracking-latest-product-request)| Tracking latest request |
-| [Tracking a product request](#tracking-a-product-request)| Retrieve detail of a single request|
-| [Replay a product request](#replay-a-product-request)| Replay process of a single request from the beginning |
-| [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately|
-| [Update product market_price/image/images](#update-market-price-images)| Update market_price/image/images via update product request|
-| [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)|
-| [Get a product](#get-a-product)| Get a product with product_id from TIKI system|
-| [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku|
-| [Get latest product request 's info](#get-latest-product-request-info)| Get all of product requests order by created_at desc (latest request)|
-| [Get a product request info](#get-a-product-request-info)| Get a request with request_id from TIKI system|
-| [Get a product request info by track id](#get-a-product-request-by-track-id)| Get a product match with seller original sku|
-| [Delete a product request](#delete-a-product-request)| Delete a created product request base on request_id of TIKI system|
-
+API name | Description
+-------- | -----------
+[Get categories](#get-categories)| Return the summary list of categories in integration system
+[Get category detail](#get-category-detail-include-attribute)| Retrieve detail of a single categories with its attributes
+[Create Product Request](#create-product-request)| Create new a product request
+[Tracking latest product request](#tracking-latest-product-request)| Tracking latest request
+[Tracking a product request](#tracking-a-product-request)| Retrieve detail of a single request
+[Replay a product request](#replay-a-product-request)| Replay process of a single request from the beginning
+[Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately
+[Update product market_price/image/images](#update-market-price-images)| Update market_price/image/images via update product request
+[Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)
+[Get a product](#get-a-product)| Get a product with product_id from TIKI system
+[Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku
+[Get latest product request 's info](#get-latest-product-request-info)| Get all of product requests order by created_at desc (latest request)
+[Get a product request info](#get-a-product-request-info)| Get a request with request_id from TIKI system
+[Get a product request info by track id](#get-a-product-request-by-track-id)| Get a product match with seller original sku
+[Delete a product request](#delete-a-product-request)| Delete a created product request base on request_id of TIKI system
+[Get TIKI warehouses](#get-tiki-warehouses) | Get the TIKI's warehouse list
+[Get supplier by warehouse codes](#get-supplier-by-warehouse-codes) | Get the supplier find by list of warehouse codes
+[Get suppliers](#get-suppliers) | Get all suppliers available in system
 
 ### Get categories
 #### HTTP Request ####
@@ -1591,3 +1593,242 @@ DELETE https://api.tiki.vn/integration/v1/requests/1115320939429986651
 | 400 | Bad request | your request is invalid |
 | 429 | Too Many Requests | Your rate limit is exceed |
 
+
+
+### Get TIKI warehouses
+#### HTTP Request ####
+
+> Example
+
+```http
+GET https://api.tiki.vn/integration/v1/warehouses/tiki
+```
+
+> Response body
+
+```json
+[
+    {
+        "name": "Hà Nội",
+        "code": "hn"
+    },
+    {
+        "name": "Sài Gòn",
+        "code": "sgn"
+    },
+    {
+        "name": "Cần Thơ",
+        "code": "ct"
+    },
+    {
+        "name": "Đà Nẵng",
+        "code": "dn"
+    },
+    {
+        "name": "Hải Phòng",
+        "code": "hp"
+    },
+    {
+        "name": "Tân Sơn",
+        "code": "ts"
+    },
+    {
+        "name": "Nha Trang",
+        "code": "nt"
+    },
+    {
+        "name": "Vĩnh Lộc Mới",
+        "code": "vln"
+    },
+    {
+        "name": "Buffer SGN",
+        "code": "bfsgn"
+    },
+    {
+        "name": "Sai Gon 3",
+        "code": "sgn3"
+    },
+    {
+        "name": "Hà Nội 4",
+        "code": "hn4"
+    }
+]
+```
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/warehouses/tiki</h6>
+	</div>
+</div>
+
+
+Return all the TIKI's active warehouses. 
+
+
+#### Header
+
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
+ 
+
+#### Response body
+
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+root | List<[TIKI warehouse](#tiki-warehouse)> |  Click on tag for more details | The list of tiki warehouse
+
+
+#### Exception Case
+
+HTTP Code | Message | Description 
+--------- | ------- | -----------
+500 | Internal server error | Having error in server, can't serving
+401 | Unauthorized | Your tiki-api token is not valid
+429 | Too Many Requests | Your rate limit is exceed
+
+
+
+### Get supplier by warehouse codes
+
+> Example
+
+```http
+GET https://api.tiki.vn/integration/v1/suppliers/findBy?warehouse_codes=hn,sgn,ct
+```
+
+> Response body
+
+```json
+{
+    "id": 190887,
+    "name": null
+}
+```
+
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/suppliers/findBy?warehouse_codes={warehouse_codes}</h6>
+	</div>
+</div>
+
+
+Return the supplier that match the match warehouse code lists. 
+If the supplier for this group of warehouses is not found, a 404 Not found will return. You can choose to remove or add
+some warehouses.
+
+
+#### Header
+
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Request Parameters
+
+Name | Type | Mandatory | Example | Description
+---- | ---- | --------- | ------- | -----------
+warehouse_codes | String | Y | hn,sgn,ct | List of TIKI warehouse codes separate by "," character
+
+
+#### Response body
+
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+root | [Supplier](#supplier) | Click on tag for more details | The supplier object. Note, the name of supplier in this endpoint to reduce latency and it's not needed
+
+
+> Example
+
+```json
+{
+    "errors": [
+        "The supplier for this combination of warehouses is not exist"
+    ]
+}
+```
+
+
+#### Exception Case
+
+HTTP Code | Message | Description 
+--------- | ------- | -----------
+500 | Internal server error | Having error in server, can't serving
+404 | Not found | The supplier for this group of warehouses is not exist
+401 | Unauthorized | Your tiki-api token is not valid
+429 | Too Many Requests | Your rate limit is exceed
+
+
+
+### Get suppliers
+
+> Example
+
+```http
+GET https://api.tiki.vn/integration/v1/suppliers
+```
+
+> Response body
+
+```json
+[
+    {
+        "id": 114226,
+        "name": "HN"
+    },
+    {
+        "id": 114227,
+        "name": "SGN"
+    },
+    {
+        "id": 114228,
+        "name": "HN-SGN"
+    },
+    {
+        "id": 190881,
+        "name": "CT"
+    },
+    {
+        "id": 190883,
+        "name": "CT-HN"
+    }
+]
+```
+
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/suppliers</h6>
+	</div>
+</div>
+
+
+Return list of suppliers available in TIKI system.
+
+
+#### Header
+
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Response body
+
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+root | List<[Supplier](#supplier)> | Click on tag for more details | List of suppliers object.
+
+
+#### Exception Case
+
+HTTP Code | Message | Description 
+--------- | ------- | -----------
+500 | Internal server error | Having error in server, can't serving
+401 | Unauthorized | Your tiki-api token is not valid
+429 | Too Many Requests | Your rate limit is exceed

@@ -222,8 +222,11 @@ Even you do that, we will check duplicate image by url.
 * Replace : Field of variant will replace the parent one.
 * Merge : **attributes** will merged from both side.
 
+
+
 ## Inventory type
-- inventory_type must be one of below values and have to be in registered list. If you have only one **inventory_type**, then that method will be picked up so you can ignore this field in payload
+* inventory_type must be one of below values and have to be in registered list. If you have only 
+one **inventory_type**, then that method will be picked up so you can ignore this field in payload
 
 | inventory_type | customer | description |
 | :--- | :--- | :--- |
@@ -233,23 +236,41 @@ Even you do that, we will check duplicate image by url.
 | seller_backorder | for Vietnamese seller | products in seller storage, seller pack, seller deliver |
 | drop_ship | for Vietnamese seller | products in seller storage, seller pack, TIKI deliver  |
 
-- If your product have **inventory_type** is **cross_border** → you also have to fill supplier and quantity in variants
+* If your product have **inventory_type** is **instock** → **supplier** & **quantity** may be absent or will be ignored
 
-- If your product have **inventory_type** is **instock** → **supplier** & **quantity** may be absent or will be ignored
+
 
 ## Supplier
+Supplier is group of [TIKI's warehouses](#tiki-warehouse), that can transfer your product to (either by TIKI or you). That help TIKI know 
+possible warehouses can expected the product transfer to when customers placed order. It can be only one warehouse 
+or multiple warehouses depend on you.
 
-- **supplier** is an integer constant describe the location of seller 's storage.Each seller can have some **supplier** but each product must be stored in a fixed **supplier**
+**Notes**: If seller is abroad (`cross_border`), you have only one supplier. Please contact TIKI supporter to get this 
+value.
 
-- If seller is in Vietnam, please register your supplier list in TIKI **Seller Center** system
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+id | Integer | 22 | The supplier id, which you can fill in when create product
+name | String | HN-SGN | The name of supplier. It is a string combine warehouse codes.
 
-- If seller is abroad, you have only one supplier, please contact TIKI supporter to get this value.
+
+
+## TIKI warehouse
+TIKI warehouses are the physic warehouses of TIKI to store, transfer your products to customer.
+
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+name | String | Hà Nội | Name of TIKI's warehouse
+code | String | hn | The warehouse code
+
 
 ## Order
 
-Whenever customer place an order, TIKI and seller have to collaborate to delivery the product to customer as soon as possible
+Whenever customer place an order, TIKI and seller have to collaborate to delivery the product to customer 
+as soon as possible
 
-TIKI have 2 main fulfillment type chosen when seller create product. Each type have a different flow to confirm order and deliver product to customer.
+TIKI have 2 main fulfillment type chosen when seller create product. Each type have a different flow to confirm order 
+and deliver product to customer.
 
 * TIKI delivery (tiki_delivery) 
 * Seller delivery (seller_delivery)

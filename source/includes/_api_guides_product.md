@@ -74,6 +74,8 @@ GET https://api.tiki.vn/integration/v1/categories
 It's the smallest unit used to classify products at TIKI, one product belong to exactly one primary category.
 - Save the **category_id** to use it later
 
+
+
 ### 2. Get attribute from primary category you chosen → map with your original attribute
 
 <div class="api-endpoint">
@@ -122,11 +124,12 @@ GET https://api.tiki.vn/integration/v1/categories/20768
 * But your side don't have anything to map to these or you still don't have any idea about this then I can give you a small tips.
 It is you can complete required attribute with a dummy data like `updating` maybe it can bypass our automate review but I have to warn you if you abuse this TIKI content reviewer may reject your product request.
 
-### 3. Ask Tiki supporter for your inventory_type and supplier
 
-**inventory_type** and **supplier** are generated automatically when you sign a contract to sell product in TIKI.
+### 3. Ask Tiki supporter for your inventory_type
 
-In the simplest case also the most common case ( have only 1 `inventory_type` ), you just need to contact TIKI supporter to get supplier only to create new product request.
+**inventory_type** is generated automatically when you sign a contract to sell product in TIKI.
+
+In the simplest case also the most common case ( have only 1 `inventory_type` ).
 You don't even need to know what is your inventory type because we will use the type in your contract as default value.
 
 And if you still want to learn more about TIKI system , you can refer to the following definition :
@@ -136,11 +139,34 @@ And if you still want to learn more about TIKI system , you can refer to the fol
     * "Tiki or seller have to bring product to the customer"
     * "TIKI come seller 's warehouse to take product or seller bring product to TIKI 's warehouse?"
 
-* [supplier](#supplier) is an integer constant describe the location of seller 's warehouse. Each seller can have some supplier but each product must be stored in a fixed supplier
-
 Note : In the case you have only one inventory type, TIKI will choose it as default value so you can ignore this field
 
-### 4. Let's [create product request](#create-product-request).
+
+### 4. Get supplier
+There are cases you need to fill in supplier depends on product's inventory type you choose:
+
+* If product's `inventory_type` is `instock`, you don't need to fill in supplier
+* If product's `inventory_type` is `cross_border`, you need to ask TIKI's supporter to get supplier id
+* Otherwise you can read bellow to get supplier.
+
+Supplier is group of TIKI's warehouses, that can transfer your product to (either by TIKI or you). That help TIKI know 
+possibles warehouses can expected the product transfer to when customers placed order. It can be only one warehouse 
+or multiple warehouses depend on you.
+
+We support 2 ways that you can get suppler id:
+
+* You can call the [Get TIKI warehouses](#get-tiki-warehouses) endpoint to get list of all TIKI's warehouses. 
+After that you can select list of TIKI warehouses you want to transfer product to. Then you send the list of warehouse 
+codes you selected to the [Get supplier by warehouse codes](#get-supplier-by-warehouse-codes) endpoint to get 
+supplier id. Not all of list warehouses has an available supplier in TIKI system. You can call it to check every time 
+you change warehouse list.
+* You can call directly the [Get suppliers](#get-suppliers) endpoint to get list all suppliers that available from 
+TIKI. Then you can select one of them then get it's supplier id. 
+
+Go to each endpoint details to see how to use them.
+
+
+### 5. Let's [create product request](#create-product-request).
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -217,7 +243,8 @@ They are called **option_attributes**.
 
 ![](https://i.imgur.com/EaZ1z0c.png)
 
-### 5. If you want to create a configurable product
+
+### 6. If you want to create a configurable product
 
 > configurable product request body ( configurable product - 2 or more sku )
 
@@ -331,7 +358,8 @@ Example : Product is iPhone have `"option_attributes":["color","storage"]` so yo
 * Replace : Field of variant will replace the parent one.
 * Merge : **attributes** will merged from both side.
 
-### 6. How do I know when a product request is made successfully?
+
+### 7. How do I know when a product request is made successfully?
 
 Once you click send product request you will be received a response immediately
 
@@ -362,12 +390,14 @@ After both TIKI and seller confirm testing completed we will set the state to au
 Your job is done, normally you will receive results after 2 to 3 hours of work.
 By the time the status of the product request becomes approved, your product is ready on the TIKI website
 
-### 7. Some common error while create product request
+
+### 8. Some common error while create product request
 
 - missing supplier → supplier is a constant present for the location of your storage → please contact TIKI supporter to get this while **develop a create supplier endpoint**
 - option_attributes not valid → TIKI support 2 option attributes at most so if you need more than 2 option , please merge some of them before create product
 - missing required attribute → try to map attribute → fill dummy data like "updating"
 - image error → TIKI support image at 500x500 px at least for the best UI/UX → so please resize your invalid image if you don't want to miss them
+
 
 ## Tracking product request
 
@@ -448,6 +478,8 @@ maybe the network is unstable, the transform method doesn't work properly, ... y
 </div>
 
 The state will return to `queuing` exactly like creating a product request but keep the `track_id`
+
+
 
 ## Manage product request
 

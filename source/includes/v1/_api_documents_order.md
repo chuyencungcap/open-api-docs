@@ -818,14 +818,14 @@ POST https://api.tiki.vn/integration/{version}/orders
 
 #### Header
 
-| Key   | Description
-| -------------- | --------------
-| tiki-api | seller token key (contact Tiki supporter)
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
 
 #### Request body
 
 Name | Type | Mandatory | Example | Description
-| -- | ---- | --------- | ------- | -----------
+---- | ---- | --------- | ------- | -----------
 fulfillment_type | String | Y | cross_border | The fulfillment type of order
 payment_method | String | Y | visa/cod | The payment type of order
 items | List (Mock Item) | Y | See in bellow for each item fields | The items list in order.
