@@ -469,21 +469,12 @@ So if you want to reject all of item in this order, just send an empty **item_id
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | Params in body request invalid. See detail response |
 
-### API Update delivery status
 
-#### HTTP Request ####
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">POST</i>
-		<h6>https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus</h6>
-	</div>
-</div>
+### API Update delivery status
 
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 ```
-
-Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.
 
 > Request body
 
@@ -503,28 +494,66 @@ Update delivery status, base on order codes. When order delivery, we need know o
 }
 ```
 
-#### **Request**
 
-| Headers         | Content-type | application/json                          |           |                                          |                       |
-|:--------------- |:------------ |:----------------------------------------- |:--------- |:---------------------------------------- |:--------------------- |
-|                 | tiki-api     | seller token key (contact Tiki supporter) |           |                                          |                       |
-| Body Parameters | Name         | Type                                      | Mandatory | Description                              | Example               |
-|                 | order_code   | String                                    | Y         | Order code of seller delivery.           | "20939384"            |
-|                 | status       | String                                    | Y         | Status of delivery, status in options(*) | successful_delivery   |
-|                 | update_time  | String                                    | Y         | String datetime with format Y-m-d H:i:s. | "2019-06-22 18:12:17" |
+#### HTTP Request ####
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus</h6>
+	</div>
+</div>
 
 
-**Status options:**
+Update delivery status, base on order codes. When order delivery, we need know order delivery status,
+you will need update it.
 
-* transferring_to_foreign_warehouses
-* has_come_to_foreign_warehouses
-* rotating_to_vietnam
-* customs_clearance
-* customs_clearance_complete
-* item_arrived_in_vietnam
-* ready_for_delivery
-* on_delivery
-* successful_delivery
+How to use this endpoint depend on fulfillment type of the orders.	
+
+* With `tiki_delivery`, `dropship` orders, you don't have to update status, it will handle by Tiki. 
+You can ignore this endpoint.
+* With `cross_border` orders, there are two cases:
+    * With the normally case you don't have to update status, it will handle by Tiki. You can ignore this endpoint.
+    * With `cross_border` but using self delivery mode. You will need to above all the status. This type is special 
+    and new case in Tiki. Please contract us on Github issue if you are `cross_border` seller but using 
+    self delivery mode to get support.  
+* With `seller_delivery` orders. You only need to update status `successful_delivery`.
+
+Go here if you need read more about [order fulfillment_type](#order).
+
+
+#### Header
+
+Key   | Description
+--- | ---
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### **Request body**
+
+Name | Type | Mandatory | Example | Default value | Description
+---- | --- | ---- | ---- | ---- | ----
+order_code | String | Y | 20939384 | N/A | the order code 
+status | String | Y | successful_delivery | N/A | Status of delivery, see option list bellow 
+update_time | String | Y |  String datetime with format Y-m-d H:i:s. | N/A | 2019-06-22 18:12:17
+
+
+You have to step by step whenever you reach a new status in this list bellow, you need map from your delivery status to 
+**tiki delivery status**.
+
+Status options:
+
+* transferring_to_foreign_warehouses: Orders transferring to your foreign warehouses
+* has_come_to_foreign_warehouses: Orders has come to your foreign warehouses
+* rotating_to_vietnam: Orders rotating to vietnam
+* customs_clearance: Customs clearance processing
+* customs_clearance_complete: Customs clearance complete
+* item_arrived_in_vietnam: Orders arrived in vietnam
+* ready_for_delivery: Orders ready for delivery
+* on_delivery: Orders on delivery
+* successful_delivery: Orders successful delivery
+
+Finally, your order delivery status becomes **successful delivery**, everything is settled.
+
 
 #### **Response**  
 
@@ -532,12 +561,14 @@ Update delivery status, base on order codes. When order delivery, we need know o
 | :--- | :--- | :--- | :--- |
 | message | String | "success" |  |
 
+
 #### **Exception Case**
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
 | 500 | Internal server error | having error in server, can't serving |
 | 400 | Bad request | request not valid |
+
 
 ### API print order label
 #### HTTP Request ####
@@ -787,14 +818,14 @@ POST https://api.tiki.vn/integration/{version}/orders
 
 #### Header
 
-| Key   | Description
-| -------------- | --------------
-| tiki-api | seller token key (contact Tiki supporter)
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
 
 #### Request body
 
 Name | Type | Mandatory | Example | Description
-| -- | ---- | --------- | ------- | -----------
+---- | ---- | --------- | ------- | -----------
 fulfillment_type | String | Y | cross_border | The fulfillment type of order
 payment_method | String | Y | visa/cod | The payment type of order
 items | List (Mock Item) | Y | See in bellow for each item fields | The items list in order.
