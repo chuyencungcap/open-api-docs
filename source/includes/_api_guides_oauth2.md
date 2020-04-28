@@ -1,5 +1,5 @@
 
-# Authentication and Authorization
+# OAuth2
 
 At the moment we only support client type `confidential` as described in The OAuth 2.0 Authorization Framework [#section-2.1](https://tools.ietf.org/html/rfc6749#section-2.1). Therefore, in order to integrate with our Authorization Code Flow, you will need to 
 
@@ -7,7 +7,7 @@ At the moment we only support client type `confidential` as described in The OAu
 * The frontend will be in charged of requesting users' consent
 * The backend will be in charged of keeping the client credentials (a.k.a client_id/client_secret pair) to request tokens from our token endpoint
 
-## Recommendation
+## Integration recommendation
 
 We strongly recommend your team not to write your own code to interact with OAuth 2.0. Use open source & battle-tested libraries instead. Here are some examples:
 
@@ -21,7 +21,22 @@ We strongly recommend your team not to write your own code to interact with OAut
 * Java
   * [Spring Security](https://spring.io/projects/spring-security)
 
-For a full list of client libraries go [here](https://oauth.net/code/). If you still want to do that on your own, follow the next section carefully.
+For a full list of client libraries go [here](https://oauth.net/code/). If you still want to integrate manually with OAuth2, follow the [integration flow](#integration-flow) carefully.
+
+### Endpoints configuration
+
+* **Authorization** endpoint `/sc/oauth2/auth`
+* **Token** endpoint `/sc/oauth2/token`
+* Host
+  * **PRODUCTION** `api.tiki.vn`
+  * **DEVELOPMENT** `api-sandbox.tiki.vn`
+
+### Token usage
+
+Include the following mandatory headers in your request to Open API:
+
+* `Authorization: Bearer 4wx_Zpe_VVkZ2oka8pFSeeRt8C_...`
+* `Authorization-Provider: ICP-HYDRA`
 
 ## Integration flow
 
