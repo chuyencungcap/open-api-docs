@@ -799,6 +799,7 @@ GET https://api.tiki.vn/integration/v1/products
 | Body Parameters | Name | Type | Mandatory | Description |
 |  | active | Integer | N | current active of products that you want to filter ( 1 = active , 0 = inactive ) |
 |  | category_id | Integer | N | id of the primary category you want to filter |
+|  | include | List<String> | N | extra information you want to add to product ( ex : inventory ) |
 |  | page | Integer | N | move to the page you choose in the data set, default 1|
 |  | limit | Integer | N | number result per page, default 20 |
 |  | created_from_date | String | N | products created_at >= this time |

@@ -843,6 +843,9 @@ for the best performance we provide summary of product only, we also provide som
 - `created_from_date` -> products `created_at` will be >= this time
 - `created_to_date` -> products `created_at` will be <= this time
 
+you can add extra inventory information to product by this parameter
+- `include = inventory` -> add extra inventory information to product
+
 *Note : API use yyyy-MM-dd HH:mm:ss datetime format 
 Example : `2020-03-05 11:27:24` ~ 11:27:24 am , 5th March 2020 
 
@@ -857,6 +860,13 @@ Example : `2020-03-05 11:27:24` ~ 11:27:24 am , 5th March 2020
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
 		<h6>https://api.tiki.vn/integration/v1/products?category_id={category_id}</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/products?include=inventory</h6>
 	</div>
 </div>
 
