@@ -1,5 +1,6 @@
 # API Changelog
 *  28/04/2020: Add include inventory information to get products API
+*  24/04/2020: Add support update product active, price, quantity by product id
 *  10/04/2020: Add support to create mock order for testing on sandbox.
 *  05/03/2020: Add filter create_from_date & create_to_date filter for product API
 *  04/03/2020: Add get seller information API
