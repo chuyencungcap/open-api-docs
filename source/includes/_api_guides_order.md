@@ -355,22 +355,9 @@ so TIKI updates the system and sends information to customers.
 Go here for more details about using the [update delivery status](#api-update-delivery-status) endpoint.
 
 
-## Print order label
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/v1/orders/905205190/print</h6>
-	</div>
-</div>
-
-This endpoint is used when your order are **seller delivery** or **cross_border**, it is used to print order label for shipping.
-This contains shipping information only so if your order does not fall into these two type you can simply ignore this endpoint.
-Go here for more details [print order label endpoint](#api-print-order-label)
-
-```shell
-curl --location --request GET 'https://api-sandbox.tiki.vn/integration/v1/orders/905205190/print' \
---header 'tiki-api: 55f438d1-3438-409e-b5a4-9d16e764c5b8'
+## Get order's shipping label to print
+```http
+GET https://api-sandbox.tiki.vn/integration/v1/orders/905205190/print
 ```
 
 > Response example:
@@ -381,7 +368,21 @@ curl --location --request GET 'https://api-sandbox.tiki.vn/integration/v1/orders
 }
 ```
 
-Example order label:
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/v1/orders/905205190/print</h6>
+	</div>
+</div>
+
+This endpoint is use when your order's fulfillment type is `seller_delivery` or `cross_border`, it use to get order's 
+shipping label so you can print it.
+
+This contains shipping information only so if your order does not fall into these two types you can simply ignore this endpoint.
+Go here for more details [get order's shipping label endpoint](#api-get-order-shipping-label)
+
+Example order's shipping label:
+
 ![](https://salt.tikicdn.com/ts/files/cf/51/bf/edb4c126a9124dbf76e6d519d4e06310.png)
 
 In this example orders label you need note:

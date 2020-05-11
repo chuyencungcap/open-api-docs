@@ -6,31 +6,25 @@ This is a [sample postman collection](https://documenter.getpostman.com/view/773
 
 The table below lists APIs that can be used for product management.
 
-| API name | Description |
-| -------- | -------- |
-| [Get list orders](#api-get-list-orders)| Returns a list of sales orders managed by signing in seller, base on a specific search query|
-| [Order detail](#api-get-order-detail)| Returns detail information including product items of a sales order, base on order code.|
-| [Get warehouses](#api-get-warehouses)| Returns detail information of warehouse of Tiki that seller registries for backorder model.|
-| [Confirm order items](#api-confirm-order-items)| Seller confirm available status and location of each item in the list|
-| [Update delivery status](#api-update-delivery-status)| Update delivery status, base on order codes. When order delivery, we need know order delivery status, you will need update it.|
-| [Print order labels](#api-print-order-labels)| Return shipping label url of sale orders, base on order codes.|
-| [Created mock order](#api-create-mock-order) | Create a mock order on sandbox for testing order management flow.
+API name | Description
+-------- | -----------
+[Get list orders](#api-get-list-orders)| Returns a list of orders managed by signing in seller, base on a specific search query
+[Get order details](#api-get-order-details)| Returns detail information including product items of an order, base on order code.
+[Get warehouses](#api-get-warehouses)| Returns details information of warehouse of Tiki that seller registries for backorder model.
+[Confirm order items](#api-confirm-order-items)| Confirm how many of items in an order that you can process.
+[Update delivery status](#api-update-delivery-status)| Update delivery status, base on order code. When order delivery, we need know order delivery status, you will need update it.
+[Get order shipping label](#api-get-order-shipping-label)| Return shipping label url of an order, base on order code.
+[Created mock order](#api-create-mock-order) | Create a mock order on sandbox for testing order management flow.
+[Update mock order status](#api-update-mock-order-status) | Update mock order status on sandbox.
 
 
+------------------------------------------------------------------------------------------------------------------------
 ### API get list orders
-#### HTTP Request ####
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/{version}/orders</h6>
-	</div>
-</div>
-
-Returns a list of sales orders managed by signing in seller, base on a specific search query
-
+#### HTTP Request
 ```http
 GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing 
 ```
+
 > Response body
 
 ```json
@@ -108,41 +102,38 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
 }
 ```
 
-#### **Request**
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders</h6>
+	</div>
+</div>
+
+Returns a list of sales orders managed by signing in seller, base on a specific search query
+
+
+#### Header
+
+Key | Description
+--- | -----------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Query parameters
 
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Headers</th>
-      <th style="text-align:left">Content-type</th>
-      <th style="text-align:left">application/json</th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
+      <th style="text-align:left">Name</th>
+      <th style="text-align:left">Type</th>
+      <th style="text-align:left">Mandatory</th>
+      <th style="text-align:left">Example</th>
+      <th style="text-align:left">Default value</th>
+      <th style="text-align:left">Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">tiki-api</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Query Parameters</td>
-      <td style="text-align:left">Name</td>
-      <td style="text-align:left">Type</td>
-      <td style="text-align:left">Mandatory</td>
-      <td style="text-align:left">Example</td>
-      <td style="text-align:left">Default value</td>
-      <td style="text-align:left">Description</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
       <td style="text-align:left">status</td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">N</td>
@@ -161,7 +152,6 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       </td>
     </tr>
     <tr>
-      <td style="text-align:left"></td>
       <td style="text-align:left">page</td>
       <td style="text-align:left">Integer</td>
       <td style="text-align:left">N</td>
@@ -170,7 +160,6 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       <td style="text-align:left">Page no of paging</td>
     </tr>
     <tr>
-      <td style="text-align:left"></td>
       <td style="text-align:left">limit</td>
       <td style="text-align:left">Integer</td>
       <td style="text-align:left">N</td>
@@ -179,52 +168,42 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
       <td style="text-align:left">Number of records per page</td>
     </tr>
      <tr>
-          <td style="text-align:left"></td>
-          <td style="text-align:left">created_from_date</td>
-          <td style="text-align:left">String</td>
-          <td style="text-align:left">N</td>
-          <td style="text-align:left">2019-07-22 15:00:00</td>
-          <td style="text-align:left"></td>
-          <td style="text-align:left">query order created from date</td>
+        <td style="text-align:left">created_from_date</td>
+        <td style="text-align:left">String</td>
+        <td style="text-align:left">N</td>
+        <td style="text-align:left">2019-07-22 15:00:00</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">query order created from date</td>
      </tr>
       <tr>
-               <td style="text-align:left"></td>
-               <td style="text-align:left">created_to_date</td>
-               <td style="text-align:left">String</td>
-               <td style="text-align:left">N</td>
-               <td style="text-align:left">2019-08-22 15:00:00</td>
-               <td style="text-align:left"></td>
-               <td style="text-align:left">query order created to date</td>
-          </tr>
+       <td style="text-align:left">created_to_date</td>
+       <td style="text-align:left">String</td>
+       <td style="text-align:left">N</td>
+       <td style="text-align:left">2019-08-22 15:00:00</td>
+       <td style="text-align:left"></td>
+       <td style="text-align:left">query order created to date</td>
+      </tr>
   </tbody>
 </table>
 
-#### **Response:** 
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| results | List&lt;Order&gt; | Returns a list of sales orders managed by signing in seller, base on a specific search query. |
-| paging | Object | Paging information |
+#### Response
 
-#### **Exception Case**
+Field | Type | Description
+----- | ---- | -----------
+results | List&lt;Order&gt; | Returns a list of sales orders managed by signing in seller, base on a specific search query.
+paging | Object | Paging information
 
-| HTTP Code | message | Description |
-| :--- | :--- | :--- |
-| 500 | Internal server error | having error in server, can't serving |
+#### Exception Case
+
+HTTP Code | message | Description
+--------- | ------- | -----------
+500 | Internal server error | having error in server, can't serving
 
 
-### API get order detail
+------------------------------------------------------------------------------------------------------------------------
+### API get order details
 #### HTTP Request ####
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/{version}/orders/{order_code}</h6>
-	</div>
-</div>
-
-Returns detail information including product items of a sales order, base on order code.
-
 ```http
 GET https://api.tiki.vn/integration/v1/orders/929231617
 ```
@@ -295,35 +274,40 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
 }
 ```
 
-#### **Request**
-
-| Headers | Content-type | application/json |
-| :--- | :--- | :--- |
-| tiki-api | String | seller token key (contact Tiki supporter)  |
-
-#### **Response :** 
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| root | Order | Returns detail information including product items of a sales order, base on order code. |
-
-#### **Exception Case**
-
-| HTTP Code | message | Description |
-| :--- | :--- | :--- |
-| 500 | Internal server error | having error in server, can't serving |
-| 404 | Not found | order code not found |
-
-### API get warehouses
-#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>https://api.tiki.vn/integration/{version}/warehouses</h6>
+		<h6>https://api.tiki.vn/integration/{version}/orders/{order_code}</h6>
 	</div>
 </div>
-Returns detail information of warehouse of Tiki that seller registries for backorder model.
 
+Returns detail information including product items of a sales order, base on order code.
+
+
+#### Header
+
+Key | Description
+--- | -----------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Response
+
+Field | Type | Description
+----- | ---- | -----------
+root | Order | Returns detail information including product items of a sales order, base on order code.
+
+#### Exception Case
+
+HTTP Code | message | Description
+--------- | ------- | -----------
+500 | Internal server error | having error in server, can't serving
+404 | Not found | order code not found
+
+
+------------------------------------------------------------------------------------------------------------------------
+### API get warehouses
+#### HTTP Request ####
 ```http
 GET https://api.tiki.vn/integration/v1/warehouses
 ```
@@ -383,34 +367,40 @@ GET https://api.tiki.vn/integration/v1/warehouses
 ]
 ```
 
-#### **Request**
-
-| Headers | Content-type | application/json |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |  |
-
-#### **Response**
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| root | Array object | List of warehouse object |
-
-
-#### **Exception Case**
-
-| HTTP Code | message | Description |
-| :--- | :--- | :--- |
-| 500 | Internal server error | having error in server, can't serving |
-
-### API confirm order items
-#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
-		<i class="label label-get">POST</i>
-		<h6>https://api.tiki.vn/integration/{version}/orders/confirmItems</h6>
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/warehouses</h6>
 	</div>
 </div>
 
+Returns detail information of warehouse of Tiki that seller registries for backorder model.
+
+
+#### Header
+
+Key | Description
+--- | -----------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Response
+
+Field | Type | Description
+----- | ---- | -----------
+root | Array object | List of warehouse object
+
+
+#### Exception Case
+
+HTTP Code | message | Description
+--------- | ------- | -----------
+500 | Internal server error | having error in server, can't serving
+
+
+------------------------------------------------------------------------------------------------------------------------
+### API confirm order items
+#### HTTP Request ####
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/confirmItems
 ```
@@ -434,19 +424,33 @@ POST https://api.tiki.vn/integration/{version}/orders/confirmItems
     "data": []
 }
 ```
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/confirmItems</h6>
+	</div>
+</div>
+
 Seller confirm available status and location of each item in the list
 
-#### **Request**
 
-| Headers | Content-type | application/json |  |  |
-| :--- | :--- | :--- | :--- | :--- |
-|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
-| Body Parameters | Name | Type | Mandatory | Description |
-|  | order_code | String | Y | order code |
-|  | item_ids | Array Integer | Y | list of item_id of a specific backorder that seller want to confirm,  |
-|  | warehouse_id | String | Y | The id identifies your warehouse in the Tiki system |
-|  | delivery_commitment_time(*) | String | Y | Delivery commitment time, String datetime with format Y-m-d H:i:s. |
-|  | tracking_number(*) | String | N | maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this  |
+#### Header
+
+Key   | Description
+--- | ---
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Request body
+
+Name | Type | Mandatory | Example | Default value | Description
+---- | --- | ---- | ---- | ---- | ----
+order_code | String | Y | 419060832 | N/A| Order code
+item_ids | Array (Integer) | Y | [94792486, 94792487] | N/A | List of item_id of a specific backorder that seller want to confirm
+warehouse_id | String | Y | 882 | N/A | The id identifies your warehouse in the Tiki system
+delivery_commitment_time(*) | String | Y | 2019-11-03 23:59:59 | N/A | Delivery commitment time, String datetime with format Y-m-d H:i:s
+tracking_number(*) | String | N | 419060832 | N/A |  Maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this
 
 **Note:** We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
 
@@ -455,14 +459,16 @@ So if you want to reject all of item in this order, just send an empty **item_id
 * **delivery_commitment_time** is required
 * **tracking_number** is required for **cross_border** order
 
-#### **Response :** 
+
+#### Response
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | code | String | Seller confirm order |
 | data | Array object |  |
 
-#### **Exception Case**
+
+#### Exception Case
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -470,8 +476,9 @@ So if you want to reject all of item in this order, just send an empty **item_id
 | 400 | Bad request | Params in body request invalid. See detail response |
 
 
+------------------------------------------------------------------------------------------------------------------------
 ### API Update delivery status
-
+#### HTTP Request ####
 ```http
 POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 ```
@@ -482,7 +489,7 @@ POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 {
     "order_code": "327965376-5vHl1b",
     "update_time":"2019-11-23 23:59:59",
-    "status": "ready_for_delivery"
+    "status": "successful_delivery"
 }
 ```
 
@@ -494,15 +501,12 @@ POST https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus
 }
 ```
 
-
-#### HTTP Request ####
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">POST</i>
 		<h6>https://api.tiki.vn/integration/{version}/orders/updateDeliveryStatus</h6>
 	</div>
 </div>
-
 
 Update delivery status, base on order codes. When order delivery, we need know order delivery status,
 you will need update it.
@@ -512,11 +516,11 @@ How to use this endpoint depend on fulfillment type of the orders.
 * With `tiki_delivery`, `dropship` orders, you don't have to update status, it will handle by Tiki. 
 You can ignore this endpoint.
 * With `cross_border` orders, there are two cases:
-    * With the normally case you don't have to update status, it will handle by Tiki. You can ignore this endpoint.
-    * With `cross_border` but using self delivery mode. You will need to above all the status. This type is special 
+    * With normally case you don't have to update status, it will handle by Tiki. You can ignore this endpoint.
+    * With using self delivery mode. You need to update above all the status bellow. This type is special 
     and new case in Tiki. Please contract us on Github issue if you are `cross_border` seller but using 
     self delivery mode to get support.  
-* With `seller_delivery` orders. You only need to update status `successful_delivery`.
+* With `seller_delivery` orders. You **only** need to update status `successful_delivery`.
 
 Go here if you need read more about [order fulfillment_type](#order).
 
@@ -528,7 +532,7 @@ Key   | Description
 tiki-api | seller token key (contact Tiki supporter)
 
 
-#### **Request body**
+#### Request body
 
 Name | Type | Mandatory | Example | Default value | Description
 ---- | --- | ---- | ---- | ---- | ----
@@ -555,14 +559,14 @@ Status options:
 Finally, your order delivery status becomes **successful delivery**, everything is settled.
 
 
-#### **Response**  
+#### Response  
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | message | String | "success" |  |
 
 
-#### **Exception Case**
+#### Exception Case
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -570,8 +574,21 @@ Finally, your order delivery status becomes **successful delivery**, everything 
 | 400 | Bad request | request not valid |
 
 
-### API print order label
+------------------------------------------------------------------------------------------------------------------------
+### API get order shipping label
 #### HTTP Request ####
+```http
+GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
+```
+
+> Response body
+
+```json
+{
+    "shipping_label_url": "https://uat.tikicdn.com/ts/print/0d/71/f7/c68cf4ba4b29d1f79bac442a2ec2aa42.html"
+}
+```
+
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
@@ -582,76 +599,36 @@ Finally, your order delivery status becomes **successful delivery**, everything 
 Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
 implement on your end.
 
-```http
-GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
-```
+Return shipping label url of sale orders, base on order code.
 
-Return shipping label url of sale orders, base on order codes.
+This endpoint is use when your order's fulfillment type is `seller_delivery` or `cross_border`, it use to get order's 
+shipping label so you can print it.
 
-> Response body
-
-```json
-{
-    "shipping_label_url": "http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html"
-}
-```
-
-#### **Request**
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Headers</th>
-      <th style="text-align:left">Content-type</th>
-      <th style="text-align:left">application/json</th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">tiki-api</td>
-      <td style="text-align:left">seller token key ( contact Tiki supporter )</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Path Parameters</b>
-      </td>
-      <td style="text-align:left"><b>Name</b>
-      </td>
-      <td style="text-align:left"><b>Type</b>
-      </td>
-      <td style="text-align:left"><b>Mandatory</b>
-      </td>
-      <td style="text-align:left"><b>Example</b>
-      </td>
-      <td style="text-align:left"><b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">order_code</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Y</td>
-      <td style="text-align:left">&quot;<code>20939384&quot;</code>
-      </td>
-      <td style="text-align:left">order_code of order you want to print</td>
-    </tr>
-  </tbody>
-</table>
-
-#### **Response**
-
-| Field | Type | Example | Description |
-| :--- | :--- | :--- | :--- |
-| shipping_label_url | String | "[http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html](http://uat.tikicdn.com/ts/print/1b/67/52/d54614ae10e18b2112c38845641a693d.html)" | Shipping label url |
+This contains shipping information only so if your order does not fall into these two types you can simply ignore this endpoint.
 
 
-#### **Exception Case**
+#### Header
+
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Request parameters
+
+Name | Type | Mandatory | Example | Description
+---- | ---- | --------- | ------- | -----------
+order_code | String | Y | 20939384 | order_code of order you want to get shipping label
+
+
+#### Response
+
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+shipping_label_url | String | https://uat.tikicdn.com/ts/print/0d/71/f7/c68cf4ba4b29d1f79bac442a2ec2aa42.html | Shipping label url
+
+
+#### Exception Case
 
 | HTTP Code | message | Description |
 | :--- | :--- | :--- |
@@ -659,24 +636,23 @@ Return shipping label url of sale orders, base on order codes.
 | 400 | Bad request | request not valid |
 
 
+Example order's shipping label:
+
+![](https://salt.tikicdn.com/ts/files/cf/51/bf/edb4c126a9124dbf76e6d519d4e06310.png)
+
+In this example orders label you need note:
+
+* **1)**: orders code
+* **2)**: the mode of payment that the user has used
+* **3)**: the address, phone of customer for delivery
+* **4)**: total amount shipper to be collected from customer
+
+
+------------------------------------------------------------------------------------------------------------------------
 ### API create mock order
-#### HTTP Request ####
-<div class="api-endpoint">
-    <div class="endpoint-data">
-        <i class="label label-get">POST</i>
-        <h6>https://api-sandbox.tiki.vn/integration/{version}/orders</h6>
-    </div>
-</div>
-
-This endpoint allow you to create mock order to test on sandbox environment. You need to specify 
-*fulfillment_type*, *payment_method* and *item list* of the order. More than that, you can add addition 
-information like shipping, discount, coupon, note to testing with your UI.
-
-After created mock order. You can use the *order_code* return in response to testing order management flow like 
-confirm items, update delivery status ...
-
+#### HTTP Request
 ```http
-POST https://api.tiki.vn/integration/{version}/orders
+POST https://api-sandbox.tiki.vn/integration/{version}/orders
 ```
 
 > Request body
@@ -816,11 +792,32 @@ POST https://api.tiki.vn/integration/{version}/orders
 }
 ```
 
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">POST</i>
+        <h6>https://api-sandbox.tiki.vn/integration/{version}/orders</h6>
+    </div>
+</div>
+
+This endpoint allow you to create mock order to test on sandbox environment. You need to specify 
+*fulfillment_type*, *payment_method* and *item list* of the order. More than that, you can add addition 
+information like shipping, discount, coupon, note to testing with your UI.
+
+After created mock order. You can use the *order_code* return in response to testing order management flow like 
+confirm items, update delivery status ...
+
+You can also use the [update mock order status endpoint](#api-update-mock-order-status) to update to other status to
+testing.
+
+Notes: Mock orders created using this endpoint will not display on Seller Center sandbox. 
+
+
 #### Header
 
 Key | Description
 --- | --------------
 tiki-api | seller token key (contact Tiki supporter)
+
 
 #### Request body
 
@@ -848,7 +845,7 @@ note | String | N | note message | The order's note message
 
 | Field | Type | Example | Description
 | ----- | ---- | ------- | -----------
-root | Order | Returns detail information the created order.
+root | Order | N/A | Returns detail information the created order.
 
 
 #### **Exception Case**
@@ -862,4 +859,68 @@ root | Order | Returns detail information the created order.
 | 429 | Too Many Requests | Your rate limit is exceed
 
 
+------------------------------------------------------------------------------------------------------------------------
+### API update mock order status
+#### HTTP Request
+```http
+POST https://api-sandbox.tiki.vn/integration/{version}/orders/{order_code}/updateStatus
+```
+
+> Request
+
+```json
+{
+	"status": "ready_to_ship"
+}
+```
+
+> Response
+
+```json
+{
+    "message": "success"
+}
+```
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">POST</i>
+        <h6>https://api-sandbox.tiki.vn/integration/{version}/orders/{order_code}/updateStatus</h6>
+    </div>
+</div>
+
+This endpoint allow you update mock dummy order status on sandbox. It is mainly for you to update mock order to all 
+status that other endpoints not cover so you can testing your UI like filter order by status, search by status...
+
+
+#### Header
+
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Request body
+
+Name | Type | Mandatory | Example | Description
+---- | ---- | --------- | ------- | -----------
+status | String | Y | ready_to_ship | Status to want to update. Here for more about [order status](#order-status)
+
+
+#### Response body
+
+| Field | Type | Example | Description
+| ----- | ---- | ------- | -----------
+message | String | success
+
+
+#### **Exception Case**
+
+| HTTP Code | Message | Description 
+| --------- | ------- | -----------
+| 500 | Internal server error | Having error in server, can't serving
+| 400 | Bad request | Cannot update to that status
+| 403 | Forbidden | Only available on sandbox environment
+| 401 | Unauthorized | Your tiki-api token is not valid
+| 429 | Too Many Requests | Your rate limit is exceed
 
