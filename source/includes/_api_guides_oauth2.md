@@ -61,11 +61,9 @@ The following headers are mandatory in your requests to Tiki:
 
 ```http
 Authorization: Bearer 4wx_Zpe_VVkZ2oka8pFSeeRt8C_...
-Authorization-Provider: ICP-HYDRA
 ```
 
 * `Authorization`: The authorization with `access_token` obtained from the OAuth2.
-* `Authorization-Provider`: Must be `ICP-HYDRA`
 
 If you still want to integrate manually with OAuth2, follow the [integration flow](#complex-integration-flow) carefully.
 

@@ -9,25 +9,40 @@ All the following APIs require authentication (either using the API Key or our O
 
 **Definition**: Represent a webhook with an event name and an endpoint where you want to receive the event payloads of this event type.
 
-| Key     | Type   | Description 
-| ---     | ----   | ---
-| `uri`   | String | The endpoint where you want to receive the webhook event
-| `event` | String | the webhook event name
+|     | Key     | Type   | Description 
+| --- | ---     | ----   | ---
+|     | `uri`   | String | The endpoint where you want to receive the webhook event
+|     | `event` | String | the webhook event name
 
 #### Generic Error
 
 **Definition**: Represent a common error message
 
-| Key       | Type        | Description 
-| ---       | ----        | ---
-| `id`      | UUID String | The unique Id of each error that occurs
-| `message` | String      | The detailed error message
+```json
+{
+    "error": {
+        "id": "123e4567-e89b-12d3-a456-426677440000",
+        "message": "Invalid URI"
+    }
+}
+```
+
+|     | Key       | Type        | Description 
+| --- | ---       | ----        | ---
+| `error`
+|     | `id`      | UUID String | The unique Id of each error that occurs
+|     | `message` | String      | The detailed error message
 
 ### Register webhook
 
 **Request**
 
-`POST /integration/v1/webhooks`
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>/integration/v1/webhooks</h6>
+	</div>
+</div>
 
 > Register webhook
 
@@ -40,14 +55,19 @@ All the following APIs require authentication (either using the API Key or our O
 }
 ```
 
-|             | Key            | Type                       | Mandatory | Description 
-| ---         | ---            | ----                       | ---       | ---
-| **Headers** | `Content-Type` | String                     | Y         | `application/json`
-| **Body**    |                | [Webhook](#webhook-object) | Y         | The webhook that you want to register
+**Request Header**
+
+| Key            | Type                       | Mandatory | Description 
+| ---            | ----                       | ---       | ---
+| `Content-Type` | String                     | Y         | `application/json`
+
+**Request Body**
+
+| Type                       | Mandatory | Description 
+| ----                       | ---       | ---
+| [Webhook](#webhook-object) | Y         | The webhook that you want to register
 
 We highly recommend you to register only HTTPS endpoints.
-
-**Response**
 
 > `200 OK` response
 
@@ -78,20 +98,31 @@ We highly recommend you to register only HTTPS endpoints.
 }
 ```
 
-| Http Status       | Key     | Type                            | Description 
-| ---               | ---     | ----                            | ---
-| `200 OK`          |         | [Webhook](#webhook-object)      | The webhook that you registered
-| `400 Bad Request`
-| `409 Conflict`
-|                   | `error` | [Generic Error](#generic-error) | The detailed error
+**Success Response**
+
+| Http Status       | Body                       | Description 
+| ---               | ---                        | ---
+| `200 OK`          | [Webhook](#webhook-object) | The webhook that you registered
+
+**Failure Response**
+
+| Http Status       | Body                            | Description 
+| ---               | ---                             | ---
+| `400 Bad Request` | **None**
+| `409 Conflict`    | [Generic Error](#generic-error) | The detailed error
 
 ### Get webhook
 
 **Request**
 
- `GET /integration/v1/webhooks`
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/integration/v1/webhooks</h6>
+	</div>
+</div>
 
-**Response**
+**Success Response**
 
 > Get webhook 
 
@@ -115,8 +146,7 @@ We highly recommend you to register only HTTPS endpoints.
 
 | Http Status | Key    | Type                               | Description 
 | ---         | ---    | ----                               | ---
-| `200 OK`
-|             | `data` | List of [Webhook](#webhook-object) | A list of registered webhooks
+| `200 OK`    | `data` | List of [Webhook](#webhook-object) | A list of registered webhooks
 
 The webhooks list could be empty.
 
@@ -124,7 +154,12 @@ The webhooks list could be empty.
 
 **Request**
 
-`PUT /integration/v1/webhooks`
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">PUT</i>
+		<h6>/integration/v1/webhooks</h6>
+	</div>
+</div>
 
 > Update webhook
 
@@ -137,15 +172,20 @@ The webhooks list could be empty.
 }
 ```
 
-|             | Key            | Type                       | Mandatory | Description 
-| ---         | ---            | ----                       | ---       | ---
-| **Headers** | `Content-Type` | String                     | Y         | `application/json`
-| **Body**    |                | [Webhook](#webhook-object) | Y         | The webhook that you want to update
+**Request Headers**
+
+| Key            | Type                       | Mandatory | Description 
+| ---            | ----                       | ---       | ---
+| `Content-Type` | String                     | Y         | `application/json`
+
+**Request Body**  
+
+| Type                       | Mandatory | Description 
+| ----                       | ---       | ---
+| [Webhook](#webhook-object) | Y         | The webhook that you want to update
 
 Because for each event, you can only register 1 URI to receive event payloads, 
 therefore the `event` property in the webhook object is enough for us to update your webhook.
-
-**Response**
 
 > `200 OK` response
 
@@ -166,11 +206,17 @@ therefore the `event` property in the webhook object is enough for us to update 
 }
 ```
 
-| Http Status       | Key     | Type                            | Description 
-| ---               | ---     | ----                            | ---
-| `200 OK`          |         | [Webhook](#webhook-object)      | The webhook that you updated
-| `400 Bad Request`
-|                   | `error` | [Generic Error](#generic-error) | The detailed error
+**Success Response**
+
+| Http Status       | Body                            | Description 
+| ---               | ---                             | ----            
+| `200 OK`          | [Webhook](#webhook-object)      | The webhook that you updated
+
+**Failure Response**
+
+| Http Status       | Body                            | Description 
+| ---               | ---                             | ----            
+| `400 Bad Request` | [Generic Error](#generic-error) | The detailed error
 | `404 Not Found`   | **None**
 
 
@@ -178,13 +224,18 @@ therefore the `event` property in the webhook object is enough for us to update 
 
 **Request**
 
-`DELETE /integration/v1/webhooks?event=product:request:approved`
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">DELETE</i>
+		<h6>/integration/v1/webhooks?event=product:request:approved</h6>
+	</div>
+</div>
 
-|             | Key      | Type   | Mandatory | Description 
-| ---         | ---      | ----   | ---       | ---
-| **Query**
-|             | `event`  | String | Y         | The event that you want to remove webhook
-| **Body**    | **None**
+**Query Component**
+
+| Key      | Type   | Mandatory | Description 
+| ---      | ----   | ---       | ---
+| `event`  | String | Y         | The event that you want to remove webhook
 
 **Response**
 
@@ -200,8 +251,6 @@ In conjunction with the use of HTTPS, you can protect your endpoint from malicio
 
 `PUT /v1/webhooks/credentials`
 
-**Body**
-
 > Grant credentials
 
 > Example body
@@ -212,10 +261,15 @@ In conjunction with the use of HTTPS, you can protect your endpoint from malicio
     "secret": "another random string as the secret"
 }
 ```
+**Request Headers**
 
-|             | Key            | Type    | Mandatory | Description 
-| ---         | ---            | ----    | ---       | ---
-| **Headers** | `Content-Type` | String  | Y         | `application/json`
-| **Body**
-|             | `id`           | String  | Y         | An unique ID for you to identify us <br>when we are deliverying event payloads to your endpoints
-|             | `secret`       | String  | Y         | A random string as a secret
+| Key            | Type    | Mandatory | Description 
+| ---            | ----    | ---       | ---
+| `Content-Type` | String  | Y         | `application/json`
+
+**Request Body**
+
+| Key            | Type    | Mandatory | Description 
+| ---            | ----    | ---       | ---
+| `id`           | String  | Y         | An unique ID for you to identify us <br>when we are deliverying event payloads to your endpoints
+| `secret`       | String  | Y         | A random string as a secret
