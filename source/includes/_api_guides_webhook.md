@@ -7,9 +7,9 @@ Open API Webhooks allows sellers subscribe to various events related to products
 
 At this first version, you can subcribe to the following product request events:
 
-* `product:request:approved`
-* `product:request:rejected`
-* `product:request:locked`
+* `product:request:approved` When your product request has been approved
+* `product:request:rejected` When your product request has been rejected. Reject reasons are included in the event payload.
+* `product:request:locked` When your product request has been rejected for 2 or 3 times, your product request is locked.
 
 ## Integration
 
@@ -19,11 +19,12 @@ Assume that you want to subscribe to product rejected events, make a `POST` to:
 
 **Request**
 
-`POST /v1/webhooks`
-
-**Header**
-
-Add your authorization option (either using API Key or OAuth2's token)
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>/integration/v1/webhooks</h6>
+	</div>
+</div>
 
 **Body**
 
@@ -35,6 +36,9 @@ Add your authorization option (either using API Key or OAuth2's token)
 }
 ```
 
+<br>
+Please refer to [Register webhook](#register-webhook) for more details.
+
 ### 2. Grant us credentials
 
 You need to protect the registered URIs to prevent malicious events. Therefore your systems may want to authenticate us. Right now we only support Basic Authentication, i.e. seller will need to grant us a (id, secret) credentials to authenticate with their system. And it is your responsible to verify us. 
@@ -43,7 +47,12 @@ To grant us a pair (id, secret):
 
 **Request**
 
-`PUT /v1/webhooks/credentials`
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">PUT</i>
+		<h6>/integration/v1/webhooks/credentials</h6>
+	</div>
+</div>
 
 **Body**
 
@@ -55,6 +64,9 @@ To grant us a pair (id, secret):
 }
 ```
 
+<br>
+Please refer to [Grant credentials to Tiki](#grant-credentials-to-tiki) for more details.
+
 ### 3. Handle events
 
 * Your system must be able to handle HTTP POST to the registered URI. In our example, that is `/your/product/request/rejected/endpoint`
@@ -62,16 +74,12 @@ To grant us a pair (id, secret):
    
 **Request**
 
-`POST /your/product/request/rejected/endpoint`
-
-**Header** 
-
-Includes the Basic Authentication with the granted (id, secret) above
-
-<div class="center-column"></div>
-```
-Authorization: Basic aXlvZmltM2VydTBia2l3ejpCdXFpY0Ixa3djeTRUbDlkaWtxUEI3RmtQd2REaDhmZA==
-```
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">POST</i>
+		<h6>/your/product/request/rejected/endpoint</h6>
+	</div>
+</div>
 
 **Body**
 
