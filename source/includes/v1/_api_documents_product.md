@@ -797,6 +797,7 @@ GET https://api.tiki.vn/integration/v1/products
 | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Body Parameters | Name | Type | Mandatory | Description |
+|  | name | String | N | name of product |
 |  | active | Integer | N | current active of products that you want to filter ( 1 = active , 0 = inactive ) |
 |  | category_id | Integer | N | id of the primary category you want to filter |
 |  | include | List<String> | N | extra information you want to add to product ( ex : inventory ) |
