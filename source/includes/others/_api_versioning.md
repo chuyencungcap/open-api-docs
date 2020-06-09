@@ -1,4 +1,5 @@
 # API Changelog
+*  09/06/2020: Add get order's PO label API. 
 *  03/05/2020: Add filter by name for product listing
 *  28/04/2020: Add include inventory information to get products API
 *  24/04/2020: Add support update product active, price, quantity by product id
