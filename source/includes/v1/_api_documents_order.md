@@ -14,6 +14,7 @@ API name | Description
 [Confirm order items](#api-confirm-order-items)| Confirm how many of items in an order that you can process.
 [Update delivery status](#api-update-delivery-status)| Update delivery status, base on order code. When order delivery, we need know order delivery status, you will need update it.
 [Get order shipping label](#api-get-order-shipping-label)| Return shipping label url of an order, base on order code.
+[Get order PO label](#api-get-order-po-label)| Return PO label url of an order, base on order code.
 [Created mock order](#api-create-mock-order) | Create a mock order on sandbox for testing order management flow.
 [Update mock order status](#api-update-mock-order-status) | Update mock order status on sandbox.
 
@@ -601,10 +602,10 @@ implement on your end.
 
 Return shipping label url of sale orders, base on order code.
 
-This endpoint is use when your order's fulfillment type is `seller_delivery` or `cross_border`, it use to get order's 
+This endpoint is use when your order's fulfillment type is `seller_delivery`, `cross_border`, `dropship`, it use to get order's 
 shipping label so you can print it.
 
-This contains shipping information only so if your order does not fall into these two types you can simply ignore this endpoint.
+This contains shipping information only so if your order does not fall into these those types above you can simply ignore this endpoint.
 
 
 #### Header
@@ -646,6 +647,68 @@ In this example orders label you need note:
 * **2)**: the mode of payment that the user has used
 * **3)**: the address, phone of customer for delivery
 * **4)**: total amount shipper to be collected from customer
+
+
+------------------------------------------------------------------------------------------------------------------------
+### API get order PO label
+#### HTTP Request
+```http
+GET https://api.tiki.vn/integration/{version}/orders/{order_code}/PO
+```
+
+> Response body
+
+```json
+{
+    "po_label_url": "https://uat.tikicdn.com/ts/print/9e/2d/11/52038dea479a4b6b0d08ca1364c64cfe.html"
+}
+```
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>https://api.tiki.vn/integration/{version}/orders/{order_code}/PO</h6>
+	</div>
+</div>
+
+Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
+implement on your end.
+
+Return PO label url of sale orders, base on order code.
+
+This endpoint is use when your order's fulfillment type is `tiki_delivery` with `backorder` items. You need to use this
+PO label to attach to the orders before transfer to Tiki's warehouses.
+
+This contains shipping information only so if your order does not fall into these types above you can simply ignore this endpoint.
+
+
+#### Header
+
+Key | Description
+--- | --------------
+tiki-api | seller token key (contact Tiki supporter)
+
+
+#### Request parameters
+
+Name | Type | Mandatory | Example | Description
+---- | ---- | --------- | ------- | -----------
+order_code | String | Y | 20939384 | order_code of order you want to get shipping label
+
+
+#### Response
+
+Field | Type | Example | Description
+----- | ---- | ------- | -----------
+po_label_url | String | https://uat.tikicdn.com/ts/print/9e/2d/11/52038dea479a4b6b0d08ca1364c64cfe.html | PO label url
+
+
+#### Exception Case
+
+HTTP | Code | message | Description
+---- | ---- | ------- | -----------
+500 | Internal server error | having error in server, can't serving
+400 | Bad request | request not valid
 
 
 ------------------------------------------------------------------------------------------------------------------------
