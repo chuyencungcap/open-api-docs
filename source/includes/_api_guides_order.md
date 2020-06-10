@@ -393,6 +393,25 @@ In this example orders label you need note:
 * **4)**: total amount shipper to be collected from customer
 
 
+## Get order's PO label to print
+```http
+GET https://api.tiki.vn/integration/{version}/orders/{order_code}/PO
+```
+
+> Response body
+
+```json
+{
+    "po_label_url": "https://uat.tikicdn.com/ts/print/9e/2d/11/52038dea479a4b6b0d08ca1364c64cfe.html"
+}
+```
+
+This endpoint is use when your order's fulfillment type is `tiki_delivery` with `backorder` items. You need to use this
+PO label to attach to the orders before transfer to Tiki's warehouses.
+
+This contains shipping information only so if your order does not fall into these types above you can simply ignore this endpoint.
+Go here for more details [get order's PO label endpoint](#api-get-order-po-label)
+
 ## Test orders on sandbox
 
 In sandbox we provide an endpoint for you to create mock orders. So you can test order management flow as it is on production.

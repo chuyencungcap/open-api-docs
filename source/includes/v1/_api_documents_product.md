@@ -791,12 +791,15 @@ GET https://api.tiki.vn/integration/v1/products
   }
 }
 ```
+
+
 #### **Request**
 
 | Headers | Content-type | application/json |  |  |
 | :--- | :--- | :--- | :--- | :--- |
 |  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
 | Body Parameters | Name | Type | Mandatory | Description |
+|  | name | String | N | name of product (full text search) |
 |  | active | Integer | N | current active of products that you want to filter ( 1 = active , 0 = inactive ) |
 |  | category_id | Integer | N | id of the primary category you want to filter |
 |  | include | List<String> | N | extra information you want to add to product ( ex : inventory ) |
@@ -805,12 +808,14 @@ GET https://api.tiki.vn/integration/v1/products
 |  | created_from_date | String | N | products created_at >= this time |
 |  | created_to_date | String | N | products created_at <= this time |
 
+
 #### **Response**
 
 | Field | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | data | List<**Product**> | see more detail below | list query result |
 | paging | Paging | see more detail below | page information of this query |
+
 
 #### **Exception Case**
 
