@@ -1,4 +1,5 @@
 # API Changelog
+*  11/06/2020: Add update original sku method
 *  09/06/2020: Add get order's PO label API. 
 *  03/05/2020: Add filter by name for product listing
 *  28/04/2020: Add include inventory information to get products API
