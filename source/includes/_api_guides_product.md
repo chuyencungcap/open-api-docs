@@ -994,3 +994,31 @@ POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
     ]
 }
 ```
+
+----------------------
+
+> Update original sku example
+
+```http
+POST https://api.tiki.vn/integration/v1/products/updateOriginalSku
+```
+
+> Update original sku request body
+
+```json
+{
+    "product_id" : 123456, 
+    "original_sku" : "SELLER_SKU"
+}
+```
+
+This API use to [update original sku](#update-original-sku). ( sku from seller system )
+Your request will be approved automatically.
+Although updating the original sku is not recommended, we still provide a solution for you to update the original sku if needed.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>https://api.tiki.vn/integration/v1/products/updateOriginalSku</h6>
+	</div>
+</div>
