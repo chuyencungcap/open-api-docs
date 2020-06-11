@@ -16,6 +16,7 @@ API name | Description
 [Replay a product request](#replay-a-product-request)| Replay process of a single request from the beginning
 [Update variant price/quantity/active](#update-variant-price-quantity-active)| Update price/quantity/active of a product intermediately
 [Update product market_price/image/images](#update-market-price-images)| Update market_price/image/images via update product request
+[Update product original sku](#update-original-sku)| Update original sku (seller sku) intermediately
 [Get latest products](#get-latest-products)| Get all of product (approved request) order by created_at desc (latest product)
 [Get a product](#get-a-product)| Get a product with product_id from TIKI system
 [Get a product by original sku](#get-a-product-by-original-sku)| Get a product by original sku
@@ -1236,6 +1237,66 @@ POST https://api.tiki.vn/integration/v1/requests/updateProductInfo
 | :--- | :--- | :--- | :--- |
 | track_id | String | `c3587ec50976497f837461e0c2ea3da5` | track_id to tracking this request |
 | state | String | queuing | current state of your request |
+
+#### **Exception Case**
+
+| HTTP Code | message | Description |
+| :--- | :--- | :--- |
+| 500 | Internal server error | having error in server, can't serving |
+| 400 | Bad request | your request is invalid |
+| 404 | Not found | product_id not found |
+| 429 | Too Many Requests | Your rate limit is exceed |
+
+-----
+
+### Update original sku
+
+#### HTTP Request ####
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>https://api.tiki.vn/integration/{version}/products/updateOriginalSku</h6>
+	</div>
+</div>
+
+Update original sku of product
+
+> Example
+
+```http
+POST https://api.tiki.vn/integration/v1/products/updateOriginalSku
+```
+
+> Request body
+
+```json
+{
+	"product_id": 123456,
+	"original_sku":"BRAND_NEW_CODE"
+}
+```
+
+> Response body
+
+```json
+{
+   "state": "approved"
+}
+```
+
+#### **Request**
+
+| Headers | Content-type | application/json |  |  |
+| :--- | :--- | :--- | :--- | :--- |
+|  | tiki-api | seller token key (contact Tiki supporter)  |  |  |
+| Path Parameters | Name | Type | Mandatory | Description |
+|  | version | String | Y | version of API|
+
+#### **Response**
+
+| Field | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| state | String | approved | current state of your request |
 
 #### **Exception Case**
 
