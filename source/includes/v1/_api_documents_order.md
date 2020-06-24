@@ -60,7 +60,8 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
         "city": "Quận Ba Đình",
         "region": "Hà Nội",
         "country": "VN",
-        "phone": "0912611089",
+        "phone": "",
+        "email": "",
         "estimate_description": "Dự kiến giao hàng vào Thứ hai, 04/11/2019"
       },
       "items": [
@@ -111,6 +112,17 @@ GET https://api.tiki.vn/integration/v1/orders?page=1&limit=2&status=queueing
 </div>
 
 Returns a list of sales orders managed by signing in seller, base on a specific search query
+
+
+<aside class="warning">
+    Notes: There is sometime the when query <b>limit</b> per page is 20 for example but there is only 10, 15 orders return on 
+    <b>data</b> filed. This is an error in our order processing flow to wrongly count orders in each page. But no order is 
+    missing due to this. All Tiki-accepted orders are visible in the API response. 
+    We will try to work on this as soon as possible.
+    
+    For now when you query orders at order listing endpoint, please use the last_page value to scan for all pages of orders 
+    that satisfy your filter.
+</aside>
 
 
 #### Header
@@ -192,7 +204,7 @@ tiki-api | seller token key (contact Tiki supporter)
 
 Field | Type | Description
 ----- | ---- | -----------
-results | List&lt;Order&gt; | Returns a list of sales orders managed by signing in seller, base on a specific search query.
+results | List<[Order](#order)> | Returns a list of sales orders managed by signing in seller, base on a specific search query.
 paging | Object | Paging information
 
 #### Exception Case
@@ -241,7 +253,8 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
         "city": "Quận Ba Đình",
         "region": "Hà Nội",
         "country": "VN",
-        "phone": "0912611089",
+        "phone": "",
+        "email": "",
         "estimate_description": "Dự kiến giao hàng vào Thứ hai, 04/11/2019",
         "shipping_fee": 0
     },
@@ -284,6 +297,10 @@ GET https://api.tiki.vn/integration/v1/orders/929231617
 
 Returns detail information including product items of a sales order, base on order code.
 
+<aside class="warning">
+    Note: For the security reason, we only return <b>phone</b> and <b>email</b> on shipping information for cross_border 
+    and seller_delivery orders
+</aside>
 
 #### Header
 
@@ -296,7 +313,7 @@ tiki-api | seller token key (contact Tiki supporter)
 
 Field | Type | Description
 ----- | ---- | -----------
-root | Order | Returns detail information including product items of a sales order, base on order code.
+root | [Order](#order) | Returns detail information including product items of a sales order, base on order code.
 
 #### Exception Case
 
@@ -453,7 +470,9 @@ warehouse_id | String | Y | 882 | N/A | The id identifies your warehouse in the 
 delivery_commitment_time(*) | String | Y | 2019-11-03 23:59:59 | N/A | Delivery commitment time, String datetime with format Y-m-d H:i:s
 tracking_number(*) | String | N | 419060832 | N/A |  Maybe equal order code, tracking_number is code for tracking order via 3rd party system or anything like this
 
-**Note:** We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
+<aside class="warning">
+    Notes: We use this endpoint to confirm available item only, if an item is absent, it will be confirmed as not able to sell by this time.
+</aside>
 
 So if you want to reject all of item in this order, just send an empty **item_ids** list
 
@@ -597,8 +616,10 @@ GET https://api.tiki.vn/integration/{version}/orders/{order_code}/print
 	</div>
 </div>
 
-Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
-implement on your end.
+<aside class="warning">
+    Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
+    implement on your end.
+</aside>
 
 Return shipping label url of sale orders, base on order code.
 
@@ -671,8 +692,10 @@ GET https://api.tiki.vn/integration/{version}/orders/{order_code}/PO
 	</div>
 </div>
 
-Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
-implement on your end.
+<aside class="warning">
+    Notes: Sorry, this endpoint is not available on sandbox environment. You can see the example response to know how to
+    implement on your end.
+</aside>
 
 Return PO label url of sale orders, base on order code.
 
@@ -872,8 +895,9 @@ confirm items, update delivery status ...
 You can also use the [update mock order status endpoint](#api-update-mock-order-status) to update to other status to
 testing.
 
-Notes: Mock orders created using this endpoint will not display on Seller Center sandbox. 
-
+<aside class="warning">
+    Notes: Mock orders created using this endpoint will not display on Seller Center sandbox. 
+</aside>
 
 #### Header
 

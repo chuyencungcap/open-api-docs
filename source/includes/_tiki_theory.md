@@ -245,8 +245,10 @@ Supplier is group of [TIKI's warehouses](#tiki-warehouse), that can transfer you
 possible warehouses can expected the product transfer to when customers placed order. It can be only one warehouse 
 or multiple warehouses depend on you.
 
-**Notes**: If seller is abroad (`cross_border`), you have only one supplier. Please contact TIKI supporter to get this 
-value.
+<aside class="warning">
+    Notes: If seller is abroad (cross_border), you have only one supplier. Please contact TIKI supporter to get this 
+    value.
+</aside>
 
 Field | Type | Example | Description
 ----- | ---- | ------- | -----------
@@ -443,6 +445,7 @@ Via API, we provide some solution to confirm order & update delivery status step
 | region | String | "Hồ Chí Minh" | Province, City of delivery address |
 | country | String | "VN" | The country of delivery address |
 | phone | String | "0784083498" | phone number |
+| email | String | "xxx@google.vn" | email address |
 | estimation_description | String | Expected delivery on Friday | the delivery info TIKI estimate  |
 | shipping_fee | Long | 0 | shipping fee |
 
