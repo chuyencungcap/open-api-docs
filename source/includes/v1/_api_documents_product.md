@@ -305,7 +305,14 @@ Create new product request
 }
 ```
 
-**\*Note**: To understand the relation between variant and it's product parent please read the detail from: **Variant**(*)
+<aside class="warning">
+    Notes: To understand the relation between variant and it's product parent please read the detail from: <b>Variant</b>
+</aside>
+
+<aside class="warning">
+    Notes: Your product request on Sandbox will get auto approved by our scripts if it change to <b>awaiting_approve</b>
+     state, so you can process testing integration flow with product endpoints. But it's not true on production
+</aside>
 
 #### **Request**
 You must complete all required attribute from category, all others can be ignored or pass null value

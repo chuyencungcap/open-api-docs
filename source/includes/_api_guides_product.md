@@ -139,8 +139,9 @@ And if you still want to learn more about TIKI system , you can refer to the fol
     * "Tiki or seller have to bring product to the customer"
     * "TIKI come seller 's warehouse to take product or seller bring product to TIKI 's warehouse?"
 
-Note : In the case you have only one inventory type, TIKI will choose it as default value so you can ignore this field
-
+<aside class="warning">
+    Notes: In the case you have only one inventory type, TIKI will choose it as default value so you can ignore this field
+</aside>
 
 ### 4. Get supplier
 There are cases you need to fill in supplier depends on product's inventory type you choose:
@@ -344,7 +345,7 @@ Example : Product is iPhone have `"option_attributes":["color","storage"]` so yo
 | image | String | N | Replace | avatar url of this variant |
 | images | String | N | Replace | list urls of variant product gallery |
 
-**\*Note**:
+**\*Notes**:
 
 + **option1**, **option2** is required corresponding with the number of option attributes start from 1.
 
@@ -846,8 +847,10 @@ for the best performance we provide summary of product only, we also provide som
 you can add extra inventory information to product by this parameter
 - `include = inventory` -> add extra inventory information to product
 
-*Note : API use yyyy-MM-dd HH:mm:ss datetime format 
-Example : `2020-03-05 11:27:24` ~ 11:27:24 am , 5th March 2020 
+<aside class="warning">
+    Note : API use yyyy-MM-dd HH:mm:ss datetime format 
+    Example : `2020-03-05 11:27:24` ~ 11:27:24 am , 5th March 2020 
+</aside>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

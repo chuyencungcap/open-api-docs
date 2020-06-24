@@ -17,7 +17,10 @@ The following table shows API versions presented in each major version of TIKI P
 |:------------|:-------------|:--------------------------|
 | `v1`        | 1.0 or later |                           |
 
-*Note: If you have any feedback to develop this API system better, please feel free to contact us.
+
+<aside class="success">
+    Note: If you have any feedback to develop this API system better, please feel free to contact us on Github issue.
+</aside>
 
 ### Production Environment
 
