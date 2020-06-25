@@ -957,8 +957,11 @@ GET https://api.tiki.vn/integration/v1/products/2088336
   ],
   "inventory": {
     "inventory_type": "backorder",
-    "fulfillment_type": "cross_border",
-    "quantity": 200
+    "fulfillment_type": "tiki_delivery",
+    "quantity": 13,
+    "quantity_available": 13,
+    "quantity_reserved": 0,
+    "quantity_saleable": 13
   }
 }
 ```
