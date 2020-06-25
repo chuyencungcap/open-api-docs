@@ -1,4 +1,5 @@
 # API Changelog
+*  25/06/2020: Add quantity, quantity salable , quantity available in get product detail 
 *  11/06/2020: Add update original sku method
 *  09/06/2020: Add get order's PO label API. 
 *  03/05/2020: Add filter by name for product listing
