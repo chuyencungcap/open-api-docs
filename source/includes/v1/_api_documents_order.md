@@ -196,9 +196,29 @@ tiki-api | seller token key (contact Tiki supporter)
        <td style="text-align:left"></td>
        <td style="text-align:left">query order created to date</td>
       </tr>
+     <tr>
+        <td style="text-align:left">updated_from_date</td>
+        <td style="text-align:left">String</td>
+        <td style="text-align:left">N</td>
+        <td style="text-align:left">2019-07-22 15:00:00</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">query order updated from date</td>
+     </tr>
+      <tr>
+       <td style="text-align:left">updated_to_date</td>
+       <td style="text-align:left">String</td>
+       <td style="text-align:left">N</td>
+       <td style="text-align:left">2019-08-22 15:00:00</td>
+       <td style="text-align:left"></td>
+       <td style="text-align:left">query order updated to date</td>
+      </tr>
   </tbody>
-</table>
+</table>\
 
+By default:
+
+* When you query orders by creating time, you get the **latest** orders by its creating time (i.e. orders are sorted by creating time **descendingly**).
+* When you query orders by updating time, you get the **earliest** orders by its updating time (i.e. orders are sorted by updating time **ascendingly**). Therefore you can scan order updates by advancing the time-window.
 
 #### Response
 

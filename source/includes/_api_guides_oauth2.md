@@ -1,15 +1,45 @@
 
 # OAuth2
 
-At the moment we only support client type `confidential` as described in The OAuth 2.0 Authorization Framework [#section-2.1](https://tools.ietf.org/html/rfc6749#section-2.1). Therefore, in order to integrate with our Authorization Code Flow, you will need to 
+## Simple integration flow
 
-* Build a *client app* with both *frontend* and *backend*
-* The frontend will be in charged of requesting users' consent
-* The backend will be in charged of keeping the client credentials (a.k.a client_id/client_secret pair) to request tokens from our token endpoint
+### 1. Request for a client account
 
-## Integration recommendation
+You need to file an issue at [Open API Docs](https://github.com/tikivn/open-api-docs/issues) to request for a client account. 
+Provide us your public email and we will contact you to proceed.
 
-We strongly recommend your team not to write your own code to interact with OAuth 2.0. Use open source & battle-tested libraries instead. Here are some examples:
+### 2. Client configurations
+
+Once you have a client account, you can start configuring your client app to interact with our OAuth2 system. 
+By integrating with our OAuth2 system, your client app can ask users for their approval to manage their store on Tiki
+or to access their store data.
+
+You will need the following configs for your client app:
+
+* **Authorization** endpoint `/sc/oauth2/auth`
+* **Token** endpoint `/sc/oauth2/token`
+* Host
+  * **Production** `api.tiki.vn`
+  * **Development** `api-sandbox.tiki.vn`
+* **Client Credentials** that we provided you after the client request
+* Supported flow: **Authorization Code**
+
+### 3. Client libraries
+
+We strongly recommend your team not to write your own code to interact with OAuth 2.0. Use open source & battle-tested libraries instead. 
+These cilent libraries will interact with our OAuth2 system to obtain users' approval as well as asking for `access_token`. You then simply use 
+these `access_token`s to make requests to Tiki.
+
+It heavily depends on the libraries and frameworks, the integration will differs:
+
+* Some libraries will only perform the authorization base on your provided configurations to obtain the `access_token`. 
+And you will need to add `Authorization` header by yourself to every requests to Tiki with those `acccess_token`s. 
+You will also need to manually handle token expiration and renewal (using `refresh_token`).
+* Some others libraries integrate deeply the OAuth2 Standard with your Http Client. 
+With above [Client Configurations](#2-client-configurations) your Http Client is ready to make requests to Tiki. You do not need to 
+add `Authorization` header by yourself.
+
+Here are some example libraries:
 
 * NodeJS
   * [passport](http://www.passportjs.org/)
@@ -21,24 +51,29 @@ We strongly recommend your team not to write your own code to interact with OAut
 * Java
   * [Spring Security](https://spring.io/projects/spring-security)
 
-For a full list of client libraries go [here](https://oauth.net/code/). If you still want to integrate manually with OAuth2, follow the [integration flow](#integration-flow) carefully.
+For a full list of client libraries go [here](https://oauth.net/code/).
 
-### Endpoints configuration
+### 4. Making requests from Client App
 
-* **Authorization** endpoint `/sc/oauth2/auth`
-* **Token** endpoint `/sc/oauth2/token`
-* Host
-  * **PRODUCTION** `api.tiki.vn`
-  * **DEVELOPMENT** `api-sandbox.tiki.vn`
+The following headers are mandatory in your requests to Tiki:
 
-### Token usage
+> Example headers
 
-Include the following mandatory headers in your request to Open API:
+```http
+Authorization: Bearer 4wx_Zpe_VVkZ2oka8pFSeeRt8C_...
+```
 
-* `Authorization: Bearer 4wx_Zpe_VVkZ2oka8pFSeeRt8C_...`
-* `Authorization-Provider: ICP-HYDRA`
+* `Authorization`: The authorization with `access_token` obtained from the OAuth2.
 
-## Integration flow
+If you still want to integrate manually with OAuth2, follow the [integration flow](#complex-integration-flow) carefully.
+
+## Complex integration flow
+
+At the moment we only support client type `confidential` as described in The OAuth 2.0 Authorization Framework [#section-2.1](https://tools.ietf.org/html/rfc6749#section-2.1). Therefore, in order to integrate with our Authorization Code Flow, you will need to 
+
+* Build a *client app* with both *frontend* and *backend*
+* The frontend will be in charged of requesting users' consent
+* The backend will be in charged of keeping the client credentials (a.k.a client_id/client_secret pair) to request tokens from our token endpoint
 
 ### 1. Ask user to start the flow
 
